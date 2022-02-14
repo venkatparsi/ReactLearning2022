@@ -1,16 +1,14 @@
 {
   "notes": [
     {
-      "id": 1,
-      "content": "json-server",
-      "date": "2021-05-30T15:30:31",
-      "important": false
+      "content": "the app state is in redux store",
+      "important": false,
+      "id": 1
     },
     {
-      "id": 2,
-      "content": "HTML is easy man",
-      "date": "2022-01-30T17:30:31",
-      "important": false
+      "content": "state changes are made with actions",
+      "important": false,
+      "id": 2
     },
     {
       "id": 3,
@@ -21,7 +19,7 @@
     {
       "content": "Ths is my note for the expermentation",
       "date": "2022-02-11T13:28:10.910Z",
-      "important": false,
+      "important": true,
       "id": 4
     },
     {
@@ -51,7 +49,7 @@
     {
       "content": "",
       "date": "2022-02-11T23:27:17.888Z",
-      "important": false,
+      "important": true,
       "id": 9
     },
     {
@@ -69,8 +67,213 @@
     {
       "content": "This is true that we are doing this.",
       "date": "2022-02-11T23:27:31.969Z",
-      "important": false,
+      "important": true,
       "id": 12
+    },
+    {
+      "content": "Add a nekkkkw note..",
+      "important": false,
+      "id": 13
+    },
+    {
+      "content": "Add a new note..",
+      "important": false,
+      "id": 14
+    },
+    {
+      "content": "venkat parsi is the best.",
+      "important": false,
+      "id": 15
+    },
+    {
+      "content": "Add a new note..",
+      "important": false,
+      "id": 16
+    },
+    {
+      "content": "",
+      "important": false,
+      "id": 17
+    },
+    {
+      "content": "",
+      "important": false,
+      "id": 18
+    },
+    {
+      "content": "",
+      "important": false,
+      "id": 19
+    },
+    {
+      "content": "Add a new note..",
+      "important": false,
+      "id": 20
+    },
+    {
+      "content": "testubng",
+      "important": false,
+      "id": 21
+    },
+    {
+      "content": "Add a nsdfdfew note..",
+      "important": false,
+      "id": 22
+    },
+    {
+      "content": "Add a dfdfdfnew note..",
+      "important": false,
+      "id": 23
+    },
+    {
+      "content": "",
+      "important": false,
+      "id": 24
+    },
+    {
+      "content": "dfsdfsdf",
+      "important": false,
+      "id": 25
+    },
+    {
+      "content": "fgfgdg",
+      "important": false,
+      "id": 26
+    },
+    {
+      "content": "jkjkj",
+      "important": false,
+      "id": 27
+    },
+    {
+      "content": "",
+      "important": false,
+      "id": 28
+    },
+    {
+      "content": "dfdf",
+      "important": false,
+      "id": 29
+    },
+    {
+      "content": "dfdfsdf",
+      "important": false,
+      "id": 30
+    },
+    {
+      "content": "",
+      "important": false,
+      "id": 31
+    },
+    {
+      "content": "dfdff",
+      "important": false,
+      "id": 32
+    },
+    {
+      "content": "",
+      "important": false,
+      "id": 33
+    },
+    {
+      "content": "fgfg",
+      "important": false,
+      "id": 34
+    },
+    {
+      "content": "dfdf fdfsdf",
+      "important": false,
+      "id": 35
+    },
+    {
+      "content": "Add a new note..",
+      "important": false,
+      "id": 36
+    },
+    {
+      "content": "Add a new note..",
+      "important": false,
+      "id": 37
+    },
+    {
+      "content": "dfdf",
+      "important": false,
+      "id": 38
+    },
+    {
+      "content": "dfsdfsdf dfsdfsdf",
+      "important": false,
+      "id": 39
+    },
+    {
+      "content": "dfdfdf",
+      "important": false,
+      "id": 40
+    },
+    {
+      "content": "dfdfdf",
+      "important": false,
+      "id": 41
+    },
+    {
+      "content": "dfdff",
+      "important": false,
+      "id": 42
+    },
+    {
+      "content": "dfdfdf",
+      "important": false,
+      "id": 43
+    },
+    {
+      "content": "fgfg",
+      "important": false,
+      "id": 44
+    },
+    {
+      "content": "this is my data.",
+      "important": false,
+      "id": 45
+    },
+    {
+      "content": "dfsdfsdf",
+      "important": false,
+      "id": 46
+    },
+    {
+      "content": "dfsdfsdfsdf",
+      "important": false,
+      "id": 47
+    },
+    {
+      "content": "fgdfgdfggf",
+      "important": false,
+      "id": 48
+    },
+    {
+      "content": "sdfsdfsdsdf",
+      "important": false,
+      "id": 49
+    },
+    {
+      "content": "Srichakri is a bad girl",
+      "important": false,
+      "id": 50
+    },
+    {
+      "content": "Yukki is a very very good girl",
+      "important": false,
+      "id": 51
+    },
+    {
+      "content": "khjkljkhjkh",
+      "important": true,
+      "id": 52
+    },
+    {
+      "content": "Add a new note..",
+      "important": true,
+      "id": 53
     }
   ],
   "persons": [
