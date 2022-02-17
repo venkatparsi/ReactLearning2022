@@ -1,0 +1,306 @@
+$product-card-height: 438px;
+$product-card-mini-height: 173px;
+$product-card-header-height: 169px;
+$product-card-header-banner-height: 40px;
+$product-card-header-lob-container-height: 18px;
+
+.row.productCardWrapper.expand .productCard.highlight {
+    border: 2px solid #fff;
+    box-shadow: Opx 1px 15px orange;
+}
+
+.blank-card-space-holder {
+    color: transparent;
+    height: 0px;
+}
+
+.row.productCardWrapper.expand {
+    div.blank-card-space-holder {
+        color: transparent;
+        height: 474px;
+    }
+}
+
+.productCardwrapper.expand {
+    .no-visible-expand {
+        display: none;
+        background: orange;
+    }
+
+    .productCard {
+        height: $product-card-mini-height;
+    }
+}
+
+.productCard {
+    // background-color: red; 
+    height: $product-card-height;
+    padding: unset;
+    background: #212121;
+    border: 1px solid #545454;
+    margin-bottom: 15px;
+    /* Dark/shadow-sm */
+    box-shadow: Opx 2px 2px rgba(0, 0, 0, 0.14),
+        Opx 3px 1px rgba(0, 0, 0, 0.12),
+        Opx 1px 5px rgba(0, 0, 0, 0.2);
+
+
+    .productCardHeader {
+        min-height: $product-card-header-height;
+
+        // background-color: green; 
+        .productCardHeaderBanner {
+            min-height: $product-card-header-banner-height;
+            filter: drop-shadow (Opx 4px 4px rgba(0, 0, 0, 0.25));
+            background: rgba(15, 16, 16, 0.2);
+
+            .productCardHeaderTopCategoryMarker {
+                position: absolute;
+                width: 4px;
+                height: 24px;
+                left: 17px;
+                top: 7px;
+                background: rgba(255, 255, 255, 0.8);
+            }
+
+            .productCardHeaderTopCategoryText {
+                position: absolute;
+                left: 30px;
+                top: 29.51%;
+                font-family: Open Sans;
+                font-style: normal;
+                font-weight: 800;
+                font-size: 12px;
+                line-height: 16px;
+                /* identical to box height, or 133% */
+                color: #FFFFFF;
+                max-width: 100px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .productCardHeaderTopCategoryIcons {
+                position: absolute;
+                right: 5.31%;
+                top: 29.51%;
+                font-family: Open Sans;
+                font-style: normal;
+                font-weight: 800;
+                font-size: 12px;
+                line-height: 16px;
+                /* identical to box height, or 133% */
+                color: #FFFFFF;
+                max-width: 100px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .productCardHeaderLOBContainer {
+            height: $product-card-header-lob-container-height;
+            margin-top: 20px;
+
+            .productCardHeaderLOBText {
+                position: static;
+                background: #EA761F;
+                font-family: Open Sans;
+                font-style: normal;
+                font-weight: 800;
+                font-size: 12px;
+                line-height: 16px;
+                color: #FFFFFF;
+                padding: 1px Opx 1px;
+                border-radius: 2px;
+                min-width: 30px;
+                max-width: 40px;
+                text-align: center;
+            }
+        }
+
+        .productCardHeaderTitleContainer {
+            font-family: Open Sans;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 28px;
+            line-height: 32px;
+            min-height: 32px;
+            /* or 114% */
+            align-items: center;
+            color: #FFFFFF;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+        }
+    }
+
+    //end of product header..
+
+    .productCardHeaderBg {
+        position: relative;
+    }
+
+    .productCardHeaderBefore {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 169px;
+        left: 6px;
+        top: 0px;
+        opacity: 0.8;
+        border-bottom: 1px solid #212121;
+        background-blend-mode: screen;
+    }
+
+    .productCardHeaderGreen {
+        @extend .productCardHeaderBg;
+    }
+
+    .productCardHeaderPurple {
+        @extend .productCardHeader;
+    }
+
+
+    .productCardHeaderLightRed {
+        @extend.productCardHeader;
+    }
+
+    .productCardHeaderInactive {
+        @extend productCardHeader;
+    }
+
+    .productCardHeaderBrightRed {
+        @extend .productCardHeader;
+    }
+
+    .productCardHeaderChromeYellow {
+        @extend productCardHeader;
+    }
+
+    .productCardHeaderDarkGreen {
+        @extend .productCardHeader;
+    }
+
+    .productCardHeaderDarkBlue {
+        @extend .productCardHeader;
+    }
+
+    .productCardHeaderGreen::before {
+        @extend .productCardHeaderBefore;
+        background: $card-header-bg, $card-header-bg-color-green;
+    }
+
+    .productCardHeaderPurple::before {
+        @extend .productCardHeaderBefore;
+        background: $card-header-bg, $card-header-bg-color-purple;
+    }
+
+    .productCardHeaderLightRed::before {
+        @extend .productCardHeaderBefore;
+        background: $card-header-bg, $card-header-bg-color-light-red;
+    }
+
+    .productCardHeaderInactive::before {
+        @extend .productCardHeaderBefore;
+        background: url("./../images/BG Image.png"), #212121;
+    }
+
+    .productCardHeaderBrightRed::before {
+        @extend .productCardHeaderBefore;
+        background: $card-header-bg, $card-header-bg-color-bright-red;
+    }
+
+    .productCardHeaderChromeYellow::before {
+        @extend .productCardHeaderBefore;
+        background: $card-header-bg, $card-header-bg-color-chrome-yellow;
+    }
+
+    .productCardHeaderDarkGreen::before {
+        @extend .productCardHeaderBefore;
+        background: $card-header-bg, $card-header-bg-color-dark-green;
+    }
+
+    .productCardHeaderDarkBlue::before {
+        @extend .productCardHeaderBefore;
+        background: $card-header-bg, $card-header-bg-color-dark-blue;
+    }
+
+
+    .productCardTagsContainer {
+        //background-color: purple;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: Opx;
+        position: relative;
+        height: 24px;
+        overflow: hidden;
+
+        .productCardTags Button {
+            /* background-color: green; */
+            font-family: Open Sans;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 24px;
+            color: #89BFF5;
+            flex: none;
+            order: 2;
+            flex-grow: 0;
+            /* margin: Opx 8px; */
+            cursor: pointer;
+            margin-left: 17px;
+        }
+    }
+
+    .productCardDescription {
+
+        //background-color: brown;
+        height: 140px;
+        padding: Opx;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 10px 10px 10px 6px;
+
+        .productCardDescriptionText {
+            margin-left: -15px;
+            font-size: 12px;
+        }
+    }
+
+    .product2CardFooter {
+
+        //background-color: yellow; 
+        bottom: -40px;
+        border-top: 1px solid #EA761F;
+        /* background-color: red; */
+        height: 40px;
+
+        .productCardFooterLikesContainer {
+            position: relative;
+            top: 10px;
+            left: 15px;
+        }
+    }
+
+    .mouse-over {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-color: rgba(234, 118, 31, 0);
+        width: 100%;
+        height: 100%;
+        font-size: 0px;
+        color: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+
+        &:hover {
+            background-color: rgba(234, 118, 31, 0.2);
+            border: 2px solid #fff;
+            box-shadow: Opx 1px 15px orange;
+        }
+    }
+}

@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mone:wght@300;400;500&display=swap');
+
+body{
+    padding: 0;
+    margin:0;
+    background-color: #17141d;
+    color:white;
+    font-family: 'DM Mono', monospace;    
+}
+
+.card-list{
+    display: flex;
+    position: relative;
+    flex-direction: row;   
+    padding: 1.5rem;
+    min-width: 600px;
+    gap:60px;
+    margin: 0px;
+    padding: 0px;
+}
+.card{
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    height: 350px;
+    width: 400px;
+    min-width: 250px;
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: #17141d;
+    box-shadow: -1rem 0 3rem #000 ;
+    text-align: left;    
+    margin:20px;
+    padding:0px;
+}
+
+.card-header  h2{
+    writing-mode: vertical-rl;   
+    padding: 0px;
+    margin: 0px; 
+}
+
+.card:hover {
+    transform: translateY(-1rem);
+}
+
+/* Sibling selector */ 
+/* Select all siblings After the hovered card*/
+.card:hover~.card {
+    transform: translateX(180px);      
+}
+.card:not(:first-child){
+    margin-left: -380px;
+}
+
+#simpleLog{
+    position: fixed;
+    top:10px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    z-index: 100;
+    color: balck;
+}

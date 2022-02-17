@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Dictionary</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Font Awesome -->
+	 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/v4-shims.css">
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+ <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1>MyGoogle</h1>
+         
+<div class="gallery">
+  <div class="inner ">  
+  <div class="image">
+  <div class="rightAlign">
+  <div class="overlay">
+    <a href="#" title="Copy from clipboard" onclick="paste('pasteImgElem');">
+        <i class="far fa-clipboard fa-lg"></i>
+    </a>  
+  
+ </div>
+ </div>
+  <img title="click to enlarge" id="pasteImgElem"  class='zoomable  ' src="https://picsum.photos/300/300"
+   onclick="zoomIt(this)"> 
+   </div>
+   <div><span contenteditable="true" class="badge badge-secondary">Resume</span>
+   <span contenteditable="true" class="badge badge-secondary">2014</span>
+   <span contenteditable="true" class="badge badge-secondary">personal</span>
+   </div>
+   <div class="rightAlign ">
+   <a href="#" title="Save" onclick="save('pasteImgElem');">
+    <i class="fa fa-save fa-lg"></i>   
+  </a> 
+  </div>
+   
+  
+ </a> <h2 contenteditable="true">Venkat Parsi</h2>
+   <p contenteditable="true">About Full Stack developer doing the coding for the sake of doing..</p>
+   <div  width="100%"contenteditable="true"> Content</div>
+  
+  </div>
+ 
+
+  <div class="inner profile-pic">
+    <div class="edit">
+      <a href="#"><i class="fa fa-pencil fa-lg"></i></a>   
+	</div>
+  
+ 
+  <img class='zoomable'  src="https://fakeimg.pl/200x200/?text=World&font=lobster" 
+  onclick="zoomIt(this)">
+  
+  
+  </div>
+  <div class="inner"><img class='zoomable' src="https://picsum.photos/600/400"></div>
+  <div class="inner"><img class='zoomable' src="https://picsum.photos/600/400"></div>
+  <div class="inner"><img class='zoomable' src="https://picsum.photos/600/400"></div>
+  <div class="inner"><img class='zoomable' src="https://picsum.photos/600/400"></div>
+
+<input type="hidden" id="targetPasteImgElem" value="pasteImgElem"></input>
+
+</div>
+<script>
+
+
+</script>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="./image-utils.js"></script>
+  <!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script></body>
+</html>

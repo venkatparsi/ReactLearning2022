@@ -1,0 +1,20 @@
+https://github.com/mac-s-g/react-json-view#onedit-onadd-and-ondelete-interaction
+JSON Tree viewer.
+
+
+https://javascript.daypilot.org/demo/calendar/
+JavaScript event calender for gropup....
+
+
+<IconMenuItem iconName="FaSearch" iconTitle='My Data' 
+           bgcolor="rgb(255, 101, 80)" color="white" size={25} tagline='DATA'/>
+           <IconMenuItem iconName="FaTasks" iconTitle='My Tasks' bgcolor='rgb(59, 89, 152)' color="white" 
+           size={25} tagline='TASK'/>
+           <IconMenuItem iconName="FaRocketchat" iconTitle='Muchhata' bgcolor=" rgb(29, 161, 242)" 
+           color="white" size={25} tagline='TALK'/>
+          <IconMenuItem iconName="FaRegStickyNote" iconTitle='Sticky Notes' bgcolor="orange"  
+           color="white" size={25} tagline='NOTE'/>
+           <IconMenuItem iconName="FaMailBulk" iconTitle='Email' bgcolor="black"  
+           color="white" size={25} tagline='EMAIL'/>
+            <IconMenuItem iconName="FaWhatsapp" iconTitle='Whatsapp' bgcolor="green"   
+           color="white" size={25} tagline='CHAT'/>

@@ -1,0 +1,62 @@
+[
+    {
+       "id": "1",
+       "bgcolor": "rgb(255, 101, 80)",
+       "color":"white",
+       "size": 25,
+       "tagline":"DATA",
+       "iconName":"FaSearch",
+       "iconTitle":"My Data", 
+       "link" :"mydata"    
+    },
+    {
+      "id": "2",
+      "bgcolor": "rgb(59, 89, 152)",
+      "color":"white",
+      "size": 25,
+      "tagline":"TASK",
+      "iconName":"FaTasks",
+      "iconTitle":"My Tasks",
+      "link" :""    
+   },
+   {
+    "id": "3",
+    "bgcolor": "rgb(29, 161, 242)",
+    "color":"white",
+    "size": 25,
+    "tagline":"TALK",
+    "iconName":"FaRocketchat",
+    "iconTitle":"Muchhhata",
+    "link" :"muchhata"    
+ },
+  {
+    "id": "4",
+    "bgcolor": "orange",
+    "color":"white",
+    "size": 25,
+    "tagline":"NOTE",
+    "iconName":"FaRegStickyNote",
+    "iconTitle":"Sticky Notes",
+    "link" :""    
+  },
+  {
+    "id": "5",
+    "bgcolor": "black",
+    "color":"white",
+    "size": 25,
+    "tagline":"MAIL",
+    "iconName":"FaMailBulk",
+    "iconTitle":"Email",
+    "link":""
+  },
+  {
+    "id": "6",
+    "bgcolor": "green",
+    "color":"white",
+    "size": 25,
+    "tagline":"CHAT",
+    "iconName":"FaWhatsapp",
+    "iconTitle":"Whatsapp",
+    "link":""
+  }
+]

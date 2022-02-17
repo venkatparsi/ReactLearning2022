@@ -1,0 +1,137 @@
+  {
+  "bookmarks" : [
+    {
+      "detail": "Typescript_Jumpstart_Book_Udemy : very good tutorial to begin typescript",
+      "loc": "file:///C:/Users/user/Downloads/Typescript_Jumpstart_Book_Udemy.pdf"
+    },
+    {
+      "detail": "visual studio shortcuts",
+      "loc": "https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf"
+    },
+    {
+      "detail": "360 degrees inspiration - angular stop watch",
+      "loc": "https://stackblitz.com/edit/angular-stopwatch?embed=1&file=app/timer/timer.component.ts"
+    },
+    {
+      "detail": "Create drag and drop directive in angular material.",
+      "loc": "https://medium.com/@tarekabdelkhalek/how-to-create-a-drag-and-drop-file-uploading-in-angular-78d9eba0b854"
+    },
+    { "detail": "dynamic tabs in angular", "loc": "https://stackblitz.com/edit/angular-dynamic-tabs?file=app%2Fapp.component.ts", "tags": "angular,dynamic tabs" },
+    
+    { "detail": "Keeping the User from Losing Data by Leaving the Page Before Submit", 
+      "loc": "https://medium.com/better-programming/angular-how-keep-user-from-lost-his-data-by-accidentally-leaving-the-page-before-submit-4eeb74420f0d",
+       "tags": "save on exit"
+       },
+
+       { "detail": "The perfect mock REST backend for your Angular app", "loc": " https://medium.com/letsboot/the-perfect-mock-backend-to-start-with-an-angular-application-3d751d16614f", "tags": "" },
+       { "detail": "mock backend", 
+        "loc": "https://jasonwatmore.com/post/2019/05/02/angular-7-mock-backend-example-for-backendless-development", 
+        "loc2": "",
+        "tags": "HTTP Interceptors" },
+       { "detail": "Building Angular Services using Facade design pattern for complex systems",
+         "loc": "https://medium.com/@balramchavan/best-practices-building-angular-services-using-facade-design-pattern-for-complex-systems-d8c516cb95eb",
+          "tags": "Angular services,design,best practices" },
+       { "detail": "", "loc": "", "tags": "" }
+      
+  ],
+  "working_links": [
+    { "detail": "", "loc": "", "tags": "" },
+    { "detail": "reading files to localstorage", "loc": "https://web.dev/read-files/", "tags": "read files,javascript,local storage" },
+    { "detail": "angular material course github repository", "loc": "https://github.com/angular-university/angular-material-course", "tags": "material course" },
+    
+    {
+      "detail": "learning angular materrial ",
+      "loc": "https://hexagoncci.udemy.com/course/angular-material-course/learn/lecture/8617632#notes",
+      "tags": "udemy,pwa,angular materrial"
+    },
+    {
+      "detail": "gmail",
+      "loc": "https://mail.google.com/mail/u",
+      "tags": "notes"
+    },
+    {
+      "detail": "Angular material site",
+      "loc": "https://material.angular.io/guides",
+      "tags": "360degrees,copy cat,angular tutorial,"
+    },
+    { "detail": "lazy loadign for noobs", 
+      "loc": "https://medium.com/@ganeshp0001/angular-6-lazy-loading-for-noobs-f70209da71a9", 
+      "loc2": "https://angular.io/guide/lazy-loading-ngmodules",
+      "tags": "lazy loading , multiple modules" 
+    }, 
+    {
+      "detail": "360 Degress local app",
+      "loc": "http://localhost:4200/",
+      "tags": "run angular app,"
+    },
+
+    {
+      "detail": "Angular Material: toolbar and sidenav",
+      "loc": "https://robferguson.org/blog/2018/11/10/angular-material-toolbar-and-sidenav/",
+      "tags": "crm, sample crm,angular application,firebase"
+    },
+    {
+      "detail": "Serendipity CRM - Firebase app",
+      "loc": "https://serendipity-f7626.firebaseapp.com/sales/contacts",
+      "tags": "firebase,inspiration angular,angular material"
+    },
+    {
+      "detail": "Serendipity CRM Github",
+      "loc": "https://github.com/Robinyo/serendipity",
+      "tags": "crm,firebase,sample app angular, sample app firebase,"
+    },
+    {
+      "detail": "running chrome in local with no cors --app This will open the file in APP Mode of chrome.. and separate process for it.",
+      "loc": "",
+      "tags": "chrome unsecured, no cors",
+      "command": "cd 'C:Program Files (x86)GoogleChromeApplication'",
+      "command2": "chrome.exe --user-data-dir='D:\\projects\\jsonEditorWebSitedocs' --disable-web-security --app=http:\\localhost:4200"
+    },
+    {
+      "detail": "Handle drag-n-drop json file upload and parsing with javascript",
+      "loc": "https://gist.github.com/andjosh/7867934",
+      "tags": "drag and drop,javascript,snippet, json drag and drop,json file,"
+    },
+    {
+      "detail": "Angular Material icons",
+      "loc": "https://material.io/resources/icons/?style=baseline",
+      "tags": "icons,angular icons,material icons"
+    },
+    {
+      "detail": "",
+      "loc": "",
+      "tags": ""
+    },
+{
+      "detail": "Responsive Grid.",
+      "loc": "https://zoaibkhan.com/blog/create-a-responsive-card-grid-in-angular-using-flex-layout-part-1/",
+      "tags": ""
+    },
+	{
+      "detail": "Flex box : Bet tutorial",
+      "loc": "https://css-tricks.com/snippets/css/a-guide-to-flexbox/",
+      "tags": ""
+    },
+
+{
+      "detail": "Free background audios.",
+      "loc": "https://www.bensound.com/royalty-free-music/acoustic-folk",
+      "tags": ""
+    },
+
+
+{
+      "detail": "logo maker",
+      "loc": "https://logomaker.thehoth.com/?project=40911889#",
+      "tags": ""
+    },
+
+{
+      "detail": "images",
+      "loc": "https://postimages.org/",
+      "tags": ""
+    }
+
+  ]
+}
+

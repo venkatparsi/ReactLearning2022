@@ -1,0 +1,1 @@
+A simple javascript code to make a div dragabble and resizable easily..

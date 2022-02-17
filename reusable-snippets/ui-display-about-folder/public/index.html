@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Display About folder</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta 
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="./style.css" />   
+       <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+ 
+    <script>
+     function includeHTML(partialName) {
+    var z, i, elmnt, file, xhttp;
+    /* Loop through a collection of all HTML elements: */
+   
+      elmnt = document.getElementById(partialName);
+      /*search for elements with a certain atrribute:*/
+      file = elmnt.getAttribute("include-html");
+      if (file) {
+        /* Make an HTTP request using the attribute value as the file name: */
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4) {
+            if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+            /* Remove the attribute, and call this function once more: */
+            elmnt.removeAttribute("include-html");
+           // includeHTML();
+          }
+        }
+        xhttp.open("GET", file, true);
+        xhttp.send();
+        /* Exit the function: */
+        return;
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <input type="file" id="get_the_file" />
+    <script>
+      var aboutData = "";
+      // loads in server environment..
+      fetch("./data.json")
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+
+      // Read the file manually..
+      document
+        .getElementById("get_the_file")
+        .addEventListener("change", function () {
+          var file_to_read = document.getElementById("get_the_file").files[0];
+          var fileread = new FileReader();
+          fileread.onload = function (e) {
+            var content = e.target.result;
+            // console.log(content);
+            aboutData = JSON.parse(content); // Array of Objects.
+            console.log(aboutData); // You can index every object
+          };
+          fileread.readAsText(file_to_read);
+        });
+
+    </script>
+    <script type="module" src="../src/index.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <div id="loadHeader" include-html="header.html"></div>
+    <div id="flip-card" include-html="card-partial.html"></div>
+    <script>
+      includeHTML("loadHeader");
+    </script>
+    
+    <script>
+      includeHTML("flip-card");
+    </script>
+
+    <div class="container" style="width: 100%;">
+      <div class="row col-sm-12">
+        <app-header style="text-align:center; width:100%" class="col-sm-12"></app-header>
+      </div>
+    </div>
+    
+    <flip-card></flip-card>
+    
+<flip-card></flip-card>
+
+<flip-card></flip-card>
+
+
+<flip-card></flip-card>
+
+<whats-up></whats-up>
+   
+
+
+    
+  </body>
+</html>

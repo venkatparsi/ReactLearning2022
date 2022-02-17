@@ -1,0 +1,81 @@
+
+running the application: nodemon app.js or node app.js
+
+simple express server with http endpoints for serving sample data, 
+dynamic template substitution at server side., 
+validate a request object using joi 
+setting the port number using the process.env
+
+NODE Documentation: 
+
+Node is a Runtime environment for executing javascript code.
+under the hood V8 engine.
+Node helps in web server environment with additional modules get the things done for a web server tasks.
+Why Node is because we have a single language and client side and server side.
+largest ecosystem of open source libs.
+It is to build APIs, highly scalabel, for quick prototyping, agile development, 
+its superfast and 33% fewer lines of code compared to other server side language environments.
+
+Architecture of Node : 
+
+Asynchronous server | Non blocking - single thread for request and response.
+
+Multithreadded vs Single threadded processing Approach.
+
+Each request is spawned to a seperate thread and waits for the processing to be done.
+Single Threaded node server will have a Event Queue : Its acts as the broker between processing thread 
+and requests. once the 
+
+I/O intentsive applications are better suited for node. 
+not for cpu intentsive applications.
+
+################################################################################################
+
+Node module system:
+
+########################
+os,fs,events,http
+
+Global Object :  golbal  ==> default object scope.
+global.console.log();
+console.log(); // global object
+setTimeout() ; // part of standard javascript.. can use in browser or node at server side.
+clearTimeout() ; // part of standard javascript.. can use in browser or node
+setInterval() ; // part of standard javascript.. can use in browser or
+clearInterval() ; // part of standard javascript.. can use in browser
+global.setTimeOut();//
+
+Why modules ??
+small building blocks which wont override the other modules code.
+every file in node is considered as module..
+All vars and functions are scoped to the module...
+
+console.log(module);
+ Module{
+     id:'', 
+     exports: {},
+     parent:null,
+     filename:'/Users/venkat/Desktop/app.js',
+     loaded:false,
+     children:[],
+     paths:['/Users/venkat/Desktop/..']
+ }
+
+ Export Function in modules : export ==> module.exports.log = log
+ Import functions in other modules:  require() ==> const logger = require('./logger');
+
+ Exporting object or function froma module.
+        module.exports.log = log; //object exporting
+        module.exports = log; // function exporting.
+
+################################################################################################
+Module Wrapper functions in modules - IIFE
+########################################################################################
+IIFE -- node wraps the code into an IIFE and executes it.
+
+function((exports,require,module,__filename,__dirname){
+    ....
+    ....
+    ....
+
+})

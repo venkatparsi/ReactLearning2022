@@ -1,0 +1,55 @@
+.iconbar{
+    top: 10% !important;
+    bottom: auto;
+    cursor: pointer;
+    position: fixed;   
+    width: 4pc;
+    z-index: 100020;
+    
+}
+
+.iconbar-item{
+    
+    position: relative;
+    display: inline;
+    width: 4pc;
+    margin: 0;
+    outline-offset: -1px;
+    text-align: center;
+    float: left;
+    transition: width .55s ease-in-out;
+    overflow: hidden;
+    background: #e8e8e8;
+    z-index: 100030;
+    cursor: pointer;
+    padding-left:10px;
+    padding-right: 10px;
+   vertical-align:middle;
+   height: 65px;
+   opacity: .9;
+   /*for Circular buttons*/
+   --border-radius: 40px;
+
+}
+.iconbar-item .menu-name { 
+    display: none;
+    padding-left: 10px;
+    overflow: hidden;
+    vertical-align:baseline;    
+}
+
+@media (hover: hover) {
+    .iconbar-item:hover, .iconbar-item:active {
+        padding-top: 10px;
+        width: 10pc; 
+        opacity: 1;
+           
+    }
+    .iconbar-item:hover .tagline{
+        display: none;
+    }
+    
+    .iconbar-item:hover .menu-name{  
+       display: inline;   
+    }
+ }

@@ -1,0 +1,42 @@
+/** All equal columns all the time. all direct children 
+Auto fills the content shares the space between all children */
+
+.even-columns-container{
+    display:flex;   
+    margin: 2px ;
+    padding: 2px;
+    border: 2px dashed red;
+    overflow: auto ;
+    --flex-wrap: wrap;
+    gap:1em;
+
+}
+
+.even-columns-container > * {
+    flex-basis: 100%;   
+    
+}
+
+.grid-ish-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap:1em;
+  margin: 2px ;
+  padding: 2px;
+  border: 2px dashed green;
+}
+
+.grid-ish-container > * {
+    flex: 1 1 33%;   
+}
+
+
+
+
+ .content{
+     width:70vw;
+     margin: 3rem auto;
+     padding: 2em;
+     box-shadow: 0 0 3em 0px rgba(0,0,0,0.2);
+     background: white;
+}

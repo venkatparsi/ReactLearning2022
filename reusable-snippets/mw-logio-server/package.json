@@ -1,0 +1,16 @@
+{
+  "name": "mw-logio-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "log.io": "^0.4.16",
+    "log.io-file-input": "^0.4.16"
+  }
+}

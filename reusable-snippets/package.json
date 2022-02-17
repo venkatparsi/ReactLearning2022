@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "shx": "^0.3.3"
+  },
+  "dependencies": {
+    "chrome-launcher": "^0.14.0"
+  }
+}

@@ -1,0 +1,18 @@
+
+.action-link{ 
+    color: black;
+    text-decoration: none;  
+  }
+  
+  .fa-icon svg
+   {
+    vertical-align: "middle" !important;
+    margin-bottom: 5px;
+  }
+  
+  .action-link:hover *{
+    transition: transform 0.7s;
+    transform: scale(1.06); 
+    text-decoration: none;
+    cursor: pointer;
+  }

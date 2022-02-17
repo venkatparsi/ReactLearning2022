@@ -1,0 +1,60 @@
+[
+  {
+    "id": 1,
+    "name": "fakeImage",
+    "content": "<img src=\"https://fakeimg.pl/300/\">\r\n<img src=\"https://fakeimg.pl/250x100/\">\r\n<img src=\"https://fakeimg.pl/250x100/ff0000/\">\r\n<img src=\"https://fakeimg.pl/350x200/ff0000/000\">\r\n<img src=\"https://fakeimg.pl/350x200/ff0000,128/000,255\">\r\n<img src=\"https://fakeimg.pl/350x200/?text=Hello\">\r\n<img src=\"https://fakeimg.pl/200x100/?retina=1&text=\u3053\u3093\u306B\u3061\u306F&font=noto\">\r\n<img src=\"https://fakeimg.pl/350x200/?text=World&font=lobster\">",
+    "contentType": "string",
+    "tags": "first,",
+    "categoryRoot": "ui",
+    "categorySubject": "html",
+    "categoryContext": "snippet",
+    "about": "fake images - fakeimg.pl",
+    "link": "https://fakeimg.pl/"
+  },
+  {
+    "id": 2,
+    "name": "evalDangers",
+    "content": "https://dev.to/spukas/everything-wrong-with-javascript-eval-35on",
+    "contentType": "link",
+    "tags": "eval,",
+    "categoryRoot": "ui",
+    "categorySubject": "javascript",
+    "categoryContext": "tutorial",
+    "about": "danger of eval",
+    "link": "https://dev.to/spukas/everything-wrong-with-javascript-eval-35on"
+  },
+  {
+    "id": 3,
+    "name": "regEx",
+    "content": "https://regex101.com/",
+    "contentType": "link",
+    "tags": "regex,regular expression,",
+    "categoryRoot": "ui",
+    "categorySubject": "javascript",
+    "categoryContext": "tutorial",
+    "about": "playground to execute javascript regex"
+  },
+  {
+    "id": 4,
+    "name": "joint",
+    "content": "https://resources.jointjs.com/docs/rappid/v3.4/demo/ui/themes/plugins/index.html#joint-ui-ColorPalette",
+    "contentType": "link",
+    "tags": "joint,drag and drop,dnd,ui-framework,diagramming",
+    "categoryRoot": "ui",
+    "categorySubject": "framework",
+    "categoryContext": "sample",
+    "about": "playground to view jointjs snippets "
+  },
+  {
+    "id": 5,
+    "name": "rappid",
+    "content": "https://resources.jointjs.com/demos/rappid/apps/KitchenSink/index.html",
+    "contentType": "link",
+    "tags": "rappid,joint,drag and drop,dnd,ui-framework,diagramming",
+    "categoryRoot": "ui",
+    "categorySubject": "framework",
+    "categoryContext": "rappid",
+    "about": "playground to view rappid framework for digramming dnd"
+  }
+
+]
