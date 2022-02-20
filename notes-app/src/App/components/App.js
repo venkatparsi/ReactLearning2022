@@ -1,17 +1,20 @@
 import React from 'react';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link
-} from "react-router-dom";
+
 import './App.css';
 import routeConstants from '../../../shared/constants/routes';
 import Navbar from "./Navbar";
 import VideoContainer from "./VideoContainer/VideoContainer";
 import FixedPanel from "./FixedPanel/FixedPanel";
 import ScrollablePanel from './ScrollablePanel/ScrollablePanel';
+import {createStore} from 'redux';
+import noteReducer from './Notes/reducers/noteReducer'
+import { useSelector, useDispatch } from 'react-redux'
 
+/******* NAVIGATION RELATED */
+import {
+  Routes,
+  Route
+} from "react-router-dom";
 const {
   LOGIN,
   DASHBOARD,
@@ -20,10 +23,14 @@ const {
 } = routeConstants;
 
 console.log("Route Constants",routeConstants)
-
 const navItems = [LOGIN, DASHBOARD, LISTING, PROFILE];
 console.log("Nav Items",navItems)
 
+/***********************APP STATE **********/
+
+const notesStore = createStore(noteReducer);
+
+/**************************** */
 
 function App() {
 
@@ -44,9 +51,7 @@ function App() {
       </Routes>
       <VideoContainer></VideoContainer>
     </FixedPanel>
-
-    <ScrollablePanel>
-    
+    <ScrollablePanel>    
       <VideoContainer></VideoContainer>
       <VideoContainer></VideoContainer>
       <VideoContainer></VideoContainer>
