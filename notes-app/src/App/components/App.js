@@ -1,13 +1,13 @@
 import React from 'react';
 
 import './App.css';
-import routeConstants from '../../../shared/constants/routes';
+import routeConstants from '../../shared/constants/routes'
 import Navbar from "./Navbar";
 import VideoContainer from "./VideoContainer/VideoContainer";
 import FixedPanel from "./FixedPanel/FixedPanel";
 import ScrollablePanel from './ScrollablePanel/ScrollablePanel';
 import {createStore} from 'redux';
-import noteReducer from './Notes/reducers/noteReducer'
+import noteReducer from './Notes/noteReducer'
 import { useSelector, useDispatch } from 'react-redux'
 
 /******* NAVIGATION RELATED */
@@ -52,10 +52,7 @@ function App() {
       <VideoContainer></VideoContainer>
     </FixedPanel>
     <ScrollablePanel>    
-      <VideoContainer></VideoContainer>
-      <VideoContainer></VideoContainer>
-      <VideoContainer></VideoContainer>
-      <VideoContainer></VideoContainer>
+     <Note></Note>
       </ScrollablePanel>
     </>
 );

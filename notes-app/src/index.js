@@ -1,11 +1,11 @@
 
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import App from './screens/App/components/App';
+import App from './App/components/App';
 import {Provider} from 'react-redux';
-import noteStore from './scNotes/noteStore'
+import noteStore from './AppStore'
 ReactDOM.render(
-  <Provider>
+  <Provider store={noteStore}>
     <BrowserRouter>
        <App />  
     </BrowserRouter>

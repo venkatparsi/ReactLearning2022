@@ -4,7 +4,6 @@ const mouseUtilActionTypes = {
 
 }
 
-
 export const getScrollPos = () => ({
     type: mouseUtilActionTypes.SCROLL_POS,
     payload: window.pageYOffset || document.documentElement.scrollTop,
