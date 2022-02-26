@@ -2,18 +2,14 @@ import "./VideoContainer.css";
 
 const VideoContainer = () => {
   
-  return (
-      <div class="outer-container">
+  return (    
         <div class="video-container">
-          <iframe
-            width="560"
-            height="315"
+          <iframe 
             src="https://www.youtube.com/embed/9VNTvwaJ6oM"
             frameborder="0"
             allowfullscreen
           ></iframe>
         </div>
-      </div>
   );
 };
 

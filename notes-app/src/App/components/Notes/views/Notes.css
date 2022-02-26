@@ -28,23 +28,32 @@
 
 	.row-lay{
 		display: flex;
-		flex-direction: row;
-		flex-wrap: nowrap ;
-		justify-content:flex-start;
-		align-items: center;
+		flex-direction: row;	
 		margin:1px;
 		margin-left: 4px;	
-		gap:5px;	
-		
+		gap:5px;
+		max-width: 99%;
 	}
+	
 	.flex-space-evenly{
 		justify-content: space-evenly;
 	}
 	.column-lay{
 		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
-		
+		justify-content: space-around;		
+	}
+
+	.note{
+		min-width: 340px;
+	}
+
+	.title{		
+		max-height: 50px;		
+		vertical-align: middle;
+		padding-top:1px;
+		justify-content: center;
+		scroll-behavior: auto;
 	}
 
 	.taskbar{
@@ -53,10 +62,17 @@
 		box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
 	}
 
-	.timer-box{
+	.timer{
+		margin-left: auto; 
+		margin-right: 1px;
 		border:1px solid;
 		border-radius: 5px;
-		padding: 5px;
+		padding: 4px;
+		max-width: 80px;	
+		max-height: 50px;		
+		font-family: "Quicksand", sans-serif;
+		font-weight: bold;
+		vertical-align: middle;
 	}
 	.shadow{
 		box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
@@ -77,14 +93,14 @@
 	margin: 0 0 0.75rem 0;
 	
   }
-  .button-blue .style, .button-pink .style, .button-green .style {
+  .button-blue .section, .button-pink .section, .button-green .section {
 	width: 10px;
 	position: absolute;
 	left: 0;
 	top: 0;
 	height: 100%;
   }
-  .button-blue .style:after, .button-pink .style:after, .button-green .style:after {
+  .button-blue .section:after, .button-pink .section:after, .button-green .section:after {
 	content: "";
 	position: absolute;
 	z-index: 1;
@@ -135,8 +151,8 @@
 	background: #d7d4d4;
 	z-index: 1;
   }
-  .button-blue .price, .button-pink .price, .button-green .price {
-	position: absolute;
+  .button-blue .price, .button-pink .price, .button-green .prices {
+	--position: absolute;
 	right: 5px;
 	-top: 0;
 	bottom:15px;
@@ -163,21 +179,21 @@
 	height: 5px;
   }
   
-  .button-blue .style {
+  .button-blue .section {
 	background: #7daee9;
   }
   
-  .button-pink .style {
+  .button-pink .section {
 	background: #de7cb9;
   }
-  .button-pink .style:after {
+  .button-pink .section:after {
 	background: #d052a0;
   }
   
-  .button-green .style {
+  .button-green .section {
 	background: #7fd373;
   }
-  .button-green .style:after {
+  .button-green .section:after {
 	background: #4ba73c;
   }
   /***********************************************************/

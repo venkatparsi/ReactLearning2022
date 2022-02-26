@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addNote } from '../redux/NoteSlice';
+import { addNote } from '../noteReducer';
 
 const AddNoteForm = () => {
 	const [value, setValue] = useState('');
 	const dispatch = useDispatch();
 
 	const onSubmit = (event) => {
+		console.log("Submitting form",event.tartet.value)
 		event.preventDefault();
 		if (value) {
 			dispatch(
@@ -18,6 +19,7 @@ const AddNoteForm = () => {
 	};
 
 	return (
+		<div>
 		<form onSubmit={onSubmit} className='form-inline mt-3 mb-3'>
 			<label className='sr-only'>Name</label>
 			<input
@@ -31,7 +33,11 @@ const AddNoteForm = () => {
 			<button type='submit' className='btn btn-primary mb-2'>
 				Submit
 			</button>
+			<button type='button' className='btn btn-primary mb-2'>
+				Cancel
+			</button>
 		</form>
+		</div>
 	);
 };
 

@@ -1,5 +1,5 @@
-
-const iconBar = () => {
+import './iconBar.css'
+const IconBar = () => {
     return(
         <div class="icon-bar" style="display: flex; flex-wrap: wrap; justify-content: center; padding-bottom: 2px;">  
     <a href="#" class="item-special"><i class="bi bi-pen"></i></a>
@@ -12,4 +12,5 @@ const iconBar = () => {
     <a href="#" class="item youtube"><i class="bi bi-x-circle"></i></a> 
   </div>
     )
-}
+};
+export default IconBar;

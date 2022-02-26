@@ -1,10 +1,13 @@
-import './circularTextButton.css'
+import "./circularTextButton.css";
 
-const circularTextButton = () => {
+const CircularTextButton = (props) => {
   return (
-    <div class="rounded-button">
-      <div class="tri"></div>
-      <div class="num">12</div>
-    </div>
+   
+      <div class="rounded-button" style={{minWidth:"50px"}}>
+        <div class="tri"></div>
+        <div class="num">12</div>
+      </div>
   );
 };
+
+export default CircularTextButton;
