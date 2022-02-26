@@ -1,0 +1,1 @@
+PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;E:\nodejs\;E:\Git\cmd;C:\Users\parsi\AppData\Local\Microsoft\WindowsApps;;E:\Microsoft VS Code\bin;C:\Users\parsi\AppData\Roaming\npm

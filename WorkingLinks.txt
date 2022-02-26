@@ -1,0 +1,13 @@
+React full stack course.
+https://fullstackopen.com/en/part6/flux_architecture_and_redux#array-spread-syntax
+
+https://icons.getbootstrap.com/#install
+
+Good to Read.
+https://dev.to/ruppysuppy/7-killer-one-liners-in-javascript-one
+
+Asynchronous testing with react
+https://www.benmvp.com/blog/asynchronous-testing-with-enzyme-react-jest/
+
+Health application : Good to replicate for ayush guru and Reciepe application.
+https://traya.health/
