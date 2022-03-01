@@ -1,6 +1,9 @@
 React full stack course.
 https://fullstackopen.com/en/part6/flux_architecture_and_redux#array-spread-syntax
 
+https://react-redux.js.org/tutorials/connect
+
+
 https://icons.getbootstrap.com/#install
 
 Good to Read.

@@ -17,9 +17,9 @@ import { Routes, Route } from "react-router-dom";
 import AddNoteForm from "./Notes/views/AddNoteForm";
 const { LOGIN, DASHBOARD, LISTING, PROFILE } = routeConstants;
 
-console.log("Route Constants", routeConstants);
+//console.log("Route Constants", routeConstants);
 const navItems = [LOGIN, DASHBOARD, LISTING, PROFILE];
-console.log("Nav Items", navItems);
+//console.log("Nav Items", navItems);
 
 /***********************APP STATE **********/
 
@@ -32,8 +32,9 @@ function App() {
     maxHeight: "250px",
   };
 
-  const showAddForm = useSelector((state) => state.appUi.showAddNote);
-  console.log("ShowAddForm value",showAddForm)
+  const showAddNoteForm = useSelector((state) => state.appUi.showAddNote.payload);
+  //const showSectionForm = useSelector((state)=> state.appUi.showSectionForm.payload);
+  //console.log("ShowAddForm value",showAddNoteForm)
   return (
     <>
       <FixedPanel style={Styles}>
@@ -48,7 +49,7 @@ function App() {
       <ScrollablePanel>
         <div style={{ marginTop: "100px" }}>
           <NotesActionsBar></NotesActionsBar>
-          <AddNoteForm ></AddNoteForm>
+          <AddNoteForm showAddNoteForm={showAddNoteForm}></AddNoteForm>
             <div style={{height:"30px"}}></div>
             <ScrollablePanel height="30vh">
               <VideoContainer></VideoContainer>

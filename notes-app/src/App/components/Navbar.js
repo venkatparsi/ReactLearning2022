@@ -5,7 +5,7 @@ import './App.css'
 
 function Navbar(props){
     var navItems = props.navItems;
-    console.log(navItems)
+    //console.log(navItems)
     var navlist= navItems.map( (navItem) =>{
            return (<li className="links"  key={navItem.route}> 
                     <Link to={navItem.route}>{navItem.name}</Link>

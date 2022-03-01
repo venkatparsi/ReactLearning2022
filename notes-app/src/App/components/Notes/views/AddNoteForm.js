@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { showAddNote } from '../../AppUiReducer';
 import { addNote } from '../noteReducer';
 
-const AddNoteForm = ({showAddNote}) => {
+const AddNoteForm = ({showAddNoteForm}) => {
 	const [value, setValue] = useState('');
 	const dispatch = useDispatch();
 
@@ -16,20 +17,14 @@ const AddNoteForm = ({showAddNote}) => {
 				})
 			);
 		}
-	};
-	
-	showAddNote=true;
+	};	
 
 	const hideForm= () => {
-		console.log("setting false")
-		showAddNote=false;
-
-	}
-	
-	
+		dispatch( dispatch(showAddNote(false)))
+	}	
 
 	return (				
-		<div className='container bg-grey br-1 br-round m-1' style={{display: showAddNote ? "block":"none"}}>
+		<div className='container bg-grey br-1 br-round m-1' style={{display: showAddNoteForm ? "block":"none"}}>
 			<form  onSubmit={onSubmit} >
 			<div className="mb-3 mt-3">
 				<label htmlFor="email" className="form-label">Note:</label>
@@ -48,7 +43,7 @@ const AddNoteForm = ({showAddNote}) => {
 				<input className="form-check-input" type="checkbox" name="remember"/> Important  </label>
 			</div>
 			<button type="submit" className="btn btn-primary">Submit</button>
-			<button type='button' className='btn btn-primary m-2' onClick={hideForm()} >
+			<button type='button' className='btn btn-primary m-2' onClick={hideForm} >
 				Cancel
 			</button>
 			</form>
