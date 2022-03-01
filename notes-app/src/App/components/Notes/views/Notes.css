@@ -197,3 +197,19 @@
 	background: #4ba73c;
   }
   /***********************************************************/
+
+.bg-grey {
+    background-color: #E7E9EB!important;
+}
+.w3-padding {
+    padding: 8px 16px!important;
+}
+.br-1 {
+    border: 1px solid #ccc!important;
+}
+.br-round, .br-round-medium {
+    border-radius: 4px;
+}
+
+
+/***************************************************/

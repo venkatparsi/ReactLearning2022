@@ -46,7 +46,7 @@ function App() {
       <ScrollablePanel>
         <div style={{ marginTop: "100px" }}>
           <NotesActionsBar></NotesActionsBar>
-          <AddNoteForm></AddNoteForm>
+          <AddNoteForm ></AddNoteForm>
             <div style={{height:"30px"}}></div>
             <ScrollablePanel height="30vh">
               <VideoContainer></VideoContainer>
@@ -55,22 +55,7 @@ function App() {
             <Note section="true" num="1" title=""></Note>
             <Note></Note>
             <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            value <Note></Note>
-            <Note></Note>
+           
             </ScrollablePanel>
          
         </div>

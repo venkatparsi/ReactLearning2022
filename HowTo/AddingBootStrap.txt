@@ -3,18 +3,19 @@ npm install bootstrap
 import 'bootstrap/dist/css/bootstrap.css'; 
 
 
+/*** Using SCSS/ SASS files ***/
 npm install sass
 
-create a custom.css 
+1) create a custom.css 
   -->src/custom.css
 
 // Override default variables before the import
-$body-bg: #000;
+2) $body-bg: #000;
 
 // Import Bootstrap and its default variables
-@import '~bootstrap/scss/bootstrap.scss';
-
+3) @import '~bootstrap/scss/bootstrap.scss';
 
 // in the index.js 
+4) import './custom.scss';
 
-import './custom.scss';
+/********          */

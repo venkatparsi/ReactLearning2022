@@ -10,12 +10,14 @@ const addNoteDef = (state, action) => {
 }
 
 const updateNoteDef = (state,action) => {
+	console.log("--->updateNote entering:",action);
     var newState = state.map( note => {
         if( note.id !== action.payload.id ) return  note; 
         else { note.importance = !note.importance; 
                return note;
        }    
      });
+	 console.log("<---updateNote after updating:",newState);
      return newState;
 }  
 
