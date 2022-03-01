@@ -3,9 +3,9 @@ import "./circularTextButton.css";
 const CircularTextButton = (props) => {
   return (
    
-      <div class="rounded-button" style={{minWidth:"50px"}}>
-        <div class="tri"></div>
-        <div class="num">12</div>
+      <div className="rounded-button" style={{minWidth:"50px"}}>
+        <div className="tri"></div>
+        <div className="num">12</div>
       </div>
   );
 };

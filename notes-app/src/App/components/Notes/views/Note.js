@@ -10,7 +10,7 @@ const Note = () => {
         <span className="section"></span>
         <div className="row-lay" >
           <CircularTextButton className="col-1"></CircularTextButton>
-          <div class="column-lay title">
+          <div className="column-lay title">
             <span>Section 1: Getting Started ehat this is really working welll in this scenario.</span>
             <span>⓵ exp: Mar 12, 2013 </span>
           </div>
