@@ -11,7 +11,7 @@ import noteReducer from "./Notes/noteReducer";
 import { useSelector, useDispatch } from "react-redux";
 import Note from "./Notes/views/Note";
 import NotesActionsBar from "./Notes/views/NotesActions";
-
+import { appUiSlice } from "./AppUiReducer";
 /******* NAVIGATION RELATED */
 import { Routes, Route } from "react-router-dom";
 import AddNoteForm from "./Notes/views/AddNoteForm";
@@ -32,6 +32,8 @@ function App() {
     maxHeight: "250px",
   };
 
+  const showAddForm = useSelector((state) => state.appUi.showAddNote);
+  console.log("ShowAddForm value",showAddForm)
   return (
     <>
       <FixedPanel style={Styles}>
