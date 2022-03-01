@@ -3,7 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { nextItemId } from '../../../shared/utils/utils'
 
 const addNoteDef = (state, action) => {
-    return state.concat({...action.payload,id:nextItemId(state)})			
+	console.log("--->addNote:",state);
+	var newState = state.concat({...action.payload,id:nextItemId(state)})	
+	console.log("<---addNote after adding:",newState);
+    return newState;
 }
 
 const updateNoteDef = (state,action) => {
@@ -14,7 +17,7 @@ const updateNoteDef = (state,action) => {
        }    
      });
      return newState;
-}
+}  
 
 const deleteNoteDef = (state,action) => {
 

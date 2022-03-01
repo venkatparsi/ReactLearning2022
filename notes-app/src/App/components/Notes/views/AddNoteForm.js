@@ -7,7 +7,7 @@ const AddNoteForm = () => {
 	const dispatch = useDispatch();
 
 	const onSubmit = (event) => {
-		console.log("Submitting form",event.tartet.value)
+		console.log("-->Submitting form")
 		event.preventDefault();
 		if (value) {
 			dispatch(
