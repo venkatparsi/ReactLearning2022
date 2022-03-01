@@ -1,0 +1,20 @@
+npm install bootstrap
+//add the below to the index.js
+import 'bootstrap/dist/css/bootstrap.css'; 
+
+
+npm install sass
+
+create a custom.css 
+  -->src/custom.css
+
+// Override default variables before the import
+$body-bg: #000;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+
+// in the index.js 
+
+import './custom.scss';
