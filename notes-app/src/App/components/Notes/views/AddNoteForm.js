@@ -65,9 +65,7 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 					<div className='row'>
 						<div className='col-4'>
 							<input
-							type="number" min="0" max="99" 
-							onKeyUp={(event)=> { if(parseInt(event.target.value)>99){ event.target.value =99; return false; }}}
-							
+							type="number" min="0" max="99" 								
 							  id="dd" className="form-control"
 								maxLength="2"
 								placeholder="dd"
@@ -77,8 +75,7 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 						</div>
 						<div className='col-4'>
 							<input
-								type="number" min="0" max="23"
-								onKeyUp={(event) => { if (parseInt(event.target.value) > 23) { event.target.value = 23; return false; } }}
+								type="number" min="0" max="23"								
 								id="hh"
 								className="form-control"
 								placeholder="hh"
@@ -87,8 +84,7 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 						</div>
 						<div className='col-4'>
 							<input
-								type="number" min="0" max="59"
-								onKeyUp={(event) => { if (parseInt(event.target.value) > 59) { event.target.value = 59; return false; } }}
+								type="number" min="0" max="59"								
 								id="mm" className="form-control"
 								placeholder="mm"
 								value={mm}
