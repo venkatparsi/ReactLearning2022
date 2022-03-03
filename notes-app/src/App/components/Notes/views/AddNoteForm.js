@@ -64,7 +64,11 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 					<label htmlFor="Duration" className="form-label">Duration:</label>
 					<div className='row'>
 						<div className='col-4'>
-							<input type="text" pattern='\d*' maxLength="2" id="dd" className="form-control"
+							<input
+							type="number" min="0" max="99" 
+							onKeyUp={(event)=> { if(parseInt(event.target.value)>99){ event.target.value =99; return false; }}}
+							
+							  id="dd" className="form-control"
 								maxLength="2"
 								placeholder="dd"
 								min="0" max="99"
@@ -72,16 +76,20 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 								onChange={(event) => setDD(event.target.value)} />
 						</div>
 						<div className='col-4'>
-							<input type="text" pattern='\d*' maxLength="2" id="hh" className="form-control"
-
+							<input
+								type="number" min="0" max="23"
+								onKeyUp={(event) => { if (parseInt(event.target.value) > 23) { event.target.value = 23; return false; } }}
+								id="hh"
+								className="form-control"
 								placeholder="hh"
 								value={hh}
 								onChange={(event) => setHH(event.target.value)} />
 						</div>
 						<div className='col-4'>
-							<input 
-							type="number" min="0" max="59" 
-							id="mm" className="form-control"
+							<input
+								type="number" min="0" max="59"
+								onKeyUp={(event) => { if (parseInt(event.target.value) > 59) { event.target.value = 59; return false; } }}
+								id="mm" className="form-control"
 								placeholder="mm"
 								value={mm}
 								onChange={(event) => setMM(event.target.value)} />
