@@ -47,6 +47,9 @@
 	.note{
 		min-width: 340px;
 	}
+	.note-list{
+		padding-inline-start: 0px;
+	}
 
 	.title{		
 		max-height: 50px;		
@@ -69,13 +72,14 @@
 		border-radius: 5px;
 		padding: 4px;
 		max-width: 80px;	
-		max-height: 50px;		
+		max-height: 73px;
+		min-width: 70px;		
 		font-family: "Quicksand", sans-serif;
 		font-weight: bold;
 		vertical-align: middle;
 	}
 	.shadow{
-		box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
+		box-shadow: 0 3px 5px -1px rgba(226, 62, 62, 0.2), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
 
 	}
 

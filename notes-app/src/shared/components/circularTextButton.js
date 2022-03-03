@@ -5,7 +5,7 @@ const CircularTextButton = (props) => {
    
       <div className="rounded-button" style={{minWidth:"50px"}}>
         <div className="tri"></div>
-        <div className="num">12</div>
+        <div className="num">{props.value}</div>
       </div>
   );
 };

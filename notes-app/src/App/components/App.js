@@ -9,13 +9,13 @@ import ScrollablePanel from "./ScrollablePanel/ScrollablePanel";
 import { createStore } from "redux";
 import noteReducer from "./Notes/noteReducer";
 import { useSelector, useDispatch } from "react-redux";
-import Note from "./Notes/views/Note";
+import NoteList from "./Notes/views/NoteList";
 import NotesActionsBar from "./Notes/views/NotesActions";
-import { appUiSlice } from "./AppUiReducer";
 /******* NAVIGATION RELATED */
 import { Routes, Route } from "react-router-dom";
 import AddNoteForm from "./Notes/views/AddNoteForm";
 const { LOGIN, DASHBOARD, LISTING, PROFILE } = routeConstants;
+
 
 //console.log("Route Constants", routeConstants);
 const navItems = [LOGIN, DASHBOARD, LISTING, PROFILE];
@@ -55,10 +55,7 @@ function App() {
               <VideoContainer></VideoContainer>
             </ScrollablePanel>
             <ScrollablePanel height="50vh">
-            <Note section="true" num="1" title=""></Note>
-            <Note></Note>
-            <Note></Note>
-           
+            <NoteList></NoteList>           
             </ScrollablePanel>
          
         </div>

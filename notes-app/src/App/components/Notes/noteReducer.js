@@ -28,11 +28,9 @@ const deleteNoteDef = (state,action) => {
 export const noteSlice = createSlice({
 	name: 'note',
 	initialState: [
-		{ id: 1, title: 'note1', completed: false },
-		{ id: 2, title: 'note2', completed: false },
-		{ id: 3, title: 'note3', completed: true },
-		{ id: 4, title: 'note4', completed: false },
-		{ id: 5, title: 'note5', completed: false },
+		{ id: 1, title: 'Section 1: First thing to do', description: "need to do it",
+	      dd: 1, hh:2, mm:12,
+		  isSection:true},		
 	],
 	reducers: {
 		addNote:addNoteDef,
