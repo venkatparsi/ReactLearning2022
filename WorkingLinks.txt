@@ -15,3 +15,12 @@ https://www.benmvp.com/blog/asynchronous-testing-with-enzyme-react-jest/
 Health application : Good to replicate for ayush guru and Reciepe application.
 https://traya.health/
 
+
+
+Angular folder structure:
+https://www.tektutorialshub.com/angular/angular-folder-structure-best-practices/
+
+
+cloud.skytap.com/sso/jpmc
+
+https://repo.platformcommons.org/projects/PLAT-CMN-WEB/repos/parent-app/browse

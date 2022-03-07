@@ -1,0 +1,16 @@
+{
+    "en": {
+      "Home.message": "Because it is sunny!",
+      "Home.homeLink": "Go back home",
+      "Home.header": "Notes",
+      "Home.addArtifactGroup": "Add Book.",
+      "Home.addArtifact": "Add Note"
+    },
+    "es": {
+      "Home.message": "¡Porque es soleado!",
+      "Home.homeLink": "Regresar a inicio",
+      "Home.header": "¡Hola Mundo!",
+      "Home.addArtifactGroup": "Es un hermoso día afuera.",
+      "Home.addArtifact": "¡Haz clic aquí para averiguar por qué!"
+    }
+  }

@@ -1,0 +1,62 @@
+
+https://dev.to/adrai/how-to-properly-internationalize-a-react-application-using-i18next-3hdb
+
+
+1) npm install i18next react-i18next i18next-browser-languagedetector
+
+
+2) Let's prepare an i18n.js file:
+
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+i18n
+  // detect user language
+  // learn more: https://github.com/i18next/i18next-browser-languageDetector
+  .use(LanguageDetector)
+  // pass the i18n instance to react-i18next.
+  .use(initReactI18next)
+  // init i18next
+  // for all options read: https://www.i18next.com/overview/configuration-options
+  .init({
+    debug: true,
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false, // not needed for react as it escapes by default
+    },
+    resources: {
+      en: {
+        translation: {
+          // here we will place our translations...
+          "Home.addArtifactGroup": "Add Book",
+          "Home.addArtifact":"Add Note"
+        }
+      }
+    }
+  });
+
+3) Let's import that file somewhere in our index.js file:
+
+// import i18n (needs to be bundled ;))
+import './i18n';
+
+4) use Trans component or useTransalation hook to do translations.
+
+import { useTranslation, Trans } from 'react-i18next';
+
+
+5)   const { t } = useTranslation();
+
+
+6) Example
+
+<Trans i18nKey="description.part1">
+            Edit <code>src/App.js</code> and save to reload.
+          </Trans>
+
+7) 
+// Importing translation files
+
+import translationEN from "./locales/en/translation.json";
+import translationHE from "./locales/hn/translation.json";

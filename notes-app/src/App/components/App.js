@@ -14,8 +14,9 @@ import NotesActionsBar from "./Notes/views/NotesActions";
 /******* NAVIGATION RELATED */
 import { Routes, Route } from "react-router-dom";
 import AddNoteForm from "./Notes/views/AddNoteForm";
-const { LOGIN, DASHBOARD, LISTING, PROFILE } = routeConstants;
+import { useTranslation } from "react-i18next";
 
+const { LOGIN, DASHBOARD, LISTING, PROFILE } = routeConstants;
 
 //console.log("Route Constants", routeConstants);
 const navItems = [LOGIN, DASHBOARD, LISTING, PROFILE];
@@ -26,11 +27,19 @@ const navItems = [LOGIN, DASHBOARD, LISTING, PROFILE];
 const notesStore = createStore(noteReducer);
 
 /**************************** */
-
 function App() {
   const Styles = {
     maxHeight: "250px",
   };
+
+    //Calling t and i18n method from useTranslation hook 
+    const { t, i18n } = useTranslation();
+    
+  //Creating a method to change the language onChnage from select box
+  const changeLanguageHandler = (e) => {
+    const languageValue = e.target.value
+    i18n.changeLanguage(languageValue);
+  }
 
   const showAddNoteForm = useSelector((state) => state.appUi.showAddNote.payload);
   //const showSectionForm = useSelector((state)=> state.appUi.showSectionForm.payload);
@@ -38,7 +47,8 @@ function App() {
   return (
     <>
       <FixedPanel style={Styles}>
-        <Navbar navItems={navItems} />
+        <Navbar navItems={navItems} />      
+   
         <Routes>
           <Route exact path={LOGIN.route} element=""></Route>
           <Route path={DASHBOARD.route}></Route>

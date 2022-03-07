@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { showAddNote } from '../../AppUiReducer';
 import { addNote } from '../noteReducer';
+import Button from '@mui/material/Button';
+import { Stack } from '@mui/material';
+import { Paper } from "@mui/material";
+import { useTranslation,Trans } from 'react-i18next';
 
 const AddNoteForm = ({ showAddNoteForm }) => {
 	const [value, setValue] = useState('');
@@ -11,6 +15,8 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 	const [hh, setHH] = useState('');
 	const [mm, setMM] = useState('');
 	const [section, setSection] = useState('');
+
+	const {t} = useTranslation();
 
 	const dispatch = useDispatch();
 	const onSubmit = (event) => {
@@ -32,10 +38,11 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 	};
 
 	const hideForm = () => {
-		dispatch(dispatch(showAddNote(false)))
+		dispatch(showAddNote(false))
 	}
 
 	return (
+		<Paper elevation={1}>		
 		<div className='container bg-grey br-1 br-round m-1' style={{ display: showAddNoteForm ? "block" : "none" }}>
 			<form onSubmit={onSubmit} >
 				<div className="mb-3 mt-3">
@@ -99,12 +106,13 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 							value={section} onChange={(event) => setSection(event.target.checked)}
 							name="section" /> Section  </label>
 				</div>
-				<button type="submit" className="btn btn-primary">Submit</button>
-				<button type='button' className='btn btn-primary m-2' onClick={hideForm} >
-					Cancel
-				</button>
+				<Stack direction="row" spacing={2} marginBottom={2}>
+				<Button variant="contained" className="">Submit</Button>
+				<Button variant="contained" className='mr-2' onClick={hideForm}>Cancel</Button>
+				</Stack>
 			</form>
 		</div>
+		</Paper>
 	);
 };
 

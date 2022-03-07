@@ -1,6 +1,8 @@
+import { Stack ,Button} from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { showAddNote,showAddSection } from '../../../components/AppUiReducer';
-
+import { FormattedMessage } from 'react-intl';
+import { useTranslation,Trans } from 'react-i18next';
 var dispatch;
 
 
@@ -17,16 +19,19 @@ const showAddNoteForm = () => {
 }
 const NotesActionsBar =() => {
      dispatch = useDispatch();
+     const {t} = useTranslation();
 
     return(
-        <div >
-             <button className="btn btn-primary m-1" 
+       <Stack direction="row" spacing={2} marginBottom={0}>
+             <Button variant="contained"
              onClick={showAddSectionForm}>
-                 Add Section</button>
-             <button className="btn btn-primary m-1" 
+                {t('Home.addArtifactGroup')}
+                </Button>
+             <Button variant="contained"
              onClick={showAddNoteForm}>
-                 Add Note</button>
-        </div>
+                 <FormattedMessage   id="Home.addArtifact"  defaultMessage=" Add Note" />
+                 </Button>
+        </Stack>
     )
 }
 export default NotesActionsBar;

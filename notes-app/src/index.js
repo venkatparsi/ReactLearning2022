@@ -5,10 +5,14 @@ import App from './App/components/App';
 import {Provider} from 'react-redux';
 import noteStore from './AppStore';
 import 'bootstrap/dist/css/bootstrap.css';
+import {IntlProvider } from 'react-intl';
+import './i18n'
 ReactDOM.render(
   <Provider store={noteStore}>
     <BrowserRouter>
+    <IntlProvider>
        <App />  
+       </IntlProvider>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
