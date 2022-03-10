@@ -16,6 +16,9 @@ import { Routes, Route } from "react-router-dom";
 import AddNoteForm from "./Notes/views/AddNoteForm";
 import { useTranslation } from "react-i18next";
 
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 const { LOGIN, DASHBOARD, LISTING, PROFILE } = routeConstants;
 
 //console.log("Route Constants", routeConstants);
@@ -32,6 +35,7 @@ function App() {
     maxHeight: "250px",
   };
 
+  var theme = createTheme();
     //Calling t and i18n method from useTranslation hook 
     const { t, i18n } = useTranslation();
     
@@ -45,7 +49,9 @@ function App() {
   //const showSectionForm = useSelector((state)=> state.appUi.showSectionForm.payload);
   //console.log("ShowAddForm value",showAddNoteForm)
   return (
-    <>
+    
+    <ThemeProvider theme={theme}>
+     <Container component="main" maxWidth="xs">
       <FixedPanel style={Styles}>
         <Navbar navItems={navItems} />      
    
@@ -70,7 +76,8 @@ function App() {
          
         </div>
       </ScrollablePanel>
-    </>
+    </Container>
+    </ThemeProvider>
   );
 }
 
