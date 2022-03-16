@@ -17,3 +17,7 @@ https://traya.health/
 
 https://react-redux.js.org/tutorials/connect
 
+Faker: for data generation.
+"faker":"5.5.3"
+documentation...
+https://www.npmjs.com/package/faker/v/5.5.3
