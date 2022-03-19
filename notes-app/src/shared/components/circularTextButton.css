@@ -25,9 +25,8 @@
 
   .rounded-button{
     width: 3rem;
-    height: 3rem;
-    background-color: none;
-  background: black;
+    height: 3rem;    
+    background: black;
     font-weight: bold;
     display: inline-flex;
     align-items: center;
@@ -46,7 +45,7 @@
   background: #cd201f;
 }
 
-.rounded-button:hover .tri{
+.rounded-button:hover .triangle{
   display: inline-block;
 }
 
@@ -54,7 +53,7 @@
   display: none;
 }
 
-.tri {
+.triangle {
   display: none;
     width: 0;
   height: 0;

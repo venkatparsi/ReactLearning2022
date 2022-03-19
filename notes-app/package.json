@@ -21,6 +21,7 @@
     "react-dom": "^17.0.2",
     "react-i18next": "^11.15.5",
     "react-intl": "^5.24.6",
+    "react-player": "^2.9.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
@@ -28,14 +29,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "server": "json-server --watch ./server/db.json --port 3001",
-    "mockproxy": "ng serve --proxy-config localproxy.conf.json",
+    "start": "react-scripts start --proxy http://localhost:3001",
+    "server": "json-server --watch ./server/db.json --port 3001 --proxy http://localhost:3001",
     "generate": "node ./server/generateData.js > ./server/generatedData.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },  
+  },
   "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": [

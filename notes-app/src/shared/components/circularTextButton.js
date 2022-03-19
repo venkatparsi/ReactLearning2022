@@ -1,13 +1,25 @@
 import "./circularTextButton.css";
+import { useDispatch } from 'react-redux';
+import { setVideoLink } from '../../App/appUiReducerSlice';
 
 const CircularTextButton = (props) => {
-  return (
-   
-      <div className="rounded-button" style={{minWidth:"50px"}}>
-        <div className="tri"></div>
+  var link = props.link;
+  var bgcolor = props.bgcolor;
+  const dispatch = useDispatch();
+
+  console.log(" link...",link,bgcolor);
+
+  const handleOnclick = (event) => {
+    console.log("dispatching link...",link,bgcolor);
+    dispatch(setVideoLink(link))
+  }
+  return (   
+      <div className="rounded-button"  onClick={handleOnclick} style={{minWidths:"50px",backgroundColor:{bgcolor}}} >
+        <div className="triangle"></div>
         <div className="num">{props.value}</div>
       </div>
-  );
+      )
+     
 };
 
 export default CircularTextButton;
