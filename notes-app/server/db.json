@@ -1,0 +1,494 @@
+{
+  "subjects": [
+    {
+      "title": "Angular",
+      "id": 1
+    },
+    {
+      "title": "test",
+      "about": "",
+      "content": "",
+      "link": "",
+      "dd": "",
+      "hh": "",
+      "mm": "",
+      "type": "subject",
+      "tags": "",
+      "createdDate": null,
+      "id": 2,
+      "createdBy": null
+    },
+    {
+      "title": "english",
+      "about": "language",
+      "content": "",
+      "link": "",
+      "dd": "",
+      "hh": "",
+      "mm": "",
+      "type": "subject",
+      "tags": "",
+      "createdDate": null,
+      "id": 3,
+      "createdBy": null
+    },
+    {
+      "title": "testing the works",
+      "about": "",
+      "content": "",
+      "link": "",
+      "dd": "",
+      "hh": "",
+      "mm": "",
+      "type": "subject",
+      "tags": "",
+      "createdDate": "27-Mar-2022 22-48",
+      "id": 4,
+      "createdBy": null
+    },
+    {
+      "title": "social",
+      "about": "language",
+      "content": "",
+      "link": "",
+      "dd": "",
+      "hh": "",
+      "mm": "",
+      "type": "subject",
+      "tags": "",
+      "createdDate": "27-Mar-2022 22-49",
+      "id": 5,
+      "createdBy": null
+    }
+  ],
+  "persons": [
+    {
+      "name": "Gutthikonda Venkat",
+      "number": "040-123456",
+      "id": 1
+    },
+    {
+      "name": "Venkat Parsi",
+      "number": "39-44-5323523",
+      "id": 2
+    },
+    {
+      "name": "Swetha Parsi",
+      "number": "12-43-234345",
+      "id": 3
+    },
+    {
+      "name": "Vishwanatham parsi",
+      "number": "39-23-6423122",
+      "id": 4
+    }
+  ],
+  "tutorials": [
+    {
+      "id": 1,
+      "name": "Unbranded Frozen Computer",
+      "description": "Odit ut voluptatem. Et temporibus est asperiores est nesciunt vitae et fugiat.",
+      "price": "635.00",
+      "duration": "148.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Science"
+    },
+    {
+      "id": 2,
+      "name": "Refined Metal Car",
+      "description": "Rerum dolore sed voluptatum et nemo libero est sit. Sed qui sit numquam dolorem quia consectetur rerum molestiae et. Excepturi nam eius reiciendis. Itaque ipsam iusto veritatis est. Unde similique neque consequatur qui soluta expedita et sit esse.",
+      "price": "225.00",
+      "duration": "171.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "English"
+    },
+    {
+      "id": 3,
+      "name": "Incredible Frozen Towels",
+      "description": "Voluptas quas a beatae numquam quas. Velit voluptatem totam et. Aliquam nam ut ipsam laborum perspiciatis excepturi. Molestiae odio placeat et reprehenderit omnis commodi quos ipsa. Voluptatibus ut consequuntur fuga est perferendis qui corporis. In nihil fugiat sapiente asperiores aut id.",
+      "price": "756.00",
+      "duration": "230.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Telugu"
+    },
+    {
+      "id": 4,
+      "name": "Small Fresh Bacon",
+      "description": "Libero magni nesciunt animi vero culpa voluptatem autem velit. Et nemo omnis molestiae nihil harum voluptate unde laudantium.",
+      "price": "670.00",
+      "duration": "173.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "English"
+    },
+    {
+      "id": 5,
+      "name": "Handmade Frozen Pizza",
+      "description": "Illum omnis ratione sit quis officiis aut commodi et est. Quidem aut eaque iste error error dicta qui ipsam.",
+      "price": "74.00",
+      "duration": "742.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Social"
+    },
+    {
+      "id": 6,
+      "name": "Intelligent Concrete Bacon",
+      "description": "Aspernatur debitis possimus ut aut assumenda rerum necessitatibus aut. Temporibus et dolores et est unde qui eum.",
+      "price": "533.00",
+      "duration": "343.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Hindi"
+    },
+    {
+      "id": 7,
+      "name": "Intelligent Concrete Keyboard",
+      "description": "Non et doloribus unde ut consequatur sed voluptates enim. Molestiae vel voluptatibus.",
+      "price": "823.00",
+      "duration": "411.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Social"
+    },
+    {
+      "id": 8,
+      "name": "Refined Cotton Gloves",
+      "description": "Perspiciatis quis quia cum blanditiis enim consequuntur placeat recusandae. Est at minus repellendus fugit facilis quod eius culpa. Illo magnam provident. Expedita eveniet voluptatem id. Eos reprehenderit fugit assumenda illo optio.",
+      "price": "849.00",
+      "duration": "520.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Sanskrit"
+    },
+    {
+      "id": 9,
+      "name": "Unbranded Steel Shoes",
+      "description": "Labore necessitatibus deserunt velit facere consequatur facilis quia. Voluptatem quas et omnis. Nihil delectus voluptatem vel voluptas voluptatibus enim nihil sint. Dolores culpa cupiditate. Est nostrum debitis.",
+      "price": "124.00",
+      "duration": "240.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "English"
+    },
+    {
+      "id": 10,
+      "name": "Intelligent Metal Car",
+      "description": "Dolores provident sed est voluptatibus quos. Magni ab ut. Optio dolorum dicta saepe sed quia ut harum ratione nostrum.",
+      "price": "166.00",
+      "duration": "475.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Telugu"
+    },
+    {
+      "id": 11,
+      "name": "Handmade Metal Bacon",
+      "description": "Nihil dignissimos quos id ut dolorem amet necessitatibus in placeat. Ut porro sapiente consequatur. Est vitae et. Omnis id aut. Nostrum sit eum aspernatur qui nisi soluta. Qui quisquam et ut similique animi.",
+      "price": "642.00",
+      "duration": "834.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Sanskrit"
+    },
+    {
+      "id": 12,
+      "name": "Rustic Cotton Soap",
+      "description": "Quas perferendis quia ratione modi aut tempore. Voluptate quasi deserunt cumque soluta vitae delectus magni. Accusantium impedit qui deserunt autem. Ullam quis ut quam dolorem. Doloribus voluptatem veritatis laborum aut iusto corporis atque.",
+      "price": "274.00",
+      "duration": "536.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Hindi"
+    },
+    {
+      "id": 13,
+      "name": "Gorgeous Steel Keyboard",
+      "description": "Voluptas deserunt dignissimos quae. Nihil molestias animi maiores eum maxime mollitia ipsum. Est consequatur aliquid.",
+      "price": "249.00",
+      "duration": "824.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Science"
+    },
+    {
+      "id": 14,
+      "name": "Practical Plastic Hat",
+      "description": "Fugiat saepe unde voluptatem odit doloribus repellendus incidunt deleniti. Aut aut alias accusantium. Aliquam enim sunt et est fuga voluptatem. Qui nobis omnis et amet aut similique laboriosam voluptatibus. Et aspernatur a itaque voluptatum neque praesentium dignissimos in. Qui libero praesentium doloremque minus velit harum.",
+      "price": "377.00",
+      "duration": "556.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Science"
+    },
+    {
+      "id": 15,
+      "name": "Tasty Granite Soap",
+      "description": "Sequi qui cum. Qui maxime unde voluptas ut accusamus cumque non architecto. Dolorum quia tempora ut accusantium cupiditate.",
+      "price": "214.00",
+      "duration": "311.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "English"
+    },
+    {
+      "id": 16,
+      "name": "Ergonomic Granite Soap",
+      "description": "Numquam corporis magnam est molestiae aliquam facilis molestiae. Itaque officiis excepturi sapiente corrupti harum enim eum hic. Ratione velit similique eum ea unde omnis qui.",
+      "price": "300.00",
+      "duration": "533.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Social"
+    },
+    {
+      "id": 17,
+      "name": "Licensed Wooden Gloves",
+      "description": "Velit reprehenderit optio quia error dolores. Est aut eaque numquam sequi id et. Similique ut hic sit laborum impedit rem et architecto. Rerum voluptas harum sit aspernatur excepturi reiciendis. Architecto est quia voluptatibus.",
+      "price": "599.00",
+      "duration": "4.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "English"
+    },
+    {
+      "id": 18,
+      "name": "Gorgeous Metal Mouse",
+      "description": "Dolorem ut incidunt dolor. Assumenda asperiores dignissimos molestiae velit animi non. Ullam incidunt veritatis voluptas suscipit quos. Sapiente at praesentium eum velit necessitatibus.",
+      "price": "799.00",
+      "duration": "621.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Hindi"
+    },
+    {
+      "id": 19,
+      "name": "Gorgeous Wooden Chicken",
+      "description": "Nobis minus vero qui maxime cumque dolores tenetur. Nulla eligendi soluta et maxime exercitationem hic. Maiores perferendis atque sit maiores asperiores maiores qui doloribus expedita.",
+      "price": "398.00",
+      "duration": "263.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Hindi"
+    },
+    {
+      "id": 20,
+      "name": "Rustic Plastic Chair",
+      "description": "Quae quos qui. Placeat provident dignissimos ut qui labore. Amet neque suscipit qui vel. Voluptatem voluptas tempora modi. Sed voluptatibus eius.",
+      "price": "190.00",
+      "duration": "572.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Hindi"
+    },
+    {
+      "id": 21,
+      "name": "Awesome Wooden Mouse",
+      "description": "Corporis ut culpa rem neque pariatur sequi. Occaecati tenetur sint et ut quo illo. Odit soluta natus molestiae culpa iure vero non. Earum et consequatur atque ut officiis harum a doloremque exercitationem. Rerum architecto perferendis nostrum adipisci voluptas et. Velit atque adipisci consequatur.",
+      "price": "822.00",
+      "duration": "117.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "English"
+    },
+    {
+      "id": 22,
+      "name": "Generic Wooden Bacon",
+      "description": "Deleniti et fugit occaecati blanditiis cumque est optio laboriosam. Voluptas qui error deserunt voluptas fugiat dolores doloremque. Vero quisquam et. Nobis reprehenderit molestiae ut. Suscipit aut culpa nihil.",
+      "price": "686.00",
+      "duration": "980.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Science"
+    },
+    {
+      "id": 23,
+      "name": "Handmade Fresh Computer",
+      "description": "Eos itaque perferendis rerum necessitatibus quasi voluptas deserunt. Veniam est non modi sint repellendus aut.",
+      "price": "508.00",
+      "duration": "954.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Social"
+    },
+    {
+      "id": 24,
+      "name": "Ergonomic Soft Salad",
+      "description": "Possimus ut fugit possimus dignissimos perferendis hic suscipit dolorum voluptatem. Deserunt repellendus quis non ex voluptate voluptatem. Dolore et explicabo officia.",
+      "price": "357.00",
+      "duration": "703.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Hindi"
+    },
+    {
+      "id": 25,
+      "name": "Handcrafted Fresh Car",
+      "description": "Aut sint vel et. Necessitatibus iusto eos molestiae.",
+      "price": "42.00",
+      "duration": "629.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Sanskrit"
+    },
+    {
+      "id": 26,
+      "name": "Licensed Steel Towels",
+      "description": "Quis et quia dolor voluptatum id. Voluptatibus maxime architecto quam repellat ducimus molestias. Saepe odio et incidunt. Voluptates totam consectetur totam. Voluptatum et consequuntur voluptatem ipsam qui. Tempora et est in tempore ducimus.",
+      "price": "923.00",
+      "duration": "383.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Hindi"
+    },
+    {
+      "id": 27,
+      "name": "Sleek Fresh Ball",
+      "description": "Nobis rerum quibusdam porro incidunt et. Blanditiis aut aliquid quis ipsum et commodi aut. Fugit assumenda ducimus officiis dolores molestiae. Commodi aperiam error culpa consectetur eligendi magnam cum quis quia. Alias porro rerum aut voluptatem et qui dolor enim quia.",
+      "price": "440.00",
+      "duration": "125.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Telugu"
+    },
+    {
+      "id": 28,
+      "name": "Handcrafted Plastic Tuna",
+      "description": "Ut nisi facere eveniet eum earum. Et molestias modi doloremque excepturi molestiae dolorem sit. Eligendi ea molestias. Dolor consequatur animi hic et. Nulla cum voluptatem. Consequatur dignissimos repudiandae voluptas qui quis eos vero.",
+      "price": "163.00",
+      "duration": "288.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Sanskrit"
+    },
+    {
+      "id": 29,
+      "name": "Awesome Soft Table",
+      "description": "Dolores ex sapiente id neque delectus voluptatem recusandae sit. Occaecati aperiam qui repellendus tempore sunt omnis tempore qui.",
+      "price": "153.00",
+      "duration": "329.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Hindi"
+    },
+    {
+      "id": 30,
+      "name": "Fantastic Plastic Bacon",
+      "description": "Totam quae officia corporis. Eius et asperiores cum veniam sequi dicta.",
+      "price": "528.00",
+      "duration": "374.00",
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "subject": "Science"
+    }
+  ],
+  "dictionary": {
+    "books": [
+      "book_0_default",
+      "book_1_Youtube.Api",
+      "book_2_Angular.basic"
+    ]
+  },
+  "books": [
+    {
+      "id": 1,
+      "id_composite": "book_1_Youtube.Api",
+      "id_parent": "",
+      "title": "Youtube",
+      "about": "how to use ,you tube api ",
+      "dd": "0",
+      "hh": "0",
+      "mm": "5",
+      "tags": "react,javascript",
+      "subject": "javascript",
+      "sections": [
+        {
+          "id": 1,
+          "id_composite": "section_1_youtubeapi",
+          "id_parent": "book_1_youtubeapi",
+          "title": "Include youtube api script",
+          "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+          "link": "https://tutorialzine.com/2015/08/how-to-control-youtubes-video-player-with-javascript",
+          "tags": "youtube api",
+          "notes": [
+            {
+              "id": 1,
+              "title": "1) Initializing the player",
+              "about": "include the youtube api",
+              "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+              "dd": "0",
+              "hh": "0",
+              "mm": "5",
+              "tags": "angular"
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "id_composite": "section_2_youtubeapi",
+          "id_parent": "book_1_youtubeapi",
+          "title": "Include youtube api script",
+          "content": "npm install react-player # or yarn add react-player",
+          "link": "https://www.npmjs.com/package/react-player",
+          "tags": "youtube api",
+          "notes": [
+            {
+              "id": 1,
+              "title": "1) Initializing the player",
+              "about": "include the youtube api",
+              "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+              "dd": "0",
+              "hh": "0",
+              "mm": "5",
+              "tags": "angular",
+              "link": "https://www.youtube.com/embed/9VNTvwaJ6oM"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "id": 1,
+      "id_composite": "section_1_youtubeapi",
+      "id_parent": "book_1_youtubeapi",
+      "title": "Include youtube api script",
+      "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+      "tags": "youtube api",
+      "notes": [
+        {
+          "id": 1,
+          "title": "1) Initializing the player",
+          "about": "include the youtube api",
+          "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+          "dd": "0",
+          "hh": "0",
+          "mm": "5",
+          "tags": "angular"
+        }
+      ]
+    }
+  ],
+  "notes": {
+    "notes": [
+      {
+        "id": 1,
+        "title": "1) Initializing the player",
+        "about": "include the youtube api",
+        "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+        "dd": "0",
+        "hh": "0",
+        "mm": "5",
+        "tags": "angular",
+        "link": "https://www.youtube.com/embed/9VNTvwaJ6oM"
+      },
+      {
+        "id": 2,
+        "title": "1) Initializing the player",
+        "about": "include the youtube api",
+        "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+        "dd": "0",
+        "hh": "0",
+        "mm": "5",
+        "tags": "angular",
+        "link": "https://ik.imagekit.io/xzc3oa20vkp/default-image.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1647584244034"
+      },
+      {
+        "id": 3,
+        "title": "1) Initializing the player",
+        "about": "include the youtube api",
+        "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+        "dd": "0",
+        "hh": "0",
+        "mm": "5",
+        "tags": "angular",
+        "link": "https://ik.imagekit.io/xzc3oa20vkp/Screenshot__1__eg_vKHBKQ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1647584434981"
+      },
+      {
+        "id": 4,
+        "title": "1) LOBS of jpmc",
+        "about": "include the youtube api",
+        "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+        "dd": "0",
+        "hh": "0",
+        "mm": "5",
+        "tags": "angular",
+        "link": "C:\\Users\\pvr\\Desktop\\JPMCLobs.png"
+      }
+    ]
+  }
+}
