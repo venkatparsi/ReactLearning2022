@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { showAddNote } from '../../../appUiReducerSlice';
 import { addNote } from '../noteReducerSlice';
 import Button from '@mui/material/Button';
 import { Paper } from "@mui/material";
-import { useTranslation, Trans } from 'react-i18next';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -18,52 +17,44 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
 import InputLabel from '@mui/material/InputLabel';
-import InputBase from '@mui/material/InputBase';
-import { styled } from '@mui/material/styles';
-
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
-import { addSubject} from '../subjectReducerSlice';
+import { addSubject,setSelectedSubject} from '../subjectReducerSlice';
+import { EditorState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { ContentState, convertToRaw } from 'draft-js';
 import noteService from '../noteService';
+import Snackbar from '@mui/material/Snackbar';
+/* Custom hook for the fields */
+const useField = (type,name,label) => {
+	const [value, setValue] = useState('')  
+	const onChange = (event) => {
+	  setValue(event.target.value)
+	}  
+	return {
+	  type,
+	  name,
+      label,
+	  value,
+	  onChange
+	}
+  }
 
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-	'label + &': {
-		marginTop: theme.spacing(3),
-	},
-	'& .MuiInputBase-input': {
-		borderRadius: 4,
-		position: 'relative',
-		backgroundColor: theme.palette.background.paper,
-		border: '1px solid #ced4da',
-		fontSize: 16,
-		padding: '10px 26px 10px 12px',
-		textWrap: 'wrap',
-		transition: theme.transitions.create(['border-color', 'box-shadow']),
-		// Use the system font instead of the default Roboto font.
-		fontFamily: [
-			'-apple-system',
-			'BlinkMacSystemFont',
-			'"Segoe UI"',
-			'Roboto',
-			'"Helvetica Neue"',
-			'Arial',
-			'sans-serif',
-			'"Apple Color Emoji"',
-			'"Segoe UI Emoji"',
-			'"Segoe UI Symbol"',
-		].join(','),
-		'&:focus': {
-			borderRadius: 4,
-			borderColor: '#80bdff',
-			boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-		},
-	},
-}));
-
-const AddNoteForm = ({ showAddNoteForm }) => {
-	const [value, setValue] = useState('');
+const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
+	//let id= useField('text','id','Id');
+	const  [title, setTitle] = useState('');
 	const [about, setAbout] = useState('');
+	const [editorState, setEditorState] = useState(
+		() => EditorState.createEmpty(),
+	  );
+
+	  let _contentState = ContentState.createFromText('Sample content state');
+	  const raw = convertToRaw(_contentState)
+	  const [contentState, setContentState] = useState(raw) // ContentState JSON
+
+	  const [id, setId] = useState('');
 	const [link, setLink] = useState('');
 	const [dd, setDD] = useState('');
 	const [hh, setHH] = useState('');
@@ -77,7 +68,7 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 	const [section, setSection] = useState('');
 	const [createdDate, setCreatedDate] = useState('');
 	const [createdBy, setCreatedBy] = useState('venkat.r.parsi');
-	const [id,setId] = useState(0);
+	const [open, setOpen] = React.useState(false);
 	const dispatch = useDispatch();
 
 	const hideForm = () => {
@@ -88,9 +79,7 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 		console.log("---->Submitting Form data for:",type);
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-
 		const momentNow = moment();
-
 		var addPayload = {
 			title: data.get('title'),
 			about: data.get('about'),
@@ -105,27 +94,54 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 			id:data.get('id'),
 			createdBy: data.get('createdBy')
 		}
-		console.log("Payload type,val->",addPayload.type,addPayload);
+		console.log("      Payload type,val->",addPayload.type,addPayload);
 
 		if (type === 'note') {
 			console.log(" ----> dispatching add note.");
 			dispatch(
 				addNote(addPayload)
-			);
-			console.log("    ----->", addPayload);
+			);			
 			console.log(" <---- dispatching add note.")
 			setCreatedDate(addPayload.createdDate)
 		}
 		if (type === 'subject') {
 			console.log(" ----> dispatching add subject.");
-			noteService.add("subject",addPayload,dispatch);
-			console.log("    ----->", addPayload);
+			var subjectRelatedPayload ={
+				title: data.get('title'),
+			    about: data.get('about'),
+				createdDate: momentNow.format('DD-MMM-yyyy HH-mm'),
+				id:data.get('id'),
+				createdBy: data.get('createdBy'),
+				type:data.get('type')
+			}
+			var resultPromise = noteService.add('subject',subjectRelatedPayload)
+			resultPromise.then(response => {
+				console.log("       Saved Subject: ---->",response);
+				if(response.isDuplicateFound) {
+					dispatch(setSelectedSubject(response.data))
+					console.log("ID value is",response.data[0].id)
+					setId(response.data[0].id);
+					setAbout(response.data[0].about);
+					setTitle(response.data[0].title);		
+					if(response.data[0].createdBy)
+						setCreatedBy(response.data[0].createdBy);
+					if(response.data[0].createdDate)
+					setCreatedDate(response.data[0].createdDate);				
+				}else{
+					dispatch(addSubject(response.data))
+					alert("Successfully saved Subject.");
+				}
+				})
+			//console.log("    ----->", subjectRelatedPayload);
 			console.log(" <---- dispatching add subjct end.")
-			setCreatedDate(addPayload.createdDate)
+			
 		}
 		console.log("<----Submitting form end")
 	};
 
+	const handleSnackBarClose = (event)=> {
+
+	}
 	const handleBookChange = (event) => {
 		setBook(event.target.value);
 	};
@@ -142,10 +158,6 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 		setSection(event.target.value);
 	};
 
-	const handleIdChange = (event) => {
-		setId(event.target.value);
-	};
-
 	const checkVisibilityForArtifact = (ele) => {
 		//console.log("item,subject:->", ele, ":", type)
 		if (type === 'subject') {
@@ -155,11 +167,27 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 		}
 	}
 
+	useEffect(() => {
+
+
+	});
+
+	var subjects = useSelector(({subjects}) => {
+		    //console.log("Subjects are ....:",subjects);
+			return subjects;
+	})
 
 	return (
 		<Container component="main" maxWidth="xs" sx={{ padding: "5px" }}
 			style={{ display: showAddNoteForm ? "block" : "none" }}>
 				
+				<Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleSnackBarClose}
+        message="Note archived"
+      />
+
 			<Paper elevation={1}>
 				<Box
 					sx={{
@@ -178,14 +206,14 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 								defaultValue="note"
 								name="type"
 								onChange={(event) => {
-									console.log("Radio:", event.target.value);
+									//console.log("Radio:", event.target.value);
 									setType(event.target.value)
 								}}
 							>
-								<FormControlLabel value="note" control={<Radio />} label="Note" />
-								<FormControlLabel value="section" control={<Radio />} label="Secti" />
-								<FormControlLabel value="book" control={<Radio />} label="Book" />
-								<FormControlLabel value="subject" control={<Radio />} label="Subj" />
+								<FormControlLabel  value="note" control={<Radio />} label="Note" />
+								<FormControlLabel value="section" control={<Radio />} label="Section" />
+								<FormControlLabel  value="book" control={<Radio />} label="Book" />
+								<FormControlLabel  value="subject" control={<Radio />} label="Subject" />
 
 							</RadioGroup>
 						</FormControl>
@@ -201,15 +229,11 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 							>
 								<MenuItem value="none" selected>
 									<em>None</em>
-								</MenuItem>
-								<MenuItem value="english">English</MenuItem>
-								<MenuItem value="css">CSS</MenuItem>
-								<MenuItem value="react">React</MenuItem>
-								<MenuItem value="personal">Personal</MenuItem>
-								{//this.props.items.map(item =>
-          								//<MenuItem key={item.value} {...item} />
-        						//)}
-								}
+								</MenuItem>							
+								{subjects.subjects.map(item =>
+          								<MenuItem key={item.value} value={item.title}>{item.title}</MenuItem>
+        						)}
+								
 							</Select>
 							<FormHelperText>Select or Default Subject</FormHelperText>
 						</FormControl>
@@ -255,10 +279,9 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 							required
 							id="subject"
 							label="Parent"
-							name="parent"
-							autoComplete="parent"
+							name="parent"							
 							fullWidth
-							value={tags}
+							value={parent}
 							onChange={(event) => setParent(event.target.value)}
 						/>
 
@@ -269,10 +292,9 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 							id="title"
 							label="Title/Name"
 							name="title"
-							autoComplete="title"
 							autoFocus
-							value={value}
-							onChange={(event) => setValue(event.target.value)}
+							value={title}
+							onChange={(event) => setTitle(event.target.value)}
 						/>
 						<TextField 
 							margin="normal"
@@ -281,8 +303,6 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 							id="about"
 							label="About"
 							name="about"
-							autoComplete="about"
-
 							value={about}
 							onChange={(event) => setAbout(event.target.value)}
 						/>
@@ -297,6 +317,7 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 							onChange={(event) => setContent(event.target.value)}
 							variant="outlined"
 						/>
+						  
 						<TextField style={{ display: checkVisibilityForArtifact('link') ? 'none' : '' }}
 							margin="normal"
 							fullWidth
@@ -381,11 +402,11 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 							margin="normal"
 							id="id"
 							label="Id"
-							name="id"
+							name={id.name}
 							fullWidth
 							disabled
 							value={id}
-							onChange={(event) => setId(event.target.value)}
+							onChange={id.onChange}
 						/>
 
 						<TextField style={{ display: checkVisibilityForArtifact('createdDate') ? 'none' : '' }}
@@ -422,6 +443,11 @@ const AddNoteForm = ({ showAddNoteForm }) => {
 								variant="contained"
 								sx={{ mt: 3, mb: 2 }}
 							>Save</Button>
+							<Button
+								type="submit"
+								variant="contained"
+								sx={{ mt: 3, mb: 2 }}
+							>SaveAs</Button>
 							<Button
 								type="submit"
 								variant="contained"

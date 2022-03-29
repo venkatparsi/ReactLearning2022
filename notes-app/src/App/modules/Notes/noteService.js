@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { addSubject } from './subjectReducerSlice'
-import { useDispatch } from 'react-redux';
-const baseUrl = 'http://localhost:3001/';
+const baseUrl = 'http://192.168.1.37:3001/';
 const artifactType = ["book","note","section"]
 
 const getBaseUrl = (type)=>{
@@ -19,30 +18,33 @@ const config ={
   }
 }
 
+
 const getAll = (type) => {    
   console.log("making axios call with config",type,config,getBaseUrl(type))
   var result = axios.get(getBaseUrl(type),config);
   return result;
 }
 
-const addObj = async (type,payload,dispatch)=>{  
-var obj =await findObject(type,"title",payload.title);
-console.log("Found object:",obj);
-  if(obj.data.length>0){
-    console.log("....found the dublicate object....NOT Adding now.")
+
+  const addObj = async (type,payload,dispatch)=>{  
+  var obj =await findObject(type,"title",payload.title);
+      console.log("       Reserver Rsponse for find object:",obj.data);
+  if( obj.data.length > 0 ){
+      console.log("....found the duplicate object....NOT ADDING OBJECT.")
+      alert("Add/Save Failed - Duplicate found.")
+      let newObj = {...obj,isDuplicateFound:true}
+      return newObj;
   }
   else{
-    console.log("making axios call with Type:",type,"Payload:",payload,config)
-  const resultPromise =  axios.post(getBaseUrl(type),payload,config)  
-  resultPromise.then(response => {
-    console.log("Recievd Object: ---->",response.data)
-      dispatch(addSubject(response.data))
-  })
- }
+      console.log("        Not found object - ADDING NOW")
+      console.log("        making axios call with Type:",type,"Payload:",payload,config)
+      const resultPromise =  axios.post(getBaseUrl(type),payload,config)  
+      return resultPromise;
+  }
 }
 
 const findObject = (type,fieldName,value) =>{
-  console.log("Finding object:",getBaseUrl(type)+`?${fieldName}`+`=${value}`)
+         console.log("         Finding object:",getBaseUrl(type)+`?${fieldName}`+`=${value}`)
   return axios.get(getBaseUrl(type)+`?${fieldName}`+`=${value}`)
 }
 

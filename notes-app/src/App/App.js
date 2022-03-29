@@ -22,7 +22,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import PrimarySearchAppBar from "./components/AppNavBar/PrimarySearchAppBar";
 import noteService from './modules/Notes/noteService'
 import { useEffect } from "react";
-import { setSubjects } from "./modules/Notes/subjectReducerSlice";
+import { setSubjects,initializeSubjects } from "./modules/Notes/subjectReducerSlice";
 
 
 
@@ -87,9 +87,12 @@ function App() {
      noteService.getAll("subjects").then(response => {
       console.log("Recievd subjects: ---->",response.data)
       dispatch(setSubjects(response.data))
-     });
+    });
+
+    
 
   }, [])
+
 
   return (
     <MuiThemeProvider theme={theme}>      
