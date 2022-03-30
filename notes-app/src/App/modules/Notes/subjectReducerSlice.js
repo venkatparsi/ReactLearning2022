@@ -1,12 +1,7 @@
 
 import { createSlice } from '@reduxjs/toolkit';
-import { nextItemId } from '../../../shared/utils/utils'
+import { checkDuplicateExists } from '../../../shared/utils/utils'
 import noteService from './noteService';
-import { useDispatch } from 'react-redux';
-
-
-
-
 
 export const initializeSubjects = () => {
 	console.log("-->initializeSubjects")
@@ -19,31 +14,27 @@ export const initializeSubjects = () => {
   
 
 const subjectExists =(state,action) =>{
-	console.log("        Checking subject exist ",state,action)
-	const subject = state.subjects.filter(element => element.title === action.payload.title);
-	console.log("        Subject found ?",subject);
-	if(subject.length>0) return subject[0];
-	else return null;
+	return checkDuplicateExists(state,action,'subjects','title');
 }
 
 const addSubjectDef = (state, action,) => {
-	console.log("    --->addSubject:",state,action);
+	console.log("    ---> starting addSubject state change:",state,action);
 	var newState = null;
 	var subjectAlreadyExists = subjectExists(state,action);
-	if(subjectAlreadyExists==null){		
-		//noteService.add('subject',action.payload);
+	if(subjectAlreadyExists==null){
 	    let newSubjects = state.subjects.concat(action.payload);
 		newState = {"subjects":newSubjects,selectedSubject:state.selectedSubject}
-		console.log("New Subject state:",newState)
+		console.log("    <--ending addSubject state change: New Subject ADDED:",newState)
     	return newState;
       }		
 	else{
-		console.log("   <--addSubject (already exists) NOT ADDED");
+		console.log("   <--ending addSubject state change: (already exists) SO NOT ADDED");
 		return state;	
 	}
 }
 
 const setSelectedSubjectDef= (state,action) =>{
+	//not modifying the state.subjects.. only selectedSubject is new.
    var newState = {"subjects":state.subjects, slectedSubject:action.payload}
    console.log("Set selected subject def...",newState)
    return newState;
@@ -53,7 +44,6 @@ const setSubjectsDef = (state,action) =>
 {
 	console.log("Setting subjects:",state,action.payload)
 	var newState = {"subjects":action.payload,"selectedSubject":state.selectedSubject}
-	//var newState = [...action.payload];
 	console.log("Setting subjects NEW STATE:",newState)
 	return newState;
 }

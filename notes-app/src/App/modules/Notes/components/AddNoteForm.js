@@ -21,26 +21,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
 import { addSubject,setSelectedSubject} from '../subjectReducerSlice';
+import { addBook,setSelectedBook} from '../bookReducerSlice';
 import { EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { ContentState, convertToRaw } from 'draft-js';
 import noteService from '../noteService';
 import Snackbar from '@mui/material/Snackbar';
-/* Custom hook for the fields */
-const useField = (type,name,label) => {
-	const [value, setValue] = useState('')  
-	const onChange = (event) => {
-	  setValue(event.target.value)
-	}  
-	return {
-	  type,
-	  name,
-      label,
-	  value,
-	  onChange
-	}
-  }
+
 
 const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 	//let id= useField('text','id','Id');
@@ -68,6 +55,7 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 	const [section, setSection] = useState('');
 	const [createdDate, setCreatedDate] = useState('');
 	const [createdBy, setCreatedBy] = useState('venkat.r.parsi');
+	const [order, setOrder] = useState();
 	const [open, setOpen] = React.useState(false);
 	const dispatch = useDispatch();
 
@@ -75,24 +63,67 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 		dispatch(showAddNote(false))
 	}
 
+	
+const saveBook = (type,formData) => {
+	const momentNow = moment();
+    if (type === 'book') {
+        console.log(" ----> dispatching add ",type);
+        var bookRelatedPayload ={
+            title: formData.get('title'),
+            about: formData.get('about'),
+			content: formData.get('content'),
+			parent:formData.get('parent'),
+            createdDate: momentNow.format('DD-MMM-yyyy HH-mm'),
+            id:formData.get('id'),
+            createdBy: formData.get('createdBy'),
+            type:formData.get('type')
+        }
+        var resultPromise = noteService.add(type,bookRelatedPayload)
+        resultPromise.then(response => {
+            console.log("       Saved "+type+": ---->",response);
+            if(response.isDuplicateFound) {
+                dispatch(setSelectedBook(response.data))
+                console.log("ID value is",response.data[0].id)
+                setId(response.data[0].id);
+                setAbout(response.data[0].about);
+                setTitle(response.data[0].title);		
+				setContent(response.data[0].content);
+				setParent(response.data[0].parent);		
+                if(response.data[0].createdBy)
+                    setCreatedBy(response.data[0].createdBy);
+                if(response.data[0].createdDate)
+                	setCreatedDate(response.data[0].createdDate);				
+            }else{
+                dispatch(addBook(response.data))
+                alert("Successfully saved .",type);
+            }
+            })
+        console.log(" <---- dispatching add "+type+" end.")
+        
+    }else{
+		console.log("invalid artifact type passed. not saving");
+	}
+
+}
+
 	const handleSubmit = (event) => {
 		console.log("---->Submitting Form data for:",type);
 		event.preventDefault();
-		const data = new FormData(event.currentTarget);
+		const formData = new FormData(event.currentTarget);
 		const momentNow = moment();
 		var addPayload = {
-			title: data.get('title'),
-			about: data.get('about'),
-			content: data.get('content'),
-			link: data.get('link'),
-			dd: data.get('dd'),
-			hh: data.get('hh'),
-			mm: data.get('mm'),
-			type: data.get('type'),
-			tags: data.get('tags'),
+			title: formData.get('title'),
+			about: formData.get('about'),
+			content: formData.get('content'),
+			link: formData.get('link'),
+			dd: formData.get('dd'),
+			hh: formData.get('hh'),
+			mm: formData.get('mm'),
+			type: formData.get('type'),
+			tags: formData.get('tags'),
 			createdDate: momentNow.format('DD-MMM-yyyy HH-mm'),
-			id:data.get('id'),
-			createdBy: data.get('createdBy')
+			id:formData.get('id'),
+			createdBy: formData.get('createdBy')
 		}
 		console.log("      Payload type,val->",addPayload.type,addPayload);
 
@@ -104,36 +135,37 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 			console.log(" <---- dispatching add note.")
 			setCreatedDate(addPayload.createdDate)
 		}
-		if (type === 'subject') {
-			console.log(" ----> dispatching add subject.");
+		else if (type === 'book'){ saveBook('book',formData)}
+		else if (type === 'subject') {
+			console.log(" ----> Starting add subject db service.");
 			var subjectRelatedPayload ={
-				title: data.get('title'),
-			    about: data.get('about'),
+				title: formData.get('title'),
+			    about: formData.get('about'),
 				createdDate: momentNow.format('DD-MMM-yyyy HH-mm'),
-				id:data.get('id'),
-				createdBy: data.get('createdBy'),
-				type:data.get('type')
+				id:formData.get('id'),
+				createdBy: formData.get('createdBy'),
+				type:formData.get('type')
 			}
 			var resultPromise = noteService.add('subject',subjectRelatedPayload)
 			resultPromise.then(response => {
-				console.log("       Saved Subject: ---->",response);
+				console.log("      <--- End Saved Subject in db: ---->",response);
 				if(response.isDuplicateFound) {
 					dispatch(setSelectedSubject(response.data))
-					console.log("ID value is",response.data[0].id)
+					console.log("Found duplicate subject ID value is",response.data[0].id)
 					setId(response.data[0].id);
 					setAbout(response.data[0].about);
-					setTitle(response.data[0].title);		
+					setTitle(response.data[0].title);					
 					if(response.data[0].createdBy)
 						setCreatedBy(response.data[0].createdBy);
 					if(response.data[0].createdDate)
 					setCreatedDate(response.data[0].createdDate);				
 				}else{
 					dispatch(addSubject(response.data))
-					alert("Successfully saved Subject.");
+					alert("<---Successfully saved Subject locally.");
 				}
 				})
 			//console.log("    ----->", subjectRelatedPayload);
-			console.log(" <---- dispatching add subjct end.")
+			console.log(" <---- Ending add subject.")
 			
 		}
 		console.log("<----Submitting form end")
@@ -143,10 +175,13 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 
 	}
 	const handleBookChange = (event) => {
-		setBook(event.target.value);
+			setBook(event.target.value);
 	};
 
 	const handleSubjectChange = (event) => {
+		if(type=='book'){
+			setParent(event.target.value)
+		}
 		setSubject(event.target.value);
 	};
 
@@ -158,11 +193,16 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 		setSection(event.target.value);
 	};
 
-	const checkVisibilityForArtifact = (ele) => {
+	const isNotRequiredForArtifact = (ele) => {
 		//console.log("item,subject:->", ele, ":", type)
 		if (type === 'subject') {
 			if (ele === 'dd' || ele ==='mm' || ele==='hh' || ele=='tags' || ele=='link'
-		|| ele === 'parent' || ele =='about' || ele==='content') return true; //parent' || 'dd' || 'hh' || 'mm' || 'tags') return false;
+		|| ele === 'parent' || ele==='content' || ele=='order') return true; 
+			
+		}
+		if (type === 'book') {
+			if (ele === 'dd' || ele ==='mm' || ele==='hh' || ele=='tags' || ele=='link' || ele=='order'
+		 ) return true; 
 			
 		}
 	}
@@ -274,10 +314,10 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 							<FormHelperText>Select or Default section</FormHelperText>
 						</FormControl>
 
-						<TextField style={{ display: checkVisibilityForArtifact('parent') ? 'none' : '' }}
-							margin="normal" disabled="true"
-							required
-							id="subject"
+						<TextField style={{ display: isNotRequiredForArtifact('parent') ? 'none' : '' }}
+							margin="normal" 
+							disabled
+							id="parent"
 							label="Parent"
 							name="parent"							
 							fullWidth
@@ -296,7 +336,7 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 							value={title}
 							onChange={(event) => setTitle(event.target.value)}
 						/>
-						<TextField 
+						<TextField style={{ display: isNotRequiredForArtifact('about') ? 'none' : '' }}
 							margin="normal"
 							required
 							fullWidth
@@ -306,7 +346,8 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 							value={about}
 							onChange={(event) => setAbout(event.target.value)}
 						/>
-						<TextField style={{ display: checkVisibilityForArtifact('content') ? 'none' : '' }}
+						<TextField style={{ display: isNotRequiredForArtifact('content') ? 'none' : '' }}
+							margin="normal"
 							id="standard-multiline-flexible"
 							label="Content"
 							multiline
@@ -316,9 +357,8 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 							value={content}
 							onChange={(event) => setContent(event.target.value)}
 							variant="outlined"
-						/>
-						  
-						<TextField style={{ display: checkVisibilityForArtifact('link') ? 'none' : '' }}
+						/>						  
+						<TextField style={{ display: isNotRequiredForArtifact('link') ? 'none' : '' }}
 							margin="normal"
 							fullWidth
 							id="link"
@@ -328,21 +368,19 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 							value={link}
 							onChange={(event) => setLink(event.target.value)}
 						/>
-
-						<input
-							accept="image/*"
-							style={{ display: 'none' }}
-							id="raised-button-file"
-							multiple
-							type="file"
+					
+					   <TextField style={{ display: isNotRequiredForArtifact('order') ? 'none' : '' }}
+							margin="normal"
+							fullWidth
+							id="order"
+							label="Order"
+							name="order"
+							value={order}
+							onChange={(event) => setOrder(event.target.value)}
 						/>
-						<label htmlFor="raised-button-file" style={{ display: checkVisibilityForArtifact('link') ? 'none' : '' }}>
-							<Button variant="contained" component="span">
-								Upload
-							</Button>
-						</label>
+					
 
-						<Grid container
+						<Grid container style={{ display: isNotRequiredForArtifact('dd') ? 'none' : '' }}
 							direction="row"
 							justifyContent="flex-start"
 							alignItems="flex-start"
@@ -350,7 +388,7 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 							columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 
 							<Grid item xs={4}>
-								<TextField style={{ display: checkVisibilityForArtifact('dd') ? 'none' : '' }}
+								<TextField style={{ display: isNotRequiredForArtifact('dd') ? 'none' : '' }}
 									margin="normal"
 									id="link"
 									label="Days:dd"
@@ -362,7 +400,7 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 								/>
 							</Grid>
 							<Grid item xs={4}>
-								<TextField style={{ display: checkVisibilityForArtifact('hh') ? 'none' : '' }}
+								<TextField style={{ display: isNotRequiredForArtifact('hh') ? 'none' : '' }}
 									margin="normal"
 									id="link"
 									label="Hour:hh"
@@ -374,7 +412,7 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 								/>
 							</Grid>
 							<Grid item xs={4}>
-								<TextField style={{ display: checkVisibilityForArtifact('mm') ? 'none' : '' }}
+								<TextField style={{ display: isNotRequiredForArtifact('mm') ? 'none' : '' }}
 									margin="normal"
 									id="link"
 									label="Min:mm"
@@ -387,7 +425,7 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 							</Grid>
 						</Grid>
 
-						<TextField style={{ display: checkVisibilityForArtifact('tags') ? 'none' : '' }}
+						<TextField style={{ display: isNotRequiredForArtifact('tags') ? 'none' : '' }}
 							margin="normal"
 							id="tag"
 							label="Tags"
@@ -398,7 +436,7 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 							onChange={(event) => setTags(event.target.value)}
 						/>
 
-						<TextField style={{ display: checkVisibilityForArtifact('id') ? 'none' : '' }}
+						<TextField style={{ display: isNotRequiredForArtifact('id') ? 'none' : '' }}
 							margin="normal"
 							id="id"
 							label="Id"
@@ -409,7 +447,7 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 							onChange={id.onChange}
 						/>
 
-						<TextField style={{ display: checkVisibilityForArtifact('createdDate') ? 'none' : '' }}
+						<TextField style={{ display: isNotRequiredForArtifact('createdDate') ? 'none' : '' }}
 							margin="normal"
 							id="tag"
 							label="Created Date"
@@ -420,7 +458,7 @@ const AddNoteForm = ({ showAddNoteForm,showAlertNotification }) => {
 							onChange={(event) => setCreatedDate(event.target.value)}
 						/>
 
-						<TextField style={{ display: checkVisibilityForArtifact('createdBy') ? 'none' : '' }}
+						<TextField style={{ display: isNotRequiredForArtifact('createdBy') ? 'none' : '' }}
 							margin="normal"
 							required
 							id="tag"
