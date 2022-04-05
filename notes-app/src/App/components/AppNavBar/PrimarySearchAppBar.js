@@ -198,15 +198,10 @@ export default function PrimarySearchAppBar() {
           >
             Notes
           </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
+          <IconButton size="small" aria-label="show 4 new mails" color="inherit"
+           onClick={handleAddArtifactMenu}>
+            <SearchIcon />
+          </IconButton>
           <IconButton size="small" aria-label="show 4 new mails" color="inherit"
            onClick={handleAddArtifactMenu}>
             <AddCircleIcon />

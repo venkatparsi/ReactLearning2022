@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { addSubject } from './subjectReducerSlice'
-const baseUrl = 'http://192.168.1.37:3001/';
+const baseUrl = 'http://192.168.68.112:3001/';
 const artifactType = ["book","note","section"]
 
 const getBaseUrl = (type)=>{
