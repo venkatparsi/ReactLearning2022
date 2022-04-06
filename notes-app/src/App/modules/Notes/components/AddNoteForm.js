@@ -48,10 +48,6 @@ import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import QuizIcon from '@mui/icons-material/Quiz';
 
 import isEmail from 'validator/lib/isEmail';
-
-import QRCode from "react-qr-code";
-import { EventRepeatTwoTone, FlashOnRounded } from '@mui/icons-material';
-
 const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	//let id= useField('text','id','Id');
 	const [title, setTitle] = useState('');
