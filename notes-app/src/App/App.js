@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 
 import Container from '@mui/material/Container';
 import { createTheme } from '@mui/material/styles';
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+//import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import PrimarySearchAppBar from "./components/AppNavBar/PrimarySearchAppBar";
 import noteService from './modules/Notes/noteService'
 import { useEffect } from "react";
@@ -95,7 +95,7 @@ function App() {
 
 
   return (
-    <MuiThemeProvider theme={theme}>      
+          
      <Container component="main" maxWidth="xs" >
     <PrimarySearchAppBar > </PrimarySearchAppBar>
      
@@ -113,7 +113,7 @@ function App() {
         </div>
       </ScrollablePanel>
     </Container>
-    </MuiThemeProvider>
+    
   );
 }
 

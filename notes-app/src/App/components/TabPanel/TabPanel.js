@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-    console.log("value,index",value,index)
+   // console.log("value,index",value,index)
     return (
       <div
         role="tabpanel"

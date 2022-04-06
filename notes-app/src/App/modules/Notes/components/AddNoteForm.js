@@ -47,7 +47,10 @@ import AddCommentIcon from '@mui/icons-material/AddComment';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import QuizIcon from '@mui/icons-material/Quiz';
 
+import isEmail from 'validator/lib/isEmail';
+
 import QRCode from "react-qr-code";
+import { EventRepeatTwoTone, FlashOnRounded } from '@mui/icons-material';
 
 const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	//let id= useField('text','id','Id');
@@ -217,10 +220,14 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 
 	const handleSubjectChange = (event) => {
 		if (state['type'] == 'book') {
-			setParent(event.target.value)
+			state['parent']=(event.target.value)
 		}
 		//setSubject(event.target.value);
 	};
+
+	const validateSubject = (event) => {
+
+	}
 
 
 	const hideForArtifact = (ele) => {
@@ -266,23 +273,60 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		  subject:"",
 		  chapter:"",
 		  section:"",
-		  book:""});
+		  book:"",
+		  title:"",
+		  isTitleDirty:false,
+		  isTitleValid:false,
+		 isAboutDirty:false,
+		 isAboutValid:false
+		});
 
-	const inputChangeHandler = (event) => {
+	const stateChangeHandler = (event) => {
 		//console.log("event.target.onChange2", event.target);
 		setState({ ...state, [event.target.name]: event.target.value });
 	};
-	const fieldChangeHandler = (name, value) => {
+	const stateChangeCustomFieldsHandler = (name, value) => {
 		//console.log("event.target.onChange2", event.target);
 		setState({ ...state, [name]: value });
 	};
 
-	var make_handler = function (postHandler) {
+	var stateChangeWithPreAndPostHandler = function (preHandler,postHandler) {
 		return function (event) {
+			preHandler && preHandler(event)
 			setState({ ...state, [event.target.name]: event.target.value });
 			postHandler && postHandler(event);
 		};
 	};
+
+	const isEmpty = (target)=>{
+       return (target.value.length==0) 
+	}
+   
+    const validateTitleRequired = (event) => {
+		console.log("validateTitleRequired called.",event.target.value.length)
+          if(isEmpty(event.target)){
+			  var name = event.target.name;
+			  console.log("Required validation failed",name)
+			  state['isTitleValid']= false;
+		  }
+		  else{
+			state['isTitleValid']= true;
+			console.log("Required validation success",state['isTitleValid'])
+		  }
+	}
+
+	const validateAboutRequired = (event) => {
+		console.log("validateAboutRequired called.",event.target.value,state['isAboutValid'])
+          if(isEmpty(event.target)){
+			  var name = event.target.name;
+			  console.log("Required validation failed",name)
+			  state['isAboutValid']= false;
+		  }
+		  else{
+			state['isAboutValid']= true;
+			console.log("Required validation success",state['isAboutValid'])
+		  }
+	}
 
 	return (
 		<Container component="main" maxWidth="xs" sx={{ padding: "5px" }}
@@ -338,22 +382,22 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 							>
 							<Tab icon={<AccountTreeIcon />}
 							    value={"artifactsTab"}
-								onClick={() => fieldChangeHandler('addArtifactTypeTab', 'artifactsTab')}
+								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'artifactsTab')}
 								name="artifactsTab"
 								aria-label="artifactTree" >
 							</Tab>
 							<Tab icon={<AddCommentIcon />}
 							value={"commentsTab"}
 							 aria-label="favorite"
-								onClick={() => fieldChangeHandler('addArtifactTypeTab', 'commentsTab')}
+								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'commentsTab')}
 							/>
 							<Tab icon={<QuizIcon />} aria-label="favorite"
 							value={"quizTab"}
-								onClick={() => fieldChangeHandler('addArtifactTypeTab', 'quizTab')}
+								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'quizTab')}
 							/>
 							<Tab icon={<BookmarksIcon />} aria-label="person"
 							value={"favouritesTab"}
-								onClick={() => fieldChangeHandler('addArtifactTypeTab', 'favouritesTab')}
+								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'favouritesTab')}
 							/>
 						</Tabs>
 
@@ -364,7 +408,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 										aria-labelledby="demo-radio-buttons-group-label"
 										defaultValue="note"
 										name="type"
-										onChange={inputChangeHandler}
+										onChange={stateChangeHandler}
 									>
 
 										<FormControlLabel value="note" control={<Radio />} label="Note" />
@@ -385,8 +429,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 										name="subject"
 										value={state["subject"]}
 										label="Subject"
-										onChange={make_handler(handleSubjectChange)}
-										onChange2={handleSubjectChange}
+										onChange={stateChangeWithPreAndPostHandler(validateSubject,handleSubjectChange)}
 									>
 										<MenuItem value="none" selected>
 											<em>None</em>
@@ -407,8 +450,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 										name="book"
 										value={state["book"]}
 										label="Book"
-										onChange={make_handler(handleBookChange)}
-										onChange2={handleBookChange}
+										onChange={stateChangeWithPreAndPostHandler(handleBookChange)}
 									>
 										<MenuItem value="">
 											<em>None</em>
@@ -428,7 +470,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 										name="section"
 										value={state['section']}
 										label="Section"
-										onChange={inputChangeHandler}
+										onChange={stateChangeHandler}
 									>
 										<MenuItem value="">
 											<em>None</em>
@@ -449,7 +491,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 										name="chapter"
 										value={state['chapter']}
 										label="Chapter"
-										onChange={inputChangeHandler}
+										onChange={stateChangeHandler}
 									>
 										<MenuItem value="">
 											<em>None</em>
@@ -469,7 +511,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									name="parent"
 									fullWidth
 									value={state['parent']}
-									onChange={inputChangeHandler}
+									onChange={stateChangeHandler}
 								/>
 
 
@@ -489,8 +531,11 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									label="Title/Name"
 									name="title"
 									autoFocus 
+									helperText="(Required)" 
 									value={state['title']}
-									onChange={inputChangeHandler}
+									onChange={stateChangeWithPreAndPostHandler(validateTitleRequired)}
+									error={(state['isTitleDirty'] && state['isTitleValid']) === false}                                        
+									onBlur={() => state['isTitleDirty']=true}
 								/>
 								<TextField style={{ display: hideForArtifact('about') ? 'none' : '' }}
 									margin="normal"
@@ -498,9 +543,11 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									fullWidth
 									id="about"
 									label="About"
+									helperText="(Required)"
 									name="about"
-									value={state['about']}
-									onChange={inputChangeHandler}
+									value={state['about']}error={(state['isAboutDirty'] && state['isAboutValid']) === false}                                        
+									onBlur={() => state['isAboutDirty']=true}
+									onChange={stateChangeWithPreAndPostHandler(validateAboutRequired)}
 								/>
 								<TextField style={{ display: hideForArtifact('content') ? 'none' : '' }}
 									margin="normal"
@@ -511,7 +558,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									rows={4}
 									name="content"
 									value={state['content']}
-									onChange={inputChangeHandler}
+									onChange={stateChangeHandler}
 									variant="outlined"
 								/>
 
@@ -524,7 +571,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									name="link"
 									autoComplete="link"
 									value={state['link']}
-									onChange={inputChangeHandler}
+									onChange={stateChangeHandler}
 								/>
 
 								<TextField style={{ display: hideForArtifact('mediatype') ? 'none' : '' }}
@@ -535,7 +582,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									disabled
 									name="mediatype"
 									value={state['mediatype']}
-									onChange={inputChangeHandler}
+									onChange={stateChangeHandler}
 								/>
 
 								<input type="file" name="" id="fileId"
@@ -549,7 +596,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									label="Order"
 									name="order"
 									value={state['order']}
-									onChange={inputChangeHandler}
+									onChange={stateChangeHandler}
 								/>
 
 
@@ -569,7 +616,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 											autoComplete=""
 											autoFocus
 											value={state['mediatypdde']}
-											onChange={inputChangeHandler}
+											onChange={stateChangeHandler}
 										/>
 									</Grid>
 									<Grid item xs={4}>
@@ -581,7 +628,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 											autoComplete=""
 											autoFocus
 											value={state['hh']}
-											onChange={inputChangeHandler}
+											onChange={stateChangeHandler}
 										/>
 									</Grid>
 									<Grid item xs={4}>
@@ -593,7 +640,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 											autoComplete=""
 											autoFocus
 											value={state['mm']}
-											onChange={inputChangeHandler}
+											onChange={stateChangeHandler}
 										/>
 									</Grid>
 								</Grid>
@@ -606,7 +653,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									autoComplete="tags"
 									fullWidth
 									value={state['tags']}
-									onChange={inputChangeHandler}
+									onChange={stateChangeHandler}
 								/>
 
 								<TextField style={{ display: hideForArtifact('id') ? 'none' : '' }}
@@ -617,7 +664,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									fullWidth
 									disabled
 									value={state['id']}
-									onChange={inputChangeHandler}
+									onChange={stateChangeHandler}
 								/>
 
 								<TextField style={{ display: hideForArtifact('createdDate') ? 'none' : '' }}
@@ -628,7 +675,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									fullWidth
 									disabled
 									value={state['createdDate']}
-									onChange={inputChangeHandler}
+									onChange={stateChangeHandler}
 								/>
 
 								<TextField style={{ display: hideForArtifact('createdBy') ? 'none' : '' }}
@@ -655,7 +702,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									disabled
 									fullWidth
 									value={state['createdBy']}
-									onChange={inputChangeHandler}
+									onChange={stateChangeHandler}
 								/>
 
 						</TabPanel>
