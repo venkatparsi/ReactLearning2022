@@ -47,7 +47,6 @@ import AddCommentIcon from '@mui/icons-material/AddComment';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import QuizIcon from '@mui/icons-material/Quiz';
 
-import isEmail from 'validator/lib/isEmail';
 const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	//let id= useField('text','id','Id');
 	const [title, setTitle] = useState('');
