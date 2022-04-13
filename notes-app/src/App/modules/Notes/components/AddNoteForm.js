@@ -81,15 +81,33 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	];
 
 
-	const getDynamicContent = ([fields]) => {
-		console.log(fields)
-		return <TextField> fields.title</TextField>
-     // for(var i=0;i<fields.length;i++){
+	const getDynamicContent = (fields) => {
+		console.log("Get Dynamic content", fields?.length)
+		let newFields = [...fields];
+		console.log("New copied data..", newFields)
+		var field = newFields[0];
+		//return <input type="text" value={newData[0].label}></input>
+		return React.createElement(<FormControl
+			id={field.id}
+			label={field.label}
+			name={field.name}
+			fullWidth
+			autoFocus
+			required
+			helperText={state["title"]?.errorHelperText}
+			value={state?.title?.value}
+			onChange={stateChangeWithPreAndPostHandler(validateField)}
+			error={(state["title"]?.isDirty) && state["title"]?.isValid === false}
+			onBlur={() => state["title"].isDirty = true}
+		></FormControl>);
+		// for(var i=0;i<fields.length;i++){
 		//  var value = fields[i].id + fields[i].title + fields[i].name;
 
-		  //return value;
-	  //}
+		//return value;
+		//}
 	}
+
+
 	const hideForm = () => {
 		dispatch(showAddNote(false))
 	}
@@ -486,10 +504,12 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	const handleClickListItem = () => {
 		setOpen(true);
 	};
-
+	var dynamicContentFields = addNoteFormData.uiFields;
 	useEffect(() => {
 		setState(addNoteFormData);
-		console.log("The STATE:", state)
+		console.log("useEffect()->The STATE:", state)
+		dynamicContentFields = addNoteFormData.uiFields;
+		console.log("useEffect()->Dynamic content fields:", dynamicContentFields);
 	})
 	return (
 
@@ -726,9 +746,9 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 										),
 									}}
 									margin="normal"
-									id="title2"
+									id="title"
 									label="Title/Name"
-									name="title2"
+									name="title"
 									fullWidth
 									autoFocus
 									required
@@ -746,8 +766,8 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									margin="normal"
 									required
 									fullWidth
-									id="about2"
-									name="about2"
+									id="about"
+									name="about"
 									label="About"
 									helperText={state["about"]?.errorHelperText}
 									value={state?.about?.value}
@@ -757,28 +777,85 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 								/>
 							</goaboutui>
 
-							{console.log("---------------->",state.uiFields)}
-							{  getDynamicContent(state.uiFields)
-							//state["uiFields"].map(field => {
-								//return <li>{field.id}							
-								//</li>
-										/* <FormControl
-                                    id={field.id}
-                                    label={field.label}
-                                    name={field.name}
-                                    fullWidth
-                                    autoFocus
-                                    required
-                                    helperText={state["title"]?.errorHelperText}
-                                    value={state?.title?.value}
-                                    onChange={stateChangeWithPreAndPostHandler(validateField)}
-                                    error={(state["title"]?.isDirty) && state["title"]?.isValid === false}
-                                    onBlur={() => state["title"].isDirty = true}
-                                ></FormControl>	*/
-									 		//return field.id					
-							//	 })
+							{console.log("---------------->", state.uiFields)}
+							{dynamicContentFields.length > 0 && (
+								<>
+									{dynamicContentFields.map((field, index) => (
+
+										<FormControl fullWidth>
+											<TextField margin="normal"
+												id={field.id}
+												label={field.label}
+												name={field.name}
+												fullWidth
+												autoFocus
+												required
+												helperText={state[field.name]?.errorHelperText}
+												value={state?.field?.value}
+												onChange={stateChangeWithPreAndPostHandler(validateField)}
+												error={(state[field.name]?.isDirty) && state[field.name]?.isValid === false}
+												onBlur={() => { state[field.name].isDirty = true }}
+											></TextField>
+										</FormControl>
+									))}
+								</>
+							)
 							}
-						
+
+
+							<TextField style={{ display: hideForArtifact('content') ? 'none' : '' }}
+								margin="normal"
+								id="standard-multiline-flexible"
+								label="Content"
+								variant="outlined"
+								multiline
+								fullWidth
+								rows={4}
+								name="content"
+								helperText={state.content.errorHelperText}
+								value={state.content.value}
+								onChange={stateChangeWithPreAndPostHandler(validateField)}
+								error={(state.content.isDirty) && state.content.isValid === false}
+								onBlur={() => state.content.isDirty = true}
+							/>
+							<golinkui>
+								<TextField style={{ display: hideForArtifact('link') ? 'none' : '' }}
+									margin="normal"
+									fullWidth
+									id="link"
+									label="Media Url"
+									name="link"
+									helperText={state.link.errorHelperText}
+									value={state.link.value}
+									onChange={stateChangeWithPreAndPostHandler(validateField)}
+									error={(state.link.isDirty) && state.link.isValid === false}
+									onBlur={() => state.link.isDirty = true}
+								/>
+							</golinkui>
+							<TextField style={{ display: hideForArtifact('mediatype') ? 'none' : '' }}
+								margin="normal"
+								fullWidth
+								id="mediatype"
+								label="Media Type"
+								disabled
+								name="mediatype"
+								helperText={state.mediatype.errorHelperText}
+								value={state.mediatype.value}
+								onChange={stateChangeWithPreAndPostHandler(validateField)}
+								error={(state.mediatype.isDirty) && state.mediatype.isValid === false}
+								onBlur={() => state.mediatype.isDirty = true}
+							/>
+							<gofileui>
+								<FormControl margin="normal" label="media" fullWidth
+									style={{ display: hideForArtifact('file') ? 'none' : '' }}>
+									<input type="file"
+										name="mediacontent"
+										id="mediacontent"
+										onChange={stateChangeWithPreAndPostHandler(validateField, imageUploaded)}
+									/>
+								</FormControl>
+							</gofileui>
+
 
 
 							<TextField style={{ display: hideForArtifact('order') ? 'none' : '' }}
@@ -800,18 +877,18 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 								<Grid item xs={4}>
 									<TextField style={{ display: hideForArtifact('dd') ? 'none' : '' }}
 										margin="normal"
-										id="link"
+										id="dd"
 										label="Days:dd"
 										name="dd"
 										autoComplete=""
-										value={state['mediatypdde']}
+										value={state['dd']}
 										onChange={stateChangeHandler}
 									/>
 								</Grid>
 								<Grid item xs={4}>
 									<TextField style={{ display: hideForArtifact('hh') ? 'none' : '' }}
 										margin="normal"
-										id="link"
+										id="hh"
 										label="Hour:hh"
 										name="hh"
 										autoComplete=""
@@ -822,7 +899,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 								<Grid item xs={4}>
 									<TextField style={{ display: hideForArtifact('mm') ? 'none' : '' }}
 										margin="normal"
-										id="link"
+										id="mm"
 										label="Min:mm"
 										name="mm"
 										autoComplete=""

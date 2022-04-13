@@ -9,9 +9,9 @@
     "showSearchResultsTab": "allSearchResults",
     "uiFields":[
          {
-            "id":"title",
-            "label":"title",
-            "name":"title",
+            "id":"title2",
+            "label":"title2",
+            "name":"title2",
             "value": "",
             "isValid": false,
             "isDirty": false,
@@ -22,9 +22,9 @@
             "dataType": "string"
         },
         {
-            "id":"about",
-            "label":"About*",
-            "name":"about",
+            "id":"about2",
+            "label":"About2*",
+            "name":"about2",
             "value": "",
             "isValid": false,
             "isDirty": false,
@@ -35,6 +35,7 @@
             "dataType": "string"
         }    
     ],
+
 
 
     "subject": {
@@ -58,6 +59,26 @@
         "dataType": "string"
     },
     "about": {
+        "value": "",
+        "isValid": false,
+        "isDirty": false,
+        "defaultHelperText": "(Required)",
+        "errorHelperText": "(Required)",
+        "maxLength": 80,
+        "minLength": 10,
+        "dataType": "string"
+    },
+    "title2": {
+        "value": "",
+        "isValid": false,
+        "isDirty": false,
+        "defaultHelperText": "(Required)",
+        "errorHelperText": "(Required)",
+        "maxLength": 80,
+        "minLength": 5,
+        "dataType": "string"
+    },
+    "about2": {
         "value": "",
         "isValid": false,
         "isDirty": false,
