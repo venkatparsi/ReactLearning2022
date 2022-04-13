@@ -38,7 +38,7 @@
   },
   "scripts": {
     "start": "react-scripts start --proxy http://localhost:3001",
-    "server": "json-server --watch ./server/db.json --port 3001 --proxy http://localhost:3001 --host 192.168.68.112",
+    "server": "json-server --watch ./server/db.json --port 3001 --proxy http://localhost:3001 --host 192.168.68.110",
     "generate": "node ./server/generateData.js > ./server/generatedData.json",
     "build": "react-scripts build",
     "test": "react-scripts test",

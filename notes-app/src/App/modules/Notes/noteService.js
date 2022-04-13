@@ -1,13 +1,12 @@
 import axios from 'axios'
-import { addSubject } from './subjectReducerSlice'
-const baseUrl = 'http://192.168.68.112:3001/';
-const artifactType = ["book","note","section"]
+const baseUrl = 'http://192.168.68.110:3001/';
 
 const getBaseUrl = (type)=>{
     if(type==="note"|| type==="notes") return baseUrl+"notes"
-    else if(type==="book") return baseUrl+"books"
-    else if(type==="section") return baseUrl+"sections"
+    else if(type==="book" || type==='books') return baseUrl+"books"
+    else if(type==="section" || type==='sections') return baseUrl+"sections"
     else if(type==="subject" || type== "subjects") return baseUrl+"subjects"
+    else if(type==="chapter" || type== "chapters") return baseUrl+"chapters"
 }
 
 const config ={

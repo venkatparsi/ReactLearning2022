@@ -83,14 +83,10 @@ function App() {
         console.log("Recievd notes: ---->",response.data)
        dispatch(setNotes(response.data))        
       })
-
      noteService.getAll("subjects").then(response => {
       console.log("Recievd subjects: ---->",response.data)
       dispatch(setSubjects(response.data))
-    });
-
-    
-
+    }); 
   }, [])
 
 

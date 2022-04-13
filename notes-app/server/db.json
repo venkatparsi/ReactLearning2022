@@ -91,163 +91,76 @@
       "id": 12,
       "createdBy": null,
       "type": "subject"
+    },
+    {
+      "title": "testing",
+      "about": "mechanical engineering",
+      "createdDate": "09-Apr-2022 09-48",
+      "id": 13,
+      "createdBy": null,
+      "type": null
     }
   ],
   "books": [
     {
+      "title": "book3",
+      "about": "book about nothing.",
+      "content": "",
+      "parent": "ramana2",
+      "createdDate": "10-Apr-2022 00-00",
       "id": 1,
-      "title": "React Reciepes",
-      "about": "Learn React interactively and precisely in timely fashion",
-      "content": "The best way to learn react is through building small apps.",
-      "link": "https://www.youtube.com/embed/9VNTvwaJ6oM",
-      "sections": [
-        {
-          "id": 1,
-          "parent": 1,
-          "title": "Include youtube api script",
-          "content": "<script src='https://www.youtube.com/iframe_api'></script>",
-          "link": "https://tutorialzine.com/2015/08/how-to-control-youtubes-video-player-with-javascript",
-          "tags": "youtube api",
-          "notes": [
-            {
-              "id": 1,
-              "parent": 1,
-              "title": "1) Initializing the player",
-              "about": "include the youtube api",
-              "content": "<script src='https://www.youtube.com/iframe_api'></script>",
-              "dd": "0",
-              "hh": "0",
-              "mm": "5",
-              "tags": "angular"
-            }
-          ]
-        }
-      ]
+      "createdBy": null,
+      "type": null
     },
     {
-      "title": "The Kashmir Files : A digital Book",
-      "about": "first book",
-      "content": "Describes about the atrocities of the kashmiri pandits in a book. its a digital book or file to access the anecdotes at once place to search and ",
-      "createdDate": "30-Mar-2022 12-33",
+      "title": "testing",
+      "about": "testing",
+      "content": "",
+      "parent": "ramana",
+      "createdDate": "10-Apr-2022 00-06",
       "id": 2,
       "createdBy": null,
-      "type": "note"
+      "type": null
     },
     {
-      "title": "dfdf",
-      "about": "dfsdf",
-      "content": "dfdf",
-      "createdDate": "30-Mar-2022 12-48",
+      "title": "testing2",
+      "about": "testing",
+      "content": "",
+      "parent": "ramana",
+      "createdDate": "10-Apr-2022 00-31",
       "id": 3,
       "createdBy": null,
-      "type": "book"
+      "type": null
     },
     {
-      "title": "ddfdf",
-      "about": "dfsdf",
-      "content": "dfsdf",
-      "createdDate": "30-Mar-2022 12-57",
+      "title": "testinmg4",
+      "about": "",
+      "content": "",
+      "parent": "ramana2",
+      "createdDate": "10-Apr-2022 00-38",
       "id": 4,
       "createdBy": null,
       "type": "book"
     },
     {
-      "title": "test",
-      "about": "test",
+      "title": "testinmg5",
+      "about": "",
       "content": "",
-      "createdDate": "30-Mar-2022 12-57",
+      "parent": "ramana2",
+      "createdDate": "10-Apr-2022 00-40",
       "id": 5,
-      "createdBy": null,
+      "createdBy": "venkat.parsi",
       "type": "book"
     },
     {
-      "title": "the kashmir files",
+      "title": "test4",
       "about": "test",
-      "content": "",
-      "createdDate": "30-Mar-2022 13-00",
-      "id": 6,
-      "createdBy": null,
-      "type": "book"
-    },
-    {
-      "title": "React Reciepes 2",
-      "about": "Learn React interactively and precisely in timely fashion",
-      "content": "The best way to learn react is through building small apps.",
-      "parent": null,
-      "createdDate": "30-Mar-2022 13-11",
-      "id": 7,
-      "createdBy": null,
-      "type": "book"
-    },
-    {
-      "title": "testingAngular",
-      "about": "test",
-      "content": "",
-      "parent": null,
-      "createdDate": "30-Mar-2022 13-17",
-      "id": 8,
-      "createdBy": null,
-      "type": "book"
-    },
-    {
-      "title": "testing waters",
-      "about": "",
-      "content": "",
-      "parent": "Angular",
-      "createdDate": "30-Mar-2022 13-19",
-      "id": 9,
-      "createdBy": null,
-      "type": "book"
-    },
-    {
-      "title": "fgfg",
-      "about": "",
-      "content": "",
-      "parent": null,
-      "createdDate": "30-Mar-2022 13-23",
-      "id": 10,
-      "createdBy": null,
-      "type": "book"
-    },
-    {
-      "title": "new book on preprimary english",
-      "about": "test",
-      "content": "",
-      "parent": null,
-      "createdDate": "03-Apr-2022 06-55",
-      "id": 11,
-      "createdBy": null,
-      "type": "book"
-    },
-    {
-      "title": "myBook",
-      "about": "just a test",
-      "content": "",
-      "parent": null,
-      "createdDate": "05-Apr-2022 05-43",
-      "id": 12,
-      "createdBy": null,
-      "type": "book"
-    },
-    {
-      "title": "myBook2",
-      "about": "just a test",
-      "content": "",
-      "parent": "first subject",
-      "createdDate": "05-Apr-2022 05-49",
-      "id": 13,
-      "createdBy": null,
-      "type": "book"
-    },
-    {
-      "title": "",
-      "about": "",
       "content": "",
       "parent": "",
-      "createdDate": "05-Apr-2022 06-51",
-      "id": 14,
-      "createdBy": null,
-      "type": "note"
+      "createdDate": "10-Apr-2022 23-30",
+      "id": 6,
+      "createdBy": "venkat.parsi",
+      "type": "book"
     }
   ],
   "persons": [

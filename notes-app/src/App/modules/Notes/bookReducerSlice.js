@@ -9,7 +9,7 @@ const addBookDef = (state, action) => {
 	var artifactAlreadyExists = checkDuplicateExists(state,action,"books","title");
 	if(artifactAlreadyExists==null){
 	    let newItems = state[artifact].concat(action.payload);
-		newState = {"book":newItems,selectedBook:state.selectedBook}
+		newState = {"books":newItems,selectedBook:state.selectedBook}
 		console.log("    <--ending add"+artifact+" state change: New Item ADDED:",newState)
     	return newState;
       }		
@@ -21,6 +21,7 @@ const addBookDef = (state, action) => {
 }
 
 const setBooksDef = (state,action) => {
+	console.log("setting book...",action.payload)
 	var newState = [...action.payload]
 	return newState;
 }

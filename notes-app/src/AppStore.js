@@ -8,7 +8,7 @@ export default configureStore({
   reducer: {
         notes:noteReducer,
         appUi:appUiReducer,
-        book: bookReducer,
+        books: bookReducer,
         subjects: subjectReducer
   },
 })

@@ -45,6 +45,16 @@ const isImgUrl = (url) => {
   return val;
 }
 
+const isBase64Data = (mediaData) => {
+  let dataPrefixExists = mediaData.search("data:") == 0
+  let base64StringExists = mediaData.search(";base64,") > 0
+  let mediaType = '';
+  if(dataPrefixExists && base64StringExists){
+    let mediaType = mediaData.substr(mediaData.search("data:")+5,(mediaData.search(";")-5));
+  }
+
+}
+
   return (
     isImgUrl(link) ? <img width='100%' height="100%" src={link}></img> :<ReactPlayer url={link} width='100%' height='100%' /> 
   );

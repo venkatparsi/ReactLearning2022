@@ -198,20 +198,12 @@ export default function PrimarySearchAppBar() {
           >
             Notes
           </Typography>
-          <IconButton size="small" aria-label="show 4 new mails" color="inherit"
-           onClick={handleAddArtifactMenu}>
-            <SearchIcon />
-          </IconButton>
+         
           <IconButton size="small" aria-label="show 4 new mails" color="inherit"
            onClick={handleAddArtifactMenu}>
             <AddCircleIcon />
           </IconButton>
-          <IconButton
-            size="small"
-            aria-label="show 17 new notifications"
-            color="inherit">
-            <WorkHistoryIcon></WorkHistoryIcon>
-          </IconButton>
+          
 
           <IconButton
             size="small"

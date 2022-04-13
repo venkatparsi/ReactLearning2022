@@ -1,0 +1,108 @@
+{
+    "type": "note",
+    "chapter": "",
+    "section": "",
+    "book": "",
+    "showAddNewForm": false,
+    "addArtifactTypeTab": "artifactsTab",
+    "showBookmarksTab": "allBookMarks",
+    "showSearchResultsTab": "allSearchResults",
+    "uiFields":[
+         {
+            "id":"title",
+            "label":"title",
+            "name":"title",
+            "value": "",
+            "isValid": false,
+            "isDirty": false,
+            "defaultHelperText": "(Required)",
+            "errorHelperText": "(Required)",
+            "maxLength": 80,
+            "minLength": 5,
+            "dataType": "string"
+        },
+        {
+            "id":"about",
+            "label":"About*",
+            "name":"about",
+            "value": "",
+            "isValid": false,
+            "isDirty": false,
+            "defaultHelperText": "(Required)",
+            "errorHelperText": "(Required)",
+            "maxLength": 80,
+            "minLength": 10,
+            "dataType": "string"
+        }    
+    ],
+
+
+    "subject": {
+        "value": "",
+        "isValid": false,
+        "isDirty": false,
+        "defaultHelperText": "(Select Subject)",
+        "errorHelperText": "(Select Subject)",
+        "maxLength": 40,
+        "dataType": "string"
+    },
+ 
+    "title": {
+        "value": "",
+        "isValid": false,
+        "isDirty": false,
+        "defaultHelperText": "(Required)",
+        "errorHelperText": "(Required)",
+        "maxLength": 80,
+        "minLength": 5,
+        "dataType": "string"
+    },
+    "about": {
+        "value": "",
+        "isValid": false,
+        "isDirty": false,
+        "defaultHelperText": "(Required)",
+        "errorHelperText": "(Required)",
+        "maxLength": 80,
+        "minLength": 10,
+        "dataType": "string"
+    },
+    "content": {
+        "value": "",
+        "isValid": false,
+        "isDirty": false,
+        "defaultHelperText": "(Required)",
+        "errorHelperText": "(Required)",
+        "maxLength": 600,
+        "minLength": 10,
+        "dataType": "string"
+    },
+    "link": {
+        "value": "",
+        "isValid": false,
+        "isDirty": false,
+        "defaultHelperText": "(Required)",
+        "errorHelperText": "(Required)",
+        "maxLength": 600,
+        "minLength": 10,
+        "dataType": "string"
+    },
+    "mediatype": {
+        "value": "",
+        "isValid": false,
+        "isDirty": false,
+        "defaultHelperText": "(audio/video/image/doc)",
+        "errorHelperText": "(audio/video/image/doc)",
+        "maxLength": 40,
+        "dataType": "string"
+    },
+    "mediacontent": {
+        "value": "",
+        "isValid": false,
+        "isDirty": false,
+        "defaultHelperText": "(audio/video/image/doc)",
+        "errorHelperText": "(audio/video/image/doc)",
+        "maxLength": 40,
+        "dataType": "string"
+    }
+}
