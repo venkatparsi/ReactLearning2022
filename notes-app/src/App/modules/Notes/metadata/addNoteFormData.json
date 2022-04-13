@@ -1,8 +1,10 @@
 {
     "type": "note",
-    "chapter": "",
-    "section": "",
-    "book": "",
+    "selectedchapter": "Test chapter",
+    "selectedsection": "Test section",
+    "selectedbook": "Test Book",
+    "selectednote": "Test Note",
+    "selectedsubject":"Test subject",
     "showAddNewForm": false,
     "addArtifactTypeTab": "artifactsTab",
     "showBookmarksTab": "allBookMarks",

@@ -257,7 +257,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		if (state.type === 'subject') {
 			if (ele === 'dd' || ele === 'mm' || ele === 'hh' || ele === 'tags' || ele === 'link'
 				|| ele === 'parent' || ele === 'content' || ele === 'order' || ele === 'book'
-				|| ele === 'subject' || ele === 'chapter' || ele === 'section' || ele === 'file' || ele === 'mediatype')
+				|| ele === 'chapter' || ele === 'section' || ele === 'file' || ele === 'mediatype')
 				return true;
 
 		}
@@ -278,10 +278,18 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		else if (state.type === 'section') {
 			if (ele === 'dd' || ele === 'mm' || ele === 'hh' || ele === 'tags' || ele === 'link'
 				|| ele === 'parent' || ele === 'content' || ele === 'order' ||
-				ele === 'section')
+				ele === 'section' || ele === 'subject')
 				return true;
 
 		}
+		else if (state.type === 'note') {
+			if (ele === 'dd' || ele === 'mm' || ele === 'hh' || ele === 'tags' || ele === 'link'
+				|| ele === 'parent' || ele === 'content' || ele === 'order' ||
+				ele === 'subject')
+				return true;
+
+		}
+
 	}
 
 	var subjects = useSelector(({ subjects }) => {
@@ -581,10 +589,119 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 						width: 380
 					}}
 				>
-					<Box component="form"
+					<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 0 }}>
 
-						onSubmit={handleSubmit} noValidate sx={{ mt: 0 }}>
+						<Stack >
+						<h6> {state.addArtifactTypeTab==='commentsTab'? 'Create Comments for '+`${state.type}`+ `: ${state["selected"+state.type]}`:' '}  
+									{state.addArtifactTypeTab==='artifactsTab'? 'Create Artifact '+`${state.type}`:' '} 
+									{state.addArtifactTypeTab==='scratchTab'? 'Display All  '+`${state.type}`+'s': ''} 
+									{state.addArtifactTypeTab==='quizTab'? 'Create Question for '+`${state.type}`+ `: ${state["selected"+state.type]}`:' ' } 
+						</h6>
+						<ToggleButtonGroup
+							color="primary"
+							name="newType"
+							id="newType"
+							value={state['type']}
+							exclusive
+							onChange={(e) => stateChangeCustomFieldsHandler("type", e.target.value)}
+						>
+							<ToggleButton value="note" name="newType" >Note</ToggleButton>
+							<ToggleButton value="section" name="newType" >Sect</ToggleButton>
+							<ToggleButton value="chapter" name="newType" >Chap</ToggleButton>
+							<ToggleButton value="book" name="newType" >Book</ToggleButton>
+							<ToggleButton value="subject" name="newType" >Subj</ToggleButton>
+						</ToggleButtonGroup>
+                           Current Selected: { `${state["selected"+state.type]}`}
+						</Stack>
+						
 
+						<gosubjectui>
+							<FormControl sx={{ m: 1 }} variant="standard"
+								style={{ display: hideForArtifact('subject') ? 'none' : '' }}>
+								<InputLabel id="demo-simple-select-helper-label">Subject</InputLabel>
+								<Select
+									labelId="demo-simple-select-helper-label"
+									id="subject"
+									name="subject"
+									label="Subject"
+									width="50%"
+									required
+									helperText={state?.subject?.errorHelperText}
+									value={state?.subject?.value}
+									onChange={stateChangeWithPreAndPostHandler(validateField)}
+								>
+									<MenuItem value="none" selected>
+										<em>None</em>
+									</MenuItem>
+									{subjects.subjects.map(item =>
+										<MenuItem key={item.value} value={item.title}>{item.title}</MenuItem>
+									)}
+								</Select>
+								<FormHelperText>Select Subject</FormHelperText>
+							</FormControl>
+						</gosubjectui>
+						<FormControl sx={{ m: 1 }} variant="standard"
+							style={{ display: hideForArtifact('book') ? 'none' : '' }}>
+							<InputLabel id="demo-simple-select-helper-label">Book</InputLabel>
+							<Select
+								labelId="demo-simple-select-helper-label"
+								id="book"
+								name="book"
+								value={state.book ? state.book : ''}
+								label="Book"
+								onChange={(event) => stateChangeCustomFieldsHandler("book", event.target.value)}
+							>
+								<MenuItem value="" selected>
+									<em>None</em>
+								</MenuItem>
+								{books.books?.map(item =>
+									<MenuItem key={item.value} value={item.title}>{item.title}</MenuItem>
+								)}
+							</Select>
+							<FormHelperText>Select Book</FormHelperText>
+						</FormControl>
+
+						<FormControl sx={{ m: 1 }} variant="standard"
+							style={{ display: hideForArtifact('chapter') ? 'none' : '' }}>
+							<InputLabel id="chapter-label">Chapter</InputLabel>
+							<Select
+								labelId="chapter-label"
+								id="chapter"
+								name="chapter"
+								value={state['chapter']}
+								label="Chapter"
+								onChange={stateChangeHandler}
+							>
+								<MenuItem value="">
+									<em>None</em>
+								</MenuItem>
+								<MenuItem value={10}>Ten</MenuItem>
+								<MenuItem value={20}>Twenty</MenuItem>
+								<MenuItem value={30}>Thirty</MenuItem>
+							</Select>
+							<FormHelperText>Select Chapter</FormHelperText>
+						</FormControl>
+
+						<FormControl sx={{ m: 1 }} variant="standard"
+							style={{ display: hideForArtifact('section') ? 'none' : '' }}>
+							<InputLabel id="section-label">Section</InputLabel>
+							<Select
+								labelId="section-label"
+								id="section"
+								name="section"
+								value={state['section']}
+								label="Section"
+								onChange={stateChangeHandler}
+							>
+								<MenuItem value="">
+									<em>None</em>
+								</MenuItem>
+								<MenuItem value={10}>Ten</MenuItem>
+								<MenuItem value={20}>Twenty</MenuItem>
+								<MenuItem value={30}>Thirty</MenuItem>
+							</Select>
+							<FormHelperText>Select section</FormHelperText>
+						</FormControl>
 
 						<Tabs name='artifactTab' style={{ width: '95%' }}
 							value={state['addArtifactTypeTab']}
@@ -624,108 +741,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 						}}
 							value={state['addArtifactTypeTab']}
 							index={"artifactsTab"}>
-							<h6>Create artifact</h6>
-							<ToggleButtonGroup
-								color="primary"
-								name="newType"
-								id="newType"
-								value={state['type']}
-								exclusive
-								onChange={(e) => stateChangeCustomFieldsHandler("type", e.target.value)}
-							>
-								<ToggleButton value="note" name="newType" >Note</ToggleButton>
-								<ToggleButton value="section" name="newType" >Sect</ToggleButton>
-								<ToggleButton value="chapter" name="newType" >Chap</ToggleButton>
-								<ToggleButton value="book" name="newType" >Book</ToggleButton>
-								<ToggleButton value="subject" name="newType" >Subj</ToggleButton>
-							</ToggleButtonGroup>
 
-							<gosubjectui></gosubjectui>
-							<FormControl sx={{ m: 1 }} variant="standard"
-								style={{ display: hideForArtifact('subject') ? 'none' : '' }}>
-								<InputLabel id="demo-simple-select-helper-label">Subject</InputLabel>
-								<Select
-									labelId="demo-simple-select-helper-label"
-									id="subject"
-									name="subject"
-									label="Subject"
-									width="50%"
-									required
-									helperText={state?.subject?.errorHelperText}
-									value={state?.subject?.value}
-									onChange={stateChangeWithPreAndPostHandler(validateField)}
-								>
-									<MenuItem value="none" selected>
-										<em>None</em>
-									</MenuItem>
-									{subjects.subjects.map(item =>
-										<MenuItem key={item.value} value={item.title}>{item.title}</MenuItem>
-									)}
-								</Select>
-								<FormHelperText>Select Subject</FormHelperText>
-							</FormControl>
-							<FormControl sx={{ m: 1 }} variant="standard"
-								style={{ display: hideForArtifact('book') ? 'none' : '' }}>
-								<InputLabel id="demo-simple-select-helper-label">Book</InputLabel>
-								<Select
-									labelId="demo-simple-select-helper-label"
-									id="book"
-									name="book"
-									value={state.book ? state.book : ''}
-									label="Book"
-									onChange={(event) => stateChangeCustomFieldsHandler("book", event.target.value)}
-								>
-									<MenuItem value="" selected>
-										<em>None</em>
-									</MenuItem>
-									{books.books?.map(item =>
-										<MenuItem key={item.value} value={item.title}>{item.title}</MenuItem>
-									)}
-								</Select>
-								<FormHelperText>Select Book</FormHelperText>
-							</FormControl>
-
-							<FormControl sx={{ m: 1 }} variant="standard"
-								style={{ display: hideForArtifact('chapter') ? 'none' : '' }}>
-								<InputLabel id="chapter-label">Chapter</InputLabel>
-								<Select
-									labelId="chapter-label"
-									id="chapter"
-									name="chapter"
-									value={state['chapter']}
-									label="Chapter"
-									onChange={stateChangeHandler}
-								>
-									<MenuItem value="">
-										<em>None</em>
-									</MenuItem>
-									<MenuItem value={10}>Ten</MenuItem>
-									<MenuItem value={20}>Twenty</MenuItem>
-									<MenuItem value={30}>Thirty</MenuItem>
-								</Select>
-								<FormHelperText>Select Chapter</FormHelperText>
-							</FormControl>
-
-							<FormControl sx={{ m: 1 }} variant="standard"
-								style={{ display: hideForArtifact('section') ? 'none' : '' }}>
-								<InputLabel id="section-label">Section</InputLabel>
-								<Select
-									labelId="section-label"
-									id="section"
-									name="section"
-									value={state['section']}
-									label="Section"
-									onChange={stateChangeHandler}
-								>
-									<MenuItem value="">
-										<em>None</em>
-									</MenuItem>
-									<MenuItem value={10}>Ten</MenuItem>
-									<MenuItem value={20}>Twenty</MenuItem>
-									<MenuItem value={30}>Thirty</MenuItem>
-								</Select>
-								<FormHelperText>Select section</FormHelperText>
-							</FormControl>
 							<TextField style={{ display: hideForArtifact('parent') ? 'none' : '' }}
 								margin="normal"
 								disabled
@@ -812,10 +828,10 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 								fullWidth
 								rows={4}
 								name="content"
-								helperText={state.content.errorHelperText}
-								value={state.content.value}
+								helperText={state?.content?.errorHelperText}
+								value={state?.content?.value}
 								onChange={stateChangeWithPreAndPostHandler(validateField)}
-								error={(state.content.isDirty) && state.content.isValid === false}
+								error={(state?.content?.isDirty) && state?.content?.isValid === false}
 								onBlur={() => state.content.isDirty = true}
 							/>
 							<golinkui>
@@ -825,10 +841,10 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									id="link"
 									label="Media Url"
 									name="link"
-									helperText={state.link.errorHelperText}
-									value={state.link.value}
+									helperText={state?.link?.errorHelperText}
+									value={state?.link?.value}
 									onChange={stateChangeWithPreAndPostHandler(validateField)}
-									error={(state.link.isDirty) && state.link.isValid === false}
+									error={(state?.link?.isDirty) && state?.link?.isValid === false}
 									onBlur={() => state.link.isDirty = true}
 								/>
 							</golinkui>
@@ -839,10 +855,10 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 								label="Media Type"
 								disabled
 								name="mediatype"
-								helperText={state.mediatype.errorHelperText}
-								value={state.mediatype.value}
+								helperText={state?.mediatype?.errorHelperText}
+								value={state?.mediatype?.value}
 								onChange={stateChangeWithPreAndPostHandler(validateField)}
-								error={(state.mediatype.isDirty) && state.mediatype.isValid === false}
+								error={(state?.mediatype?.isDirty) && state?.mediatype?.isValid === false}
 								onBlur={() => state.mediatype.isDirty = true}
 							/>
 							<gofileui>
@@ -970,7 +986,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 								<div><pre>{JSON.stringify(state, null, 4)}</pre></div>
 							</div>
 						</TabPanel>
-						<TabPanel value={state['addArtifactTypeTab']} index={"questionsTab"}>
+						<TabPanel value={state['addArtifactTypeTab']} index={"quizTab"}>
 							Questions
 						</TabPanel>
 
