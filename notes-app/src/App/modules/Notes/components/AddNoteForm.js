@@ -26,6 +26,7 @@ import Stack from '@mui/material/Stack';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
+import PreviewIcon from '@mui/icons-material/Preview';
 import addNoteFormData from '../metadata/addNoteFormData.json'
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
@@ -36,13 +37,12 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import PhoneIcon from '@mui/icons-material/Phone';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import TabPanel from '../../../components/TabPanel/TabPanel';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AddCommentIcon from '@mui/icons-material/AddComment';
-import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import QuizIcon from '@mui/icons-material/Quiz';
 import isFloat from 'validator/lib/isFloat';
 import isAlphanumeric from 'validator/lib/isAlphanumeric';
@@ -72,6 +72,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	const [open, setOpen] = React.useState(false);
 	const dispatch = useDispatch();
 
+
 	const artifactTypes = [
 		'Books',
 		'Chapter',
@@ -81,31 +82,6 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	];
 
 
-	const getDynamicContent = (fields) => {
-		console.log("Get Dynamic content", fields?.length)
-		let newFields = [...fields];
-		console.log("New copied data..", newFields)
-		var field = newFields[0];
-		//return <input type="text" value={newData[0].label}></input>
-		return React.createElement(<FormControl
-			id={field.id}
-			label={field.label}
-			name={field.name}
-			fullWidth
-			autoFocus
-			required
-			helperText={state["title"]?.errorHelperText}
-			value={state?.title?.value}
-			onChange={stateChangeWithPreAndPostHandler(validateField)}
-			error={(state["title"]?.isDirty) && state["title"]?.isValid === false}
-			onBlur={() => state["title"].isDirty = true}
-		></FormControl>);
-		// for(var i=0;i<fields.length;i++){
-		//  var value = fields[i].id + fields[i].title + fields[i].name;
-
-		//return value;
-		//}
-	}
 
 
 	const hideForm = () => {
@@ -251,6 +227,27 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 
 	}
 
+	const setSelectedValue = (event) => {
+		state['selected' + event.target.name] = event.target.value;
+	}
+
+	const subjectChanged = (event) => {
+		var subjectId = event.target.value;
+		//console.log("SUBJECT CHANGED:",subjectId)
+		loadBooks(subjectId)
+	}
+
+	const loadBooks = (subjectId) =>{
+		var booksPromise = noteService.getAllWithParent("books",subjectId);
+		console.log("NewState Books Promise:",booksPromise)
+		booksPromise.then((result) => {
+			var newState = {...state,["books"]:[result.data]};
+			console.log("NewState:-------------------------------->",newState)
+			setState(newState)
+		})
+		
+	}
+
 
 	const hideForArtifact = (ele) => {
 		//console.log("field,state:->", ele, ":", state)
@@ -263,15 +260,14 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		}
 		else if (state.type === 'book') {
 			if (ele === 'dd' || ele === 'mm' || ele === 'hh' || ele === 'tags' || ele === 'link'
-				|| ele === 'parent' || ele === 'content' || ele === 'order' || ele === 'book'
+				|| ele === 'parent' || ele === 'content' || ele === 'order' 
 				|| ele === 'chapter' || ele === 'section')
 				return true;
 
 		}
 		else if (state.type === 'chapter') {
 			if (ele === 'dd' || ele === 'mm' || ele === 'hh' || ele === 'tags' || ele === 'link'
-				|| ele === 'parent' || ele === 'content' ||
-				ele === 'chapter' || ele === 'section' || ele === 'subject')
+				|| ele === 'parent' || ele === 'content' || ele === 'section' || ele === 'subject')
 				return true;
 
 		}
@@ -284,8 +280,8 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		}
 		else if (state.type === 'note') {
 			if (ele === 'dd' || ele === 'mm' || ele === 'hh' || ele === 'tags' || ele === 'link'
-				|| ele === 'parent' || ele === 'content' || ele === 'order' ||
-				ele === 'subject')
+				|| ele === 'parent' || ele === 'order' ||
+				ele === 'subject' || ele ==='book')
 				return true;
 
 		}
@@ -293,6 +289,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	}
 
 	var subjects = useSelector(({ subjects }) => {
+	//	console.log("SUBJECTS:",subjects)
 		return subjects;
 	})
 
@@ -304,86 +301,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 
 	// go/state
 	const [state, setState] = React.useState(SignalCellularNullTwoTone);
-	/*{
-		type: "note",
-		newType: "section",
-		showAddNewForm: false,
-		addArtifactTypeTab: "favouritesTab",
-		subject: "",
-		chapter: "",
-		section: "",
-		book: "",
-		title: {
-			value: "",
-			isValid: false,
-			isDirty: false,
-			defaultHelperText: "(Required)",
-			errorHelperText: "(Required)",
-			maxLength: 80,
-			minLength: 5,
-			dataType: 'string'
-		},
-		about: {
-			value: "",
-			isValid: false,
-			isDirty: false,
-			defaultHelperText: "(Required)",
-			errorHelperText: "(Required)",
-			maxLength: 80,
-			minLength: 10,
-			dataType: 'string'
-		},
-		content: {
-			value: "",
-			isValid: false,
-			isDirty: false,
-			defaultHelperText: "(Required)",
-			errorHelperText: "(Required)",
-			maxLength: 600,
-			minLength: 10,
-			dataType: 'string'
-		},
-		link: {
-			value: "",
-			isValid: false,
-			isDirty: false,
-			defaultHelperText: "(Required)",
-			errorHelperText: "(Required)",
-			maxLength: 600,
-			minLength: 10,
-			dataType: 'string'
-		},
-		mediatype: {
-			value: "",
-			isValid: false,
-			isDirty: false,
-			defaultHelperText: "(audio/video/image/doc)",
-			errorHelperText: "(audio/video/image/doc)",
-			maxLength: 40,
-			dataType: 'string'
-		},
-		mediacontent: {
-			value: "",
-			isValid: false,
-			isDirty: false,
-			defaultHelperText: "(audio/video/image/doc)",
-			errorHelperText: "(audio/video/image/doc)",
-			maxLength: 40,
-			dataType: 'string'
-		},
-		subject: {
-			value: "",
-			isValid: false,
-			isDirty: false,
-			defaultHelperText: "(Select Subject)",
-			errorHelperText: "(Select Subject)",
-			maxLength: 40,
-			dataType: 'string'
-		}
-
-
-	});
-*/
+	
 	const stateChangeHandler = (event) => {
 		//console.log("stateChangeHandler:", event.target.name, event.target.value);
 		var targetName = event.target.name;
@@ -402,8 +320,9 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		//console.log("NEW STATE",state);
 	};
 
-	var stateChangeWithPreAndPostHandler = function (preHandler, postHandler) {
+	var stateChangeWithPreAndPostHandler = function (preHandler, postHandler,postHandler2) {
 		return function (event) {
+			preHandler && preHandler(event)
 			var currentTargetState = state[event.target.name]
 			console.log("targetName,currentTargetState", event.target.name, currentTargetState)
 			var newState = { ...state };
@@ -411,8 +330,8 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 			setState(newState)
 			//setState({ ...state, [event.target.name]: { ...currentTargetState, value: event.target.value } });
 			console.log("after setting state:targetName,currentTargetState", event.target.name, currentTargetState)
-			preHandler && preHandler(event)
 			postHandler && postHandler(event);
+			postHandler2 && postHandler2(event);
 		};
 	};
 
@@ -431,7 +350,10 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	}
 
 	const isEmpty = (target) => {
-		return (target.value.trim().length === 0)
+		console.log("TARGET VALUE",target)
+		//trim will fail on integer value.. so skip it.
+		if(typeof(target.value)==="number") return true;
+		return (target.value?.trim().length === 0)
 	}
 
 	function checkPropertyExist(obj, propertyName) {
@@ -512,13 +434,44 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	const handleClickListItem = () => {
 		setOpen(true);
 	};
+
 	var dynamicContentFields = addNoteFormData.uiFields;
 	useEffect(() => {
 		setState(addNoteFormData);
-		console.log("useEffect()->The STATE:", state)
+		//console.log("useEffect()->The STATE:", state)
 		dynamicContentFields = addNoteFormData.uiFields;
-		console.log("useEffect()->Dynamic content fields:", dynamicContentFields);
+		//console.log("useEffect()->Dynamic content fields:", dynamicContentFields);
 	})
+
+	const getDynamicField = (fieldName) => {
+		const keys = dynamicContentFields.keys();
+		for (let x of keys) {
+			if (dynamicContentFields[x].name === fieldName) {
+				return dynamicContentFields[x]
+			}
+		}
+		console.log("Dynamic Filed not found:", fieldName);
+		return null;
+	}
+	const createDynamicField = (fieldName) => {
+		var field = getDynamicField(fieldName);
+		if (field != null)
+			return <FormControl fullWidth style={{ display: hideForArtifact(fieldName) ? 'none' : '' }}>
+				<TextField margin="normal"
+					id={field.id}
+					label={field.label}
+					name={field.name}
+					fullWidth
+					helperText={state[field.name]?.errorHelperText}
+					value={state[field.name]?.value}
+					onChange={stateChangeWithPreAndPostHandler(validateField)}
+					error={(state[field.name]?.isDirty) && state[field.name]?.isValid === false}
+					onBlur={() => { state[field.name].isDirty = true }}
+				></TextField>
+			</FormControl>
+	}
+
+
 	return (
 
 		<Container component="main" maxWidth="xs" sx={{ padding: "5px" }}
@@ -592,28 +545,28 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 					<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 0 }}>
 
 						<Stack >
-						<h6> {state.addArtifactTypeTab==='commentsTab'? 'Create Comments for '+`${state.type}`+ `: ${state["selected"+state.type]}`:' '}  
-									{state.addArtifactTypeTab==='artifactsTab'? 'Create Artifact '+`${state.type}`:' '} 
-									{state.addArtifactTypeTab==='scratchTab'? 'Display All  '+`${state.type}`+'s': ''} 
-									{state.addArtifactTypeTab==='quizTab'? 'Create Question for '+`${state.type}`+ `: ${state["selected"+state.type]}`:' ' } 
-						</h6>
-						<ToggleButtonGroup
-							color="primary"
-							name="newType"
-							id="newType"
-							value={state['type']}
-							exclusive
-							onChange={(e) => stateChangeCustomFieldsHandler("type", e.target.value)}
-						>
-							<ToggleButton value="note" name="newType" >Note</ToggleButton>
-							<ToggleButton value="section" name="newType" >Sect</ToggleButton>
-							<ToggleButton value="chapter" name="newType" >Chap</ToggleButton>
-							<ToggleButton value="book" name="newType" >Book</ToggleButton>
-							<ToggleButton value="subject" name="newType" >Subj</ToggleButton>
-						</ToggleButtonGroup>
-                           Current Selected: { `${state["selected"+state.type]}`}
+							<h6> {state.addArtifactTypeTab === 'commentsTab' ? 'Create Comments for ' + `${state.type}` + `: ${state["selected" + state.type]}` : ' '}
+								{state.addArtifactTypeTab === 'artifactsTab' ? 'Create Artifact ' + `${state.type}` : ' '}
+								{state.addArtifactTypeTab === 'scratchTab' ? 'Display All  ' + `${state.type}` + 's' : ''}
+								{state.addArtifactTypeTab === 'quizTab' ? 'Create Question for ' + `${state.type}` + `: ${state["selected" + state.type]}` : ' '}
+							</h6>
+							<ToggleButtonGroup
+								color="primary"
+								name="newType"
+								id="newType"
+								value={state['type']}
+								exclusive
+								onChange={(e) => stateChangeCustomFieldsHandler("type", e.target.value)}
+							>
+								<ToggleButton value="note" name="newType" >Note</ToggleButton>
+								<ToggleButton value="section" name="newType" >Sect</ToggleButton>
+								<ToggleButton value="chapter" name="newType" >Chap</ToggleButton>
+								<ToggleButton value="book" name="newType" >Book</ToggleButton>
+								<ToggleButton value="subject" name="newType" >Subj</ToggleButton>
+							</ToggleButtonGroup>
+							Current Selected: {`${state["selected" + state.type]}`}
 						</Stack>
-						
+
 
 						<gosubjectui>
 							<FormControl sx={{ m: 1 }} variant="standard"
@@ -627,14 +580,14 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									width="50%"
 									required
 									helperText={state?.subject?.errorHelperText}
-									value={state?.subject?.value}
-									onChange={stateChangeWithPreAndPostHandler(validateField)}
+									value={state["subject"]?.value}
+									onChange={stateChangeWithPreAndPostHandler(validateField, setSelectedValue, subjectChanged)}
 								>
 									<MenuItem value="none" selected>
 										<em>None</em>
 									</MenuItem>
 									{subjects.subjects.map(item =>
-										<MenuItem key={item.value} value={item.title}>{item.title}</MenuItem>
+										<MenuItem key={item.id} value={item.id}>{item.title}</MenuItem>
 									)}
 								</Select>
 								<FormHelperText>Select Subject</FormHelperText>
@@ -654,8 +607,11 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 								<MenuItem value="" selected>
 									<em>None</em>
 								</MenuItem>
-								{books.books?.map(item =>
-									<MenuItem key={item.value} value={item.title}>{item.title}</MenuItem>
+								{state["books"]?.map(item => {
+									{console.log("menu item...",item[0].id)}
+									<MenuItem key={item[0].id} value={item[0].id}>{item[0].title}</MenuItem>
+								}
+									
 								)}
 							</Select>
 							<FormHelperText>Select Book</FormHelperText>
@@ -708,28 +664,40 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 							aria-label="icon tabs example"
 						>
 
+							<Tab icon={<FormatListBulletedIcon />}
+								value={"displayItemTab"}
+								aria-label="view"
+								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'displayItemTab')}
+								style={{ minWidth: "50px" }}
+							/>
 
-							<Tab icon={<AccountTreeIcon />}
+
+							<Tab icon={<AddCircleOutlineIcon />}
 								value={"artifactsTab"}
 								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'artifactsTab')}
-								aria-label="artifactTree" >
+								aria-label="artifactTree"
+								style={{ minWidth: "50px" }}>
 							</Tab>
 							<Tab icon={<AddCommentIcon />}
 								aria-label="favorite"
 								value={"commentsTab"}
 								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'commentsTab')}
+								style={{ minWidth: "50px" }}
 							/>
 							<Tab icon={<QuizIcon />} aria-label="favorite"
 								value={"quizTab"}
 								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'quizTab')}
+								style={{ minWidth: "50px" }}
 							/>
 
-							<Tab icon={<FormatListBulletedIcon />}
+							<Tab icon={<AccountTreeIcon />}
 								value={"scratchTab"}
 								aria-label="favorite"
 								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'scratchTab')}
+								style={{ minWidth: "50px" }}
 							/>
 
+						
 						</Tabs>
 
 						<TabPanel sx={{
@@ -741,17 +709,18 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 						}}
 							value={state['addArtifactTypeTab']}
 							index={"artifactsTab"}>
-
-							<TextField style={{ display: hideForArtifact('parent') ? 'none' : '' }}
-								margin="normal"
-								disabled
-								id="parent"
-								label="Parent"
-								name="parent"
-								fullWidth
-								value={state['parent']}
-								onChange={stateChangeHandler}
-							/>
+							<FormControl fullWidth style={{ display: hideForArtifact('parent') ? 'none' : '' }}>
+								<TextField
+									margin="normal"
+									disabled
+									id="parent"
+									label="Parent"
+									name="parent"
+									fullWidth
+									value={state['parent']}
+									onChange={stateChangeHandler}
+								/>
+							</FormControl>
 							<FormControl fullWidth >
 								<TextField
 									InputProps={{
@@ -775,78 +744,43 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									onBlur={() => state["title"].isDirty = true}
 								/>
 							</FormControl>
-
-
 							<goaboutui>
-								<TextField style={{ display: hideForArtifact('about') ? 'none' : '' }}
-									margin="normal"
-									required
-									fullWidth
-									id="about"
-									name="about"
-									label="About"
-									helperText={state["about"]?.errorHelperText}
-									value={state?.about?.value}
-									onChange={stateChangeWithPreAndPostHandler(validateField)}
-									error={(state?.about?.isDirty) && state?.about.isValid === false}
-									onBlur={() => state.about.isDirty = true}
-								/>
+								{createDynamicField("about")}
 							</goaboutui>
-
-							{console.log("---------------->", state.uiFields)}
-							{dynamicContentFields.length > 0 && (
-								<>
-									{dynamicContentFields.map((field, index) => (
-
-										<FormControl fullWidth>
-											<TextField margin="normal"
-												id={field.id}
-												label={field.label}
-												name={field.name}
-												fullWidth
-												autoFocus
-												required
-												helperText={state[field.name]?.errorHelperText}
-												value={state?.field?.value}
-												onChange={stateChangeWithPreAndPostHandler(validateField)}
-												error={(state[field.name]?.isDirty) && state[field.name]?.isValid === false}
-												onBlur={() => { state[field.name].isDirty = true }}
-											></TextField>
-										</FormControl>
-									))}
-								</>
-							)
-							}
-
-
-							<TextField style={{ display: hideForArtifact('content') ? 'none' : '' }}
-								margin="normal"
-								id="standard-multiline-flexible"
-								label="Content"
-								variant="outlined"
-								multiline
-								fullWidth
-								rows={4}
-								name="content"
-								helperText={state?.content?.errorHelperText}
-								value={state?.content?.value}
-								onChange={stateChangeWithPreAndPostHandler(validateField)}
-								error={(state?.content?.isDirty) && state?.content?.isValid === false}
-								onBlur={() => state.content.isDirty = true}
-							/>
+							<gocontrolui>
+								<FormControl fullWidth style={{ display: hideForArtifact('content') ? 'none' : '' }}>
+									<TextField
+										margin="normal"
+										id="standard-multiline-flexible"
+										label="Content"
+										variant="outlined"
+										multiline
+										fullWidth
+										rows={4}
+										name="content"
+										helperText={state?.content?.errorHelperText}
+										value={state?.content?.value}
+										onChange={stateChangeWithPreAndPostHandler(validateField)}
+										error={(state?.content?.isDirty) && state?.content?.isValid === false}
+										onBlur={() => state.content.isDirty = true}
+									/>
+								</FormControl>
+							</gocontrolui>
 							<golinkui>
-								<TextField style={{ display: hideForArtifact('link') ? 'none' : '' }}
-									margin="normal"
-									fullWidth
-									id="link"
-									label="Media Url"
-									name="link"
-									helperText={state?.link?.errorHelperText}
-									value={state?.link?.value}
-									onChange={stateChangeWithPreAndPostHandler(validateField)}
-									error={(state?.link?.isDirty) && state?.link?.isValid === false}
-									onBlur={() => state.link.isDirty = true}
-								/>
+								<FormControl fullWidth>
+									<TextField style={{ display: hideForArtifact('link') ? 'none' : '' }}
+										margin="normal"
+										fullWidth
+										id="link"
+										label="Media Url"
+										name="link"
+										helperText={state?.link?.errorHelperText}
+										value={state?.link?.value}
+										onChange={stateChangeWithPreAndPostHandler(validateField)}
+										error={(state?.link?.isDirty) && state?.link?.isValid === false}
+										onBlur={() => state.link.isDirty = true}
+									/>
+								</FormControl>
 							</golinkui>
 							<TextField style={{ display: hideForArtifact('mediatype') ? 'none' : '' }}
 								margin="normal"
@@ -856,7 +790,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 								disabled
 								name="mediatype"
 								helperText={state?.mediatype?.errorHelperText}
-								value={state?.mediatype?.value}
+								value={state["mediatype"]?.value}
 								onChange={stateChangeWithPreAndPostHandler(validateField)}
 								error={(state?.mediatype?.isDirty) && state?.mediatype?.isValid === false}
 								onBlur={() => state.mediatype.isDirty = true}
@@ -871,8 +805,6 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									/>
 								</FormControl>
 							</gofileui>
-
-
 
 							<TextField style={{ display: hideForArtifact('order') ? 'none' : '' }}
 								margin="normal"

@@ -5,153 +5,15 @@
       "id": 1
     },
     {
-      "title": "test",
-      "about": "test",
-      "createdDate": "30-Mar-2022 07-10",
+      "title": "ComputerScience",
+      "about": "its computer science",
+      "createdDate": "15-Apr-2022 05-49",
       "id": 2,
-      "createdBy": null,
-      "type": "subject"
-    },
-    {
-      "title": "ramana",
-      "about": "",
-      "createdDate": "30-Mar-2022 11-58",
-      "id": 3,
-      "createdBy": null,
-      "type": "subject"
-    },
-    {
-      "title": "ramana1",
-      "about": "",
-      "createdDate": "30-Mar-2022 11-59",
-      "id": 4,
-      "createdBy": null,
-      "type": "subject"
-    },
-    {
-      "title": "ramana2",
-      "about": "",
-      "createdDate": "30-Mar-2022 12-00",
-      "id": 5,
-      "createdBy": null,
-      "type": "subject"
-    },
-    {
-      "title": "ramana22",
-      "about": "",
-      "createdDate": "30-Mar-2022 12-12",
-      "id": 6,
-      "createdBy": null,
-      "type": "subject"
-    },
-    {
-      "title": "testing the best",
-      "about": "test",
-      "createdDate": "30-Mar-2022 12-16",
-      "id": 7,
-      "createdBy": null,
-      "type": "subject"
-    },
-    {
-      "title": "test ui",
-      "about": "",
-      "createdDate": "30-Mar-2022 12-19",
-      "id": 8,
-      "createdBy": null,
-      "type": "subject"
-    },
-    {
-      "title": "english",
-      "about": "test",
-      "createdDate": "03-Apr-2022 06-54",
-      "id": 9,
-      "createdBy": null,
-      "type": "subject"
-    },
-    {
-      "title": "first subject",
-      "about": "test",
-      "createdDate": "05-Apr-2022 05-41",
-      "id": 10,
-      "createdBy": null,
-      "type": "subject"
-    },
-    {
-      "title": "myBook3",
-      "about": "just a test",
-      "createdDate": "05-Apr-2022 06-19",
-      "id": 11,
-      "createdBy": null,
-      "type": "subject"
-    },
-    {
-      "title": "",
-      "about": "",
-      "createdDate": "06-Apr-2022 00-52",
-      "id": 12,
-      "createdBy": null,
-      "type": "subject"
-    },
-    {
-      "title": "testing",
-      "about": "mechanical engineering",
-      "createdDate": "09-Apr-2022 09-48",
-      "id": 13,
       "createdBy": null,
       "type": null
     }
   ],
   "books": [
-    {
-      "title": "book3",
-      "about": "book about nothing.",
-      "content": "",
-      "parent": "ramana2",
-      "createdDate": "10-Apr-2022 00-00",
-      "id": 1,
-      "createdBy": null,
-      "type": null
-    },
-    {
-      "title": "testing",
-      "about": "testing",
-      "content": "",
-      "parent": "ramana",
-      "createdDate": "10-Apr-2022 00-06",
-      "id": 2,
-      "createdBy": null,
-      "type": null
-    },
-    {
-      "title": "testing2",
-      "about": "testing",
-      "content": "",
-      "parent": "ramana",
-      "createdDate": "10-Apr-2022 00-31",
-      "id": 3,
-      "createdBy": null,
-      "type": null
-    },
-    {
-      "title": "testinmg4",
-      "about": "",
-      "content": "",
-      "parent": "ramana2",
-      "createdDate": "10-Apr-2022 00-38",
-      "id": 4,
-      "createdBy": null,
-      "type": "book"
-    },
-    {
-      "title": "testinmg5",
-      "about": "",
-      "content": "",
-      "parent": "ramana2",
-      "createdDate": "10-Apr-2022 00-40",
-      "id": 5,
-      "createdBy": "venkat.parsi",
-      "type": "book"
-    },
     {
       "title": "test4",
       "about": "test",
@@ -159,6 +21,26 @@
       "parent": "",
       "createdDate": "10-Apr-2022 23-30",
       "id": 6,
+      "createdBy": "venkat.parsi",
+      "type": "book"
+    },
+    {
+      "title": "testBook",
+      "about": "testing the book creation.",
+      "content": "",
+      "parent": "2",
+      "createdDate": "15-Apr-2022 07-21",
+      "id": 7,
+      "createdBy": "venkat.parsi",
+      "type": "book"
+    },
+    {
+      "title": "testing",
+      "about": "testing",
+      "content": "",
+      "parent": "1",
+      "createdDate": "15-Apr-2022 07-23",
+      "id": 8,
       "createdBy": "venkat.parsi",
       "type": "book"
     }

@@ -6,14 +6,14 @@
     "selectednote": "Test Note",
     "selectedsubject":"Test subject",
     "showAddNewForm": false,
-    "addArtifactTypeTab": "artifactsTab",
+    "addArtifactTypeTab": "displayItemTab",
     "showBookmarksTab": "allBookMarks",
     "showSearchResultsTab": "allSearchResults",
     "uiFields":[
          {
-            "id":"title2",
-            "label":"title2",
-            "name":"title2",
+            "id":"title",
+            "label":"title",
+            "name":"title",
             "value": "",
             "isValid": false,
             "isDirty": false,
@@ -24,9 +24,9 @@
             "dataType": "string"
         },
         {
-            "id":"about2",
-            "label":"About2*",
-            "name":"about2",
+            "id":"about",
+            "label":"About*",
+            "name":"about",
             "value": "",
             "isValid": false,
             "isDirty": false,

@@ -12,18 +12,28 @@ const getBaseUrl = (type)=>{
 const config ={
   proxy: {
     protocol: 'http',
-    host: 'localhost',
+    host: '192.168.68.110',
     port: 3001,   
   }
 }
 
 
-const getAll = (type) => {    
-  console.log("making axios call with config",type,config,getBaseUrl(type))
-  var result = axios.get(getBaseUrl(type),config);
+const getAll = async (type) => {    
+
+  console.log("making axios call with config :",type,config,getBaseUrl(type))
+  var result = await axios.get(getBaseUrl(type));
+  console.log("done axios call with config",type,config,getBaseUrl(type))
   return result;
 }
 
+const getAllWithParent = (type,parentId) => {
+  console.log("making axios call getAllWithParent config :",type,getBaseUrl(type))
+  var url = getBaseUrl(type)+'?parent'+`=${parentId}`;
+  console.log("URL to get for parent:",url)
+  var result =  axios.get(url);
+  console.log("done axios call result:",result)
+  return result;
+}
 
   const addObj = async (type,payload,dispatch)=>{  
   var obj =await findObject(type,"title",payload.title);
@@ -67,6 +77,7 @@ const update = (type,id, newObject) => {
 
 export default { 
   getAll: getAll, 
+  getAllWithParent:getAllWithParent,
   add: addObj,
   get: getObj,
   create: create, 
