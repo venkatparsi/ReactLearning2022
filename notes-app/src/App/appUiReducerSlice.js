@@ -18,7 +18,7 @@ const setVideoLinkDef = (state,action) =>{
 export const appUiSlice = createSlice({
 	name: 'appUi',
 	initialState:{
-		 showAddNote: false,
+		 showAddNote: true,
 		 videoLink: ""		  	
     },
 	reducers: {

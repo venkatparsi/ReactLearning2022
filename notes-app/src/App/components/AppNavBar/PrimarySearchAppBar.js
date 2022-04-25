@@ -174,7 +174,7 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
-  
+  dispatch(showAddNote(true));
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">

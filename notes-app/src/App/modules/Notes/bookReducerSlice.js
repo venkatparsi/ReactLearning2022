@@ -40,8 +40,7 @@ export const bookSlice = createSlice({
 			title:'Sanskrit',
 			about:'test',
 			type:'book'
-		},
-	
+		},	
 	items:[
 		{ id: 1,
 		  title: 'React Reciepes', 

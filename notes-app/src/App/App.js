@@ -84,9 +84,9 @@ function App() {
 		return chapters;
 	})
     var selectedBook = books['selectedBook']?.title;
-    var selectedChapter = books['selectedBook']?.title;
+    var selectedChapter = chapters['selectedChapter']?.title;
 
-    console.log("Books-------------------------------------:",JSON.stringify(books))
+  console.log("Books-------------------------------------:",JSON.stringify(books))
   useEffect(() => {
     noteService
      .getAll("notes")
@@ -100,12 +100,9 @@ function App() {
     }); 
   }, [])
 
-
-  return (
-          
+  return (          
      <Container component="main" maxWidth="xs" >
-    <PrimarySearchAppBar > </PrimarySearchAppBar>
-     
+    <PrimarySearchAppBar > </PrimarySearchAppBar>     
       <ScrollablePanel width="">
         <div style={{ marginTop: "30px" }}>   
         <Chapter book={selectedBook} chapter={selectedChapter}></Chapter>      
@@ -116,12 +113,10 @@ function App() {
             </ScrollablePanel>
             <ScrollablePanel height="60vh" width="">
             <NoteList></NoteList>           
-            </ScrollablePanel>
-         
+            </ScrollablePanel>         
         </div>
       </ScrollablePanel>
-    </Container>
-    
+    </Container>    
   );
 }
 
