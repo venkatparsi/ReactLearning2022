@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment'
-import { useDispatch, useSelector } from 'react-redux';
-import { showAddNote } from '../../../appUiReducerSlice';
-import { addNote } from '../noteReducerSlice';
 import Button from '@mui/material/Button';
 import { Paper } from "@mui/material";
 import TextField from '@mui/material/TextField';
@@ -15,8 +12,14 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { addSubject, setSelectedSubject } from '../subjectReducerSlice';
-import { addBook, setSelectedBook } from '../bookReducerSlice';
+import { addBook, setBooks, setSelectedBook } from '../bookReducerSlice';
+import { addChapter, setChapters, setSelectedChapter } from '../chapterReducerSlice';
+import { showAddNote } from '../../../appUiReducerSlice';
+import { addNote } from '../noteReducerSlice';
+
 import noteService from '../noteService';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
@@ -52,7 +55,10 @@ import { width } from '@mui/system';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ConfirmationDialog from './SubjectConfirmationDialog';
+import SubjectList from './SubjectList';
 import { SignalCellularNullTwoTone } from '@mui/icons-material';
+import BookList from './BookList';
+
 
 const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	//let id= useField('text','id','Id');
@@ -72,6 +78,10 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	const [open, setOpen] = React.useState(false);
 	const dispatch = useDispatch();
 
+	const [showAddNewForm, setShowAddNewForm] = React.useState(false)
+
+	// go/state
+	const [state, setState] = React.useState(SignalCellularNullTwoTone);
 
 	const artifactTypes = [
 		'Books',
@@ -81,45 +91,82 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		'Subjects'
 	];
 
+	var books = useSelector(({ books }) => {
+		return books;
+	})
 
+	var chapters = useSelector(({chapters}) => {
+		return chapters;
+	})
 
-
-	const hideForm = () => {
-		dispatch(showAddNote(false))
+	
+	var subjects = useSelector(({ subjects }) => {
+		//	console.log("SUBJECTS:",subjects)
+			return subjects;
+		})
+	
+	
+	const loadBooks = (subjectId) =>{
+		var booksPromise = noteService.getAllWithParent("books",subjectId);
+		console.log("NewState Books Promise:",booksPromise)
+		booksPromise.then((result) => {
+			console.log("BOOKS RESULT",result.data);
+			//console.log("NewState:-------------------------------->",newState)
+			dispatch(setBooks(result.data))
+			//setState(newState)
+		})
+		
 	}
 
-	const getMediaType = (fileTypeData) => {
-		console.log(fileTypeData)
-		let fileType = fileTypeData.substr(fileTypeData.search(":") + 1, (fileTypeData.search(";") - (fileTypeData.search(":") + 1)));
-		console.log(fileType);
-
-
+	const loadArtifact = (artifactType,parentId,dispatchFunction) =>{
+		var artifactPromise = noteService.getAllWithParent(artifactType,parentId);
+		console.log("NewState "+artifactType+" Promise:",artifactPromise)
+		artifactPromise.then((result) => {
+			console.log(artifactType+" RESULT",result.data);
+			//console.log("NewState:-------------------------------->",newState)
+			dispatchFunction(result.data)
+			//setState(newState)
+		})
 	}
 
-	const imageUploaded = (e) => {
-		e.preventDefault();
+    
 
-		var reader = new FileReader();
-		console.log("next");
+	const handleBookChange = (item) =>{
+		console.log("BOOK CHANGED:",item)
+		dispatch(setSelectedBook(item))
+	}
 
-		reader.onload = function () {
-			imageBase64Stringsep = reader.result;
-			getMediaType(reader.result.substring(0, reader.result.search(";") + 1));
-			let base64String = reader.result.replace("data:", "")
-				.replace(/^.+,/, "");
-			// alert(imageBase64Stringsep);
-			console.log("DATA", reader.result, imageBase64Stringsep);
-			setState({ ...state, ['mediaData']: base64String.substring(0, 20) });
+	const handleChapterChange = (item) =>{
+		console.log("CHAPTER CHANGED:",item)
+		dispatch(setSelectedChapter(item))
+	}
 
-			//data:image/png;base64,
-		}
-		reader.readAsDataURL(e.target.files[0]);
+	const handleSubjectChange = (event) => {
+		var subjectId = event.target.value;		
+		console.log("SUBJECT CHANGED:",subjectId)		
+		loadBooks(subjectId)
+	}
+	
+	
+	const saveArtifact = (artifactType,artifactPayload,dispatchFunction) => {			
+			console.log("----> dispatching add ", artifactType);			
+			var resultPromise = noteService.add(artifactType, artifactPayload)
+			resultPromise.then(response => {
+				console.log("    ---->  Saved " + artifactType + ": ---->", response);
+				if (response.isDuplicateFound) {
+					alert("       Duplicate Found.", type);			
+				} else {
+					dispatch(dispatchFunction(response.data)	)
+					alert("   Successfully saved.", type);
+				}
+			})
+			console.log(" <---- dispatching add " + type + " end.")	
 	}
 
 	const saveBook = (type, formData) => {
 		const momentNow = moment();
 		if (type === 'book') {
-			console.log(" ----> dispatching add ", type);
+			console.log("----> dispatching add ", type);
 			var bookRelatedPayload = {
 				title: formData.get('title'),
 				about: formData.get('about'),
@@ -158,6 +205,50 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 
 	}
 
+	const saveNote = (type, formData) => {
+		const momentNow = moment();
+		if (type === 'note'|| type==="notes") {
+			console.log(" ----> dispatching add ", type);
+			var noteRelatedPayload = {
+				title: formData.get('title'),
+				about: formData.get('about'),
+				content: formData.get('content'),
+				parent: formData.get('subject'),
+				createdDate: momentNow.format('DD-MMM-yyyy HH-mm'),
+				id: formData.get('id'),
+				createdBy: 'venkat.parsi',
+				type: 'note'
+			}
+			console.log("Before calling noteservice add..........>")
+			var resultPromise = noteService.add("notes", noteRelatedPayload)
+			console.log("After callling noteservice add ............>")
+			resultPromise.then(response => {
+				console.log("       Saved " + type + ": ---->", response);
+				if (response.isDuplicateFound) {
+					//dispatch(setSelectedNote(response.data))
+					console.log("ID value is", response.data[0].id)
+					setId(response.data[0].id);
+					setAbout(response.data[0].about);
+					setTitle(response.data[0].title);
+					setContent(response.data[0].content);
+					setParent(response.data[0].parent);
+					if (response.data[0].createdBy)
+						setCreatedBy(response.data[0].createdBy);
+					if (response.data[0].createdDate)
+						setCreatedDate(response.data[0].createdDate);
+				} else {
+					dispatch(addNote(response.data))
+					alert("Successfully saved .", type);
+				}
+			})
+			console.log(" <---- dispatching add " + type + " end.")
+
+		} else {
+			console.log("invalid artifact type passed. not saving");
+		}
+
+	}
+
 	const handleSubmit = (event) => {
 		console.log("---->Submitting Form data for:", type);
 		event.preventDefault();
@@ -178,16 +269,9 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 			createdBy: formData.get('createdBy')
 		}
 		console.log("      Payload type,val->", addPayload.type, addPayload);
-		if (formData.get('title'))
-			if (state['type'] === 'note') {
-				console.log(" ----> dispatching add note.");
-				dispatch(
-					addNote(addPayload)
-				);
-				console.log(" <---- dispatching add note.")
-				setCreatedDate(addPayload.createdDate)
-			}
-			else if (state['type'] === 'book') { saveBook('book', formData) }
+		if (formData.get('title'))			
+		    if (state['type'] === 'book') { saveBook('book', formData) }
+			else if (state['type'] === 'note') { saveNote('note', formData) }
 			else if (state['type'] === 'subject') {
 				console.log(" ----> Starting add subject db service.");
 				var subjectRelatedPayload = {
@@ -223,31 +307,41 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		console.log("<----Submitting form end")
 	};
 
-	const handleSnackBarClose = (event) => {
-
-	}
-
 	const setSelectedValue = (event) => {
 		state['selected' + event.target.name] = event.target.value;
 	}
 
-	const subjectChanged = (event) => {
-		var subjectId = event.target.value;
-		//console.log("SUBJECT CHANGED:",subjectId)
-		loadBooks(subjectId)
+	const hideForm = () => {
+		dispatch(showAddNote(false))
 	}
 
-	const loadBooks = (subjectId) =>{
-		var booksPromise = noteService.getAllWithParent("books",subjectId);
-		console.log("NewState Books Promise:",booksPromise)
-		booksPromise.then((result) => {
-			var newState = {...state,["books"]:[result.data]};
-			console.log("NewState:-------------------------------->",newState)
-			setState(newState)
-		})
-		
+	const getMediaType = (fileTypeData) => {
+		console.log(fileTypeData)
+		let fileType = fileTypeData.substr(fileTypeData.search(":") + 1, (fileTypeData.search(";") - (fileTypeData.search(":") + 1)));
+		console.log(fileType);
+
+
 	}
 
+	const imageUploaded = (e) => {
+		e.preventDefault();
+
+		var reader = new FileReader();
+		console.log("next");
+
+		reader.onload = function () {
+			imageBase64Stringsep = reader.result;
+			getMediaType(reader.result.substring(0, reader.result.search(";") + 1));
+			let base64String = reader.result.replace("data:", "")
+				.replace(/^.+,/, "");
+			// alert(imageBase64Stringsep);
+			console.log("DATA", reader.result, imageBase64Stringsep);
+			setState({ ...state, ['mediaData']: base64String.substring(0, 20) });
+
+			//data:image/png;base64,
+		}
+		reader.readAsDataURL(e.target.files[0]);
+	}
 
 	const hideForArtifact = (ele) => {
 		//console.log("field,state:->", ele, ":", state)
@@ -287,38 +381,27 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		}
 
 	}
-
-	var subjects = useSelector(({ subjects }) => {
-	//	console.log("SUBJECTS:",subjects)
-		return subjects;
-	})
-
-	var books = useSelector(({ books }) => {
-		return books;
-	})
-
-	const [showAddNewForm, setShowAddNewForm] = React.useState(false)
-
-	// go/state
-	const [state, setState] = React.useState(SignalCellularNullTwoTone);
 	
 	const stateChangeHandler = (event) => {
 		//console.log("stateChangeHandler:", event.target.name, event.target.value);
 		var targetName = event.target.name;
 		var currentTargetState = state[targetName]
-		//	console.log("State:", state)
+		//console.log("State:", state)
 		//console.log("stateChangeHandler:", targetName, event.target.value);
 		//console.log("current targetState:", currentTargetState, { ...currentTargetState, value: event.target.value })
 		setState({ ...state, [event.target.name]: { ...currentTargetState, value: event.target.value } });
 		//console.log("after change current targetState:", currentTargetState,"<---")
 	};
+
 	const stateChangeCustomFieldsHandler = (name, value) => {
 		//console.log("stateChangeCustomFieldsHandler", name, value);
-		//console.log("OLD STATE",state);
+		//console.log("OLD STATE",state[name]);
 		state[name] = value;
 		setState({ ...state });
-		//console.log("NEW STATE",state);
+		//console.log("NEW STATE",state);		
 	};
+
+	
 
 	var stateChangeWithPreAndPostHandler = function (preHandler, postHandler,postHandler2) {
 		return function (event) {
@@ -431,10 +514,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		}
 	}
 
-	const handleClickListItem = () => {
-		setOpen(true);
-	};
-
+	
 	var dynamicContentFields = addNoteFormData.uiFields;
 	useEffect(() => {
 		setState(addNoteFormData);
@@ -471,18 +551,10 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 			</FormControl>
 	}
 
-
 	return (
-
 		<Container component="main" maxWidth="xs" sx={{ padding: "5px" }}
 			style={{ display: showAddNoteForm ? "block" : "none" }}>
 
-			<Snackbar
-				open={open}
-				autoHideDuration={6000}
-				onClose={handleSnackBarClose}
-				message="Note archived"
-			/>
 			<Stack direction="row" justifyContent="center" alignItems="center" sx={{ marginTop: 4, width: '100%', bgcolor: 'background.paper' }}>
 				<ConfirmationDialog appState={state} />
 				<IconButton color="primary" aria-label="directions" onClick={() => { setShowAddNewForm('showAddNew'); console.log("state", state); }}>
@@ -504,14 +576,14 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 					value={state['showBookmarksTab']}
 					aria-label="icon tabs example"
 				>
-					<Tab icon={<FolderSpecialIcon />} value={"allBookMarks"} aria-label="person"
+					<Tab icon={<FolderSpecialIcon />} id="allBookMarks" value={"allBookMarks"} aria-label="person"
 						onClick={() => stateChangeCustomFieldsHandler('showBookmarksTab', 'allBookMarks')}
 					/>
 
 
 				</Tabs>
 
-				<TabPanel value={state['showBookmarksTab']} index={"allBookMarks"}>
+				<TabPanel value={state['showBookmarksTab']} name="allBookMarks" index={"allBookMarks"}>
 					Bookmarks
 				</TabPanel>
 			</Paper>
@@ -581,12 +653,12 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 									required
 									helperText={state?.subject?.errorHelperText}
 									value={state["subject"]?.value}
-									onChange={stateChangeWithPreAndPostHandler(validateField, setSelectedValue, subjectChanged)}
+									onChange={stateChangeWithPreAndPostHandler(validateField, setSelectedValue, handleSubjectChange)}
 								>
 									<MenuItem value="none" selected>
 										<em>None</em>
 									</MenuItem>
-									{subjects.subjects.map(item =>
+									{subjects.items.map(item =>
 										<MenuItem key={item.id} value={item.id}>{item.title}</MenuItem>
 									)}
 								</Select>
@@ -599,20 +671,17 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 							<Select
 								labelId="demo-simple-select-helper-label"
 								id="book"
-								name="book"
-								value={state.book ? state.book : ''}
+								name="book"							
 								label="Book"
-								onChange={(event) => stateChangeCustomFieldsHandler("book", event.target.value)}
-							>
-								<MenuItem value="" selected>
-									<em>None</em>
-								</MenuItem>
-								{state["books"]?.map(item => {
-									{console.log("menu item...",item[0].id)}
-									<MenuItem key={item[0].id} value={item[0].id}>{item[0].title}</MenuItem>
+								onChange={(event) => handleBookChange(event.target.value)}
+							>		
+							<MenuItem value="none" selected>
+										<em>None</em>
+									</MenuItem>					
+								{  books.items.map(item => 									
+									<MenuItem key={item?.id} value={item}>{item?.title}</MenuItem>
+								)						
 								}
-									
-								)}
 							</Select>
 							<FormHelperText>Select Book</FormHelperText>
 						</FormControl>
@@ -623,17 +692,17 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 							<Select
 								labelId="chapter-label"
 								id="chapter"
-								name="chapter"
-								value={state['chapter']}
+								name="chapter"							
 								label="Chapter"
-								onChange={stateChangeHandler}
+								onChange={(event) => handleChapterChange(event.target.value)}
 							>
 								<MenuItem value="">
 									<em>None</em>
 								</MenuItem>
-								<MenuItem value={10}>Ten</MenuItem>
-								<MenuItem value={20}>Twenty</MenuItem>
-								<MenuItem value={30}>Thirty</MenuItem>
+								{  chapters.items.map(item => 									
+									<MenuItem key={item?.id} value={item}>{item?.title}</MenuItem>
+								)						
+								}
 							</Select>
 							<FormHelperText>Select Chapter</FormHelperText>
 						</FormControl>
@@ -663,15 +732,12 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 							value={state['addArtifactTypeTab']}
 							aria-label="icon tabs example"
 						>
-
 							<Tab icon={<FormatListBulletedIcon />}
 								value={"displayItemTab"}
 								aria-label="view"
 								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'displayItemTab')}
 								style={{ minWidth: "50px" }}
 							/>
-
-
 							<Tab icon={<AddCircleOutlineIcon />}
 								value={"artifactsTab"}
 								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'artifactsTab')}
@@ -689,15 +755,12 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'quizTab')}
 								style={{ minWidth: "50px" }}
 							/>
-
 							<Tab icon={<AccountTreeIcon />}
 								value={"scratchTab"}
 								aria-label="favorite"
 								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'scratchTab')}
 								style={{ minWidth: "50px" }}
-							/>
-
-						
+							/>						
 						</Tabs>
 
 						<TabPanel sx={{
@@ -890,7 +953,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 								InputProps={{
 									endAdornment: (
 										<Box>
-											<a href='whatsapp://send?text=Hello&phone=918886406677'>
+											<a href='whatsapp://send?text=Hello&phone=918886406677&attachment=c://users/downloads/abc.pdf'>
 												<WhatsAppIcon />
 											</a>
 											<a href="tel:+918886406677">
@@ -920,6 +983,15 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 						</TabPanel>
 						<TabPanel value={state['addArtifactTypeTab']} index={"quizTab"}>
 							Questions
+						</TabPanel>
+
+						<TabPanel value={state['addArtifactTypeTab']} index={"displayItemTab"}>
+							{
+							  state["type"]==="subject" ? <SubjectList></SubjectList> : ''
+							   }
+							   {
+							  state["type"]==="book" ? <BookList></BookList> : ''
+							   }
 						</TabPanel>
 
 

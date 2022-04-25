@@ -40,7 +40,9 @@ const VideoContainer = (props) => {
 
   
 const isImgUrl = (url) => {
-  var val = url.match(/\.(jpeg|jpg|gif|png|bmp|svg|tiff)(\?(.*))?$/gmi);
+  var val = "";
+  if(url)
+   val = url.match(/\.(jpeg|jpg|gif|png|bmp|svg|tiff)(\?(.*))?$/gmi);
   console.log(val);
   return val;
 }

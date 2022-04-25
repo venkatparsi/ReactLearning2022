@@ -36,24 +36,26 @@ const getAllWithParent = (type,parentId) => {
 }
 
   const addObj = async (type,payload,dispatch)=>{  
-  var obj =await findObject(type,"title",payload.title);
-      console.log("       Reserver Rsponse for find object:",obj.data);
-  if( obj.data.length > 0 ){
-      console.log("....found the duplicate object....NOT ADDING OBJECT.")
+    console.log("     -->Finding object sync call:",type)
+  var obj = await findObject(type,"title",payload.title);
+      console.log("       <--server Response for find object:",obj.data);
+  if( obj.data.length > 0 ){      
       alert("Add/Save Failed - Duplicate found.")
       let newObj = {...obj,isDuplicateFound:true}
+      console.log("     <--found the duplicate object....NOT ADDING OBJECT.")
       return newObj;
   }
   else{
-      console.log("        Not found object - ADDING NOW")
-      console.log("        making axios call with Type:",type,"Payload:",payload,config)
+      console.log("        --> Not found object - ADDING NOW")
+      console.log("           -->making axios call with Type:",type,"Payload:",payload,config)
       const resultPromise =  axios.post(getBaseUrl(type),payload,config)  
+      console.log("           <--Returning promise")
       return resultPromise;
   }
 }
 
 const findObject = (type,fieldName,value) =>{
-         console.log("         Finding object:",getBaseUrl(type)+`?${fieldName}`+`=${value}`)
+         console.log("         -->Finding object URL :",getBaseUrl(type)+`?${fieldName}`+`=${value}`)
   return axios.get(getBaseUrl(type)+`?${fieldName}`+`=${value}`)
 }
 

@@ -7,14 +7,12 @@ const CircularTextButton = (props) => {
   var bgcolor = props.bgcolor;
   const dispatch = useDispatch();
 
-  console.log(" link...",link,bgcolor);
-
   const handleOnclick = (event) => {
     console.log("dispatching link...",link,bgcolor);
     dispatch(setVideoLink(link))
   }
   return (   
-      <div className="rounded-button"  onClick={handleOnclick} style={{minWidths:"50px",backgroundColor:{bgcolor}}} >
+      <div className="rounded-button"  onClick={ props.handleOnClick?()=>{props.handleOnClick(props)}: handleOnclick} style={{minWidths:"50px",backgroundColor:{bgcolor}}} >
         <div className="triangle"></div>
         <div className="num">{props.value}</div>
       </div>

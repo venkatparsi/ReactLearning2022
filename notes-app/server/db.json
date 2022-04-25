@@ -1,14 +1,98 @@
 {
   "subjects": [
     {
-      "title": "Angular",
-      "id": 1
-    },
-    {
       "title": "ComputerScience",
       "about": "its computer science",
       "createdDate": "15-Apr-2022 05-49",
       "id": 2,
+      "createdBy": null,
+      "type": null
+    },
+    {
+      "title": "testing for the first time",
+      "about": "",
+      "createdDate": "24-Apr-2022 06-50",
+      "id": 3,
+      "createdBy": null,
+      "type": null
+    },
+    {
+      "title": "other",
+      "about": "",
+      "createdDate": "24-Apr-2022 06-55",
+      "id": 4,
+      "createdBy": null,
+      "type": null
+    },
+    {
+      "title": "ddddddd",
+      "about": "",
+      "createdDate": "24-Apr-2022 07-28",
+      "id": 5,
+      "createdBy": null,
+      "type": null
+    },
+    {
+      "title": "next subject",
+      "about": "",
+      "createdDate": "24-Apr-2022 10-07",
+      "id": 6,
+      "createdBy": null,
+      "type": null
+    },
+    {
+      "title": "again the thing ",
+      "about": "",
+      "createdDate": "24-Apr-2022 10-08",
+      "id": 7,
+      "createdBy": null,
+      "type": null
+    },
+    {
+      "title": "newSubject",
+      "about": "",
+      "createdDate": "24-Apr-2022 10-09",
+      "id": 8,
+      "createdBy": null,
+      "type": null
+    },
+    {
+      "title": "tessssssssss",
+      "about": "",
+      "createdDate": "24-Apr-2022 10-11",
+      "id": 9,
+      "createdBy": null,
+      "type": null
+    },
+    {
+      "title": "test",
+      "about": "",
+      "createdDate": "24-Apr-2022 10-28",
+      "id": 10,
+      "createdBy": null,
+      "type": null
+    },
+    {
+      "title": "New Subject",
+      "about": "New Subject",
+      "createdDate": "25-Apr-2022 07-40",
+      "id": 11,
+      "createdBy": null,
+      "type": null
+    },
+    {
+      "title": "New Subject2",
+      "about": "New Subject",
+      "createdDate": "25-Apr-2022 07-43",
+      "id": 12,
+      "createdBy": null,
+      "type": null
+    },
+    {
+      "title": "yet another book",
+      "about": "",
+      "createdDate": "25-Apr-2022 07-55",
+      "id": 13,
       "createdBy": null,
       "type": null
     }
@@ -18,7 +102,7 @@
       "title": "test4",
       "about": "test",
       "content": "",
-      "parent": "",
+      "parent": "2",
       "createdDate": "10-Apr-2022 23-30",
       "id": 6,
       "createdBy": "venkat.parsi",
@@ -38,9 +122,79 @@
       "title": "testing",
       "about": "testing",
       "content": "",
-      "parent": "1",
+      "parent": "2",
       "createdDate": "15-Apr-2022 07-23",
       "id": 8,
+      "createdBy": "venkat.parsi",
+      "type": "book"
+    },
+    {
+      "title": "New Book",
+      "about": "New Book",
+      "content": "",
+      "parent": "2",
+      "createdDate": "25-Apr-2022 06-44",
+      "id": 9,
+      "createdBy": "venkat.parsi",
+      "type": "book"
+    },
+    {
+      "title": "New Subject2",
+      "about": "New Subject",
+      "content": "",
+      "parent": "2",
+      "createdDate": "25-Apr-2022 07-44",
+      "id": 10,
+      "createdBy": "venkat.parsi",
+      "type": "book"
+    },
+    {
+      "title": "New Subject3",
+      "about": "New Subject",
+      "content": "",
+      "parent": "2",
+      "createdDate": "25-Apr-2022 07-46",
+      "id": 11,
+      "createdBy": "venkat.parsi",
+      "type": "book"
+    },
+    {
+      "title": "new book 2",
+      "about": "",
+      "content": "",
+      "parent": "",
+      "createdDate": "25-Apr-2022 07-47",
+      "id": 12,
+      "createdBy": "venkat.parsi",
+      "type": "book"
+    },
+    {
+      "title": "yet another book",
+      "about": "",
+      "content": "",
+      "parent": "2",
+      "createdDate": "25-Apr-2022 07-54",
+      "id": 13,
+      "createdBy": "venkat.parsi",
+      "type": "book"
+    },
+    {
+      "title": "newComputerScience",
+      "about": "",
+      "content": "",
+      "parent": "2",
+      "createdDate": "25-Apr-2022 07-57",
+      "id": 14,
+      "createdBy": "venkat.parsi",
+      "type": "book"
+    },
+    {
+      "title": "assNewBook",
+      "about": "",
+      "content": "",
+      "parent": "2",
+      "createdDate": "25-Apr-2022 07-58",
+      "id": 15,
       "createdBy": "venkat.parsi",
       "type": "book"
     }
@@ -427,52 +581,150 @@
       ]
     }
   ],
-  "notes": {
-    "notes": [
-      {
-        "id": 1,
-        "title": "1) Initializing the player",
-        "about": "include the youtube api",
-        "content": "<script src='https://www.youtube.com/iframe_api'></script>",
-        "dd": "0",
-        "hh": "0",
-        "mm": "5",
-        "tags": "angular",
-        "link": "https://www.youtube.com/embed/9VNTvwaJ6oM"
-      },
-      {
-        "id": 2,
-        "title": "1) Initializing the player",
-        "about": "include the youtube api",
-        "content": "<script src='https://www.youtube.com/iframe_api'></script>",
-        "dd": "0",
-        "hh": "0",
-        "mm": "5",
-        "tags": "angular",
-        "link": "https://ik.imagekit.io/xzc3oa20vkp/default-image.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1647584244034"
-      },
-      {
-        "id": 3,
-        "title": "1) Initializing the player",
-        "about": "include the youtube api",
-        "content": "<script src='https://www.youtube.com/iframe_api'></script>",
-        "dd": "0",
-        "hh": "0",
-        "mm": "5",
-        "tags": "angular",
-        "link": "https://ik.imagekit.io/xzc3oa20vkp/Screenshot__1__eg_vKHBKQ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1647584434981"
-      },
-      {
-        "id": 4,
-        "title": "1) LOBS of jpmc",
-        "about": "include the youtube api",
-        "content": "<script src='https://www.youtube.com/iframe_api'></script>",
-        "dd": "0",
-        "hh": "0",
-        "mm": "5",
-        "tags": "angular",
-        "link": "C:\\Users\\pvr\\Desktop\\JPMCLobs.png"
-      }
-    ]
-  }
+  "notes": [
+    {
+      "id": 1,
+      "title": "1) Initializing the player",
+      "about": "include the youtube api",
+      "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+      "dd": "0",
+      "hh": "0",
+      "mm": "5",
+      "tags": "angular",
+      "link": "https://www.youtube.com/embed/9VNTvwaJ6oM"
+    },
+    {
+      "id": 2,
+      "title": "1) Initializing the player",
+      "about": "include the youtube api",
+      "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+      "dd": "0",
+      "hh": "0",
+      "mm": "5",
+      "tags": "angular",
+      "link": "https://ik.imagekit.io/xzc3oa20vkp/default-image.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1647584244034"
+    },
+    {
+      "id": 3,
+      "title": "1) Initializing the player",
+      "about": "include the youtube api",
+      "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+      "dd": "0",
+      "hh": "0",
+      "mm": "5",
+      "tags": "angular",
+      "link": "https://ik.imagekit.io/xzc3oa20vkp/Screenshot__1__eg_vKHBKQ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1647584434981"
+    },
+    {
+      "id": 4,
+      "title": "1) LOBS of jpmc",
+      "about": "include the youtube api",
+      "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+      "dd": "0",
+      "hh": "0",
+      "mm": "5",
+      "tags": "angular",
+      "link": "C:\\Users\\pvr\\Desktop\\JPMCLobs.png"
+    },
+    {
+      "title": "testing",
+      "about": "",
+      "content": "",
+      "parent": "",
+      "createdDate": "24-Apr-2022 06-16",
+      "id": 5,
+      "createdBy": "venkat.parsi",
+      "type": "note"
+    },
+    {
+      "title": "testing for the first time",
+      "about": "",
+      "content": "",
+      "parent": "",
+      "createdDate": "24-Apr-2022 06-26",
+      "id": 6,
+      "createdBy": "venkat.parsi",
+      "type": "note"
+    },
+    {
+      "title": "other",
+      "about": "",
+      "content": "",
+      "parent": "",
+      "createdDate": "24-Apr-2022 06-56",
+      "id": 7,
+      "createdBy": "venkat.parsi",
+      "type": "note"
+    },
+    {
+      "title": "dddddd",
+      "about": "",
+      "content": "",
+      "parent": "",
+      "createdDate": "24-Apr-2022 06-57",
+      "id": 8,
+      "createdBy": "venkat.parsi",
+      "type": "note"
+    },
+    {
+      "title": "tererererer",
+      "about": "",
+      "content": "",
+      "parent": "",
+      "createdDate": "24-Apr-2022 07-21",
+      "id": 9,
+      "createdBy": "venkat.parsi",
+      "type": "note"
+    },
+    {
+      "title": "dfdf",
+      "about": "",
+      "content": "",
+      "parent": "",
+      "createdDate": "24-Apr-2022 07-22",
+      "id": 10,
+      "createdBy": "venkat.parsi",
+      "type": "note"
+    },
+    {
+      "title": "n3e note",
+      "about": "",
+      "content": "",
+      "parent": "",
+      "createdDate": "24-Apr-2022 10-12",
+      "id": 11,
+      "createdBy": "venkat.parsi",
+      "type": "note"
+    },
+    {
+      "title": "dddddddddddddddd",
+      "about": "",
+      "content": "",
+      "parent": "",
+      "createdDate": "24-Apr-2022 10-13",
+      "id": 12,
+      "createdBy": "venkat.parsi",
+      "type": "note"
+    },
+    {
+      "title": "ddddd",
+      "about": "",
+      "content": "",
+      "parent": "",
+      "createdDate": "24-Apr-2022 10-14",
+      "id": 13,
+      "createdBy": "venkat.parsi",
+      "type": "note"
+    },
+    {
+      "title": "testing new note",
+      "about": "",
+      "content": "",
+      "parent": "",
+      "createdDate": "24-Apr-2022 10-29",
+      "id": 14,
+      "createdBy": "venkat.parsi",
+      "type": "note"
+    }
+  ]
 }

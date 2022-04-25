@@ -5,7 +5,7 @@ export function nextItemId(appStore) {
 }
 
 export function checkDuplicateExists (state,action,statename,fieldName) {
-	console.log("      ----> Starting Checking Artifact duplicate exist ",state,action)
+	console.log("      ----> Starting Checking Artifact duplicate exist (state[statename]) ",state[statename],action)
 	const artifact = state[statename].filter(element => element[fieldName] === action.payload[fieldName]);	
 	if(artifact.length>0) {
         console.log("    Artifact duplicate found ",artifact)

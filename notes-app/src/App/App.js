@@ -22,6 +22,7 @@ import { createTheme } from '@mui/material/styles';
 import PrimarySearchAppBar from "./components/AppNavBar/PrimarySearchAppBar";
 import noteService from './modules/Notes/noteService'
 import { useEffect } from "react";
+import Chapter from "./modules/Notes/components/chapter";
 import { setSubjects,initializeSubjects } from "./modules/Notes/subjectReducerSlice";
 
 
@@ -75,7 +76,17 @@ function App() {
 
   const showAddNoteForm = useSelector((state) => state.appUi.showAddNote.payload);
   const videoLink = useSelector((state) => state.appUi.videoLink);
+  var books = useSelector(({ books }) => {
+		return books;
+	})
 
+  var chapters = useSelector(({ chapters }) => {
+		return chapters;
+	})
+    var selectedBook = books['selectedBook']?.title;
+    var selectedChapter = books['selectedBook']?.title;
+
+    console.log("Books-------------------------------------:",JSON.stringify(books))
   useEffect(() => {
     noteService
      .getAll("notes")
@@ -96,7 +107,8 @@ function App() {
     <PrimarySearchAppBar > </PrimarySearchAppBar>
      
       <ScrollablePanel width="">
-        <div style={{ marginTop: "30px" }}>         
+        <div style={{ marginTop: "30px" }}>   
+        <Chapter book={selectedBook} chapter={selectedChapter}></Chapter>      
           <AddNoteForm showAddNoteForm={showAddNoteForm}></AddNoteForm>
             <div style={{height:"30px"}}></div>
             <ScrollablePanel height="30vh" width="">

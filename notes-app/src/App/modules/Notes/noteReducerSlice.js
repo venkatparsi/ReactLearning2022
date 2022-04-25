@@ -1,67 +1,91 @@
 
 import { createSlice } from '@reduxjs/toolkit';
-import { nextItemId } from '../../../shared/utils/utils'
+import { checkDuplicateExists } from '../../../shared/utils/utils'
+import noteService from './noteService';
 
-
-const addArtifactDef = (state,action) =>{
-   if(action.payload.type==='note'){
-	return addNoteDef = (state, action)
-   }else if(action.apyload.type==='subject'){
-	return addSubjectDef = (state, action);
-   }
+const noteExists =(state,action) =>{
+	return checkDuplicateExists(state,action,'items','title');
 }
 
-const addNoteDef = (state, action) => {
-	console.log("--->addNote:",state);
-	var newState = state.notes.concat({...action.payload,id:nextItemId(state.notes)})	
-	console.log("<---addNote after adding:",newState);
-    return newState;
+const addNoteDef = (state, action,) => {
+	var stateObj = JSON.stringify(state);
+	console.log("    ---> starting addNote state change:",stateObj,action);
+	var newState = null;
+	var noteAlreadyExists = noteExists(state,action);
+	if(noteAlreadyExists==null){
+	    let newNotes = state.items.concat(action.payload);
+		newState = {"items":newNotes,selectedNote:state.selectedNote}
+		console.log("    <--ending addNote state change: New Note ADDED:",newState)
+    	return newState;
+      }		
+	else{
+		console.log("   <--ending addNote state change: (already exists) SO NOT ADDED");
+		return state;	
+	}
 }
 
-const addSubjectDef = (state, action) => {
-	console.log("--->addSubject:",state);
-	var newState = state.concat({...action.payload,id:nextItemId(state)})	
-	console.log("<---addSubject after adding:",newState);
-    return newState;
+
+const setSelectedNoteDef= (state,action) =>{
+	//not modifying the state.subjects.. only selectedSubject is new.
+   var newState = {"items":state.items, selectedNote:action.payload}
+   console.log("Set selected subject def...",newState)
+   return newState;
 }
+
+
+const setNotesDef = (state,action) =>
+{
+	console.log("Setting notes:",JSON.stringify(state),action.payload)
+	var newState = {"items":action.payload,"selectedNote":state.selectedNote}
+	console.log("Setting notes NEW STATE:",newState)
+	return newState;
+}
+
 
 const updateNoteDef = (state,action) => {
 	console.log("--->updateNote entering:",action);
-    var newState = state.map( note => {
-        if( note.id !== action.payload.id ) return  note; 
-        else { note.importance = !note.importance; 
-               return note;
-       }    
+	var newState = state.map( item => {
+        if( item.id === action.payload.id ) return  action.payload; 
+        else { return item; }    
      });
 	 console.log("<---updateNote after updating:",newState);
      return newState;
 }  
 
-const deleteNoteDef = (state,action) => {
 
-}
+export const initializeNotes = () => {
+	console.log("-->initializeNotes")
+	return async dispatch => {
+	  const notes = await noteService.getAll('notes')
+	  dispatch(setNotes(notes))
+	  console.log("<--initializeNotes",notes)
+	}
+  }
 
-const setNotesDef = (state,action) => {
-	var newState = action.payload
-	return newState;
-}
 
 export const noteSlice = createSlice({
-	name: 'note',
-	initialState: {
-		"notes": [{ id: 1,
-		  title: 'Section 1: First thing to do', 
-		  about: "need to do it",
-	      dd: 1, hh:2, mm:12,
-		 }],	
-		 "subjects": ["english","telugu","maths"]	
-	},
+	name: 'notes',
+	initialState: 
+	{
+		selectedNote: {
+			id:1,
+			title:'Test Note',
+			about:'test',
+			type:'note'
+		},
+		items:[{ id: 1,
+		  title: 'Test Note', 
+		  about: "Learn English language interactively and precisely in timely fashion",
+		  type:'note'		  		 	
+		}]
+	}		
+	,
 	reducers: {
+		initializeNotes:initializeNotes,
 		setNotes: 	setNotesDef,
 		addNote:	addNoteDef,
         updateNote: updateNoteDef,
-        deleteNote: deleteNoteDef,
-		addSubject: addSubjectDef
+		setSelectedNote:setSelectedNoteDef        	
 	}
 });
 
