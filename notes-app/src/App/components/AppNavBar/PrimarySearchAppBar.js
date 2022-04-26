@@ -23,6 +23,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CloudDoneIcon from '@mui/icons-material/CloudDone';
 import { useTranslation,Trans } from 'react-i18next';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import pusthak from '../../../shared/images/pusthak.png'
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -187,16 +188,16 @@ export default function PrimarySearchAppBar() {
             sx={{ mr: 0 ,padding:`5px`}}
             backgroundColor=""
           >
-         <CloudDoneIcon  sx={{color:"yellow", backgroundColor:"green",}}/>
+            <img src={pusthak} height={25} width={25}></img>         
           </IconButton>
           
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            sx={{ display: { xs: 'block', sm: 'block' } }}
           >
-            Notes
+            Nalanda
           </Typography>
          
           <IconButton size="small" aria-label="show 4 new mails" color="inherit"

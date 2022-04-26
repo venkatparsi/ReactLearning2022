@@ -2,100 +2,60 @@
   "subjects": [
     {
       "title": "ComputerScience",
-      "about": "its computer science",
+      "about": "Computer science",
       "createdDate": "15-Apr-2022 05-49",
       "id": 2,
-      "createdBy": null,
-      "type": null
+      "createdBy": "Venkat R Parsi",
+      "type": "subject"
     },
     {
-      "title": "testing for the first time",
-      "about": "",
+      "title": "English",
+      "about": "Language most spoken?",
       "createdDate": "24-Apr-2022 06-50",
       "id": 3,
-      "createdBy": null,
-      "type": null
+      "createdBy": "Venkat R Parsi",
+      "type": "subject"
     },
     {
-      "title": "other",
-      "about": "",
+      "title": "Telugu",
+      "about": "Language of south india",
       "createdDate": "24-Apr-2022 06-55",
       "id": 4,
-      "createdBy": null,
-      "type": null
+      "createdBy": "Venkat R Parsi",
+      "type": "subject"
     },
     {
-      "title": "ddddddd",
-      "about": "",
+      "title": "Sanskrit",
+      "about": "Gods own language",
       "createdDate": "24-Apr-2022 07-28",
       "id": 5,
-      "createdBy": null,
-      "type": null
+      "createdBy": "Venkat R Parsi",
+      "type": "subject"
     },
     {
-      "title": "next subject",
-      "about": "",
+      "title": "Vedic Mathematics",
+      "about": "Ancient science of Math",
       "createdDate": "24-Apr-2022 10-07",
       "id": 6,
-      "createdBy": null,
-      "type": null
+      "createdBy": "Venkat R Parsi",
+      "type": "subject"
     },
     {
-      "title": "again the thing ",
-      "about": "",
+      "title": "Kannada",
+      "about": "South indian language",
       "createdDate": "24-Apr-2022 10-08",
       "id": 7,
-      "createdBy": null,
-      "type": null
+      "createdBy": "Venkat R Parsi",
+      "type": "subject"
     },
     {
-      "title": "newSubject",
-      "about": "",
+      "title": "PoetryT",
+      "about": "Telugu poetry lessons",
       "createdDate": "24-Apr-2022 10-09",
       "id": 8,
-      "createdBy": null,
-      "type": null
-    },
-    {
-      "title": "tessssssssss",
-      "about": "",
-      "createdDate": "24-Apr-2022 10-11",
-      "id": 9,
-      "createdBy": null,
-      "type": null
-    },
-    {
-      "title": "test",
-      "about": "",
-      "createdDate": "24-Apr-2022 10-28",
-      "id": 10,
-      "createdBy": null,
-      "type": null
-    },
-    {
-      "title": "New Subject",
-      "about": "New Subject",
-      "createdDate": "25-Apr-2022 07-40",
-      "id": 11,
-      "createdBy": null,
-      "type": null
-    },
-    {
-      "title": "New Subject2",
-      "about": "New Subject",
-      "createdDate": "25-Apr-2022 07-43",
-      "id": 12,
-      "createdBy": null,
-      "type": null
-    },
-    {
-      "title": "yet another book",
-      "about": "",
-      "createdDate": "25-Apr-2022 07-55",
-      "id": 13,
-      "createdBy": null,
-      "type": null
-    }
+      "createdBy": "Venkat R Parsi",
+      "type": "subject"
+    }    
   ],
   "books": [
     {

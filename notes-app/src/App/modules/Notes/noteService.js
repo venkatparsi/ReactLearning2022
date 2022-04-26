@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://192.168.68.110:3001/';
+const baseUrl = 'http://localhost:3001/';
 
 const getBaseUrl = (type)=>{
     if(type==="note"|| type==="notes") return baseUrl+"notes"
@@ -12,14 +12,13 @@ const getBaseUrl = (type)=>{
 const config ={
   proxy: {
     protocol: 'http',
-    host: '192.168.68.110',
+    host: 'localhost',
     port: 3001,   
   }
 }
 
 
-const getAll = async (type) => {    
-
+const getAll = async (type) => { 
   console.log("making axios call with config :",type,config,getBaseUrl(type))
   var result = await axios.get(getBaseUrl(type));
   console.log("done axios call with config",type,config,getBaseUrl(type))
