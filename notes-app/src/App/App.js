@@ -105,7 +105,7 @@ function App() {
     <PrimarySearchAppBar > </PrimarySearchAppBar>     
       <ScrollablePanel width="">
         <div style={{ marginTop: "30px" }}>   
-        <Chapter book={selectedBook} chapter={selectedChapter}></Chapter>      
+          
           <AddNoteForm showAddNoteForm={showAddNoteForm}></AddNoteForm>
             <div style={{height:"30px"}}></div>
             <ScrollablePanel height="30vh" width="">

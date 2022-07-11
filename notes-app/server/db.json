@@ -472,51 +472,57 @@
       "mm": "5",
       "tags": "react,javascript",
       "subject": "javascript",
-      "sections": [
-        {
-          "id": 1,
-          "id_composite": "section_1_youtubeapi",
-          "id_parent": "book_1_youtubeapi",
-          "title": "Include youtube api script",
-          "content": "<script src='https://www.youtube.com/iframe_api'></script>",
-          "link": "https://tutorialzine.com/2015/08/how-to-control-youtubes-video-player-with-javascript",
-          "tags": "youtube api",
-          "notes": [
-            {
-              "id": 1,
-              "title": "1) Initializing the player",
-              "about": "include the youtube api",
-              "content": "<script src='https://www.youtube.com/iframe_api'></script>",
-              "dd": "0",
-              "hh": "0",
-              "mm": "5",
-              "tags": "angular"
-            }
-          ]
-        },
-        {
-          "id": 1,
-          "id_composite": "section_2_youtubeapi",
-          "id_parent": "book_1_youtubeapi",
-          "title": "Include youtube api script",
-          "content": "npm install react-player # or yarn add react-player",
-          "link": "https://www.npmjs.com/package/react-player",
-          "tags": "youtube api",
-          "notes": [
-            {
-              "id": 1,
-              "title": "1) Initializing the player",
-              "about": "include the youtube api",
-              "content": "<script src='https://www.youtube.com/iframe_api'></script>",
-              "dd": "0",
-              "hh": "0",
-              "mm": "5",
-              "tags": "angular",
-              "link": "https://www.youtube.com/embed/9VNTvwaJ6oM"
-            }
-          ]
-        }
-      ]
+      "chapters":[{
+        "id":1,
+        "title":"First Chapter",
+        "About": "All about youtube api ",
+        "sections": [
+          {
+            "id": 1,
+            "id_composite": "section_1_youtubeapi",
+            "id_parent": "book_1_youtubeapi",
+            "title": "Include youtube api script",
+            "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+            "link": "https://tutorialzine.com/2015/08/how-to-control-youtubes-video-player-with-javascript",
+            "tags": "youtube api",
+            "notes": [
+              {
+                "id": 1,
+                "title": "1) Initializing the player",
+                "about": "include the youtube api",
+                "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+                "dd": "0",
+                "hh": "0",
+                "mm": "5",
+                "tags": "angular"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "id_composite": "section_2_youtubeapi",
+            "id_parent": "book_1_youtubeapi",
+            "title": "Include youtube api script",
+            "content": "npm install react-player # or yarn add react-player",
+            "link": "https://www.npmjs.com/package/react-player",
+            "tags": "youtube api",
+            "notes": [
+              {
+                "id": 1,
+                "title": "1) Initializing the player",
+                "about": "include the youtube api",
+                "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+                "dd": "0",
+                "hh": "0",
+                "mm": "5",
+                "tags": "angular",
+                "link": "https://www.youtube.com/embed/9VNTvwaJ6oM"
+              }
+            ]
+          }
+        ]
+      }]
+  
     }
   ],
   "sections": [
@@ -544,61 +550,64 @@
   "notes": [
     {
       "id": 1,
-      "title": "1) Initializing the player",
-      "about": "include the youtube api",
-      "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+      "title": "Vedic Maths",
+      "about": "Introduction",
+      "content": "",
       "dd": "0",
       "hh": "0",
-      "mm": "5",
-      "tags": "angular",
-      "link": "https://www.youtube.com/embed/9VNTvwaJ6oM"
+      "mm": "22",
+      "tags": "vedicmaths",
+      "link": "https://www.youtube.com/embed/2NOzbgGZnkE/"
     },
     {
       "id": 2,
-      "title": "1) Initializing the player",
-      "about": "include the youtube api",
-      "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+      "title": "History of Maths",
+      "about": "Sanskrit Terminology",
+      "content": "",
       "dd": "0",
       "hh": "0",
-      "mm": "5",
-      "tags": "angular",
-      "link": "https://ik.imagekit.io/xzc3oa20vkp/default-image.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1647584244034"
+      "mm": "23",
+      "tags": "vedic maths",
+      "link": "https://www.youtube.com/embed/YHiexr3JWLk"
     },
     {
       "id": 3,
-      "title": "1) Initializing the player",
-      "about": "include the youtube api",
-      "content": "<script src='https://www.youtube.com/iframe_api'></script>",
+      "title": "Additions",
+      "about": "Intro to additions",
+      "content": "",
       "dd": "0",
       "hh": "0",
       "mm": "5",
-      "tags": "angular",
-      "link": "https://ik.imagekit.io/xzc3oa20vkp/Screenshot__1__eg_vKHBKQ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1647584434981"
+      "tags": "addtions",
+      "link": "https://www.youtube.com/embed/J2MQrsRATFE"
     },
     {
       "id": 4,
-      "title": "1) LOBS of jpmc",
-      "about": "include the youtube api",
+      "title": "Dot Method",
+      "about": "Additions simple",
       "content": "<script src='https://www.youtube.com/iframe_api'></script>",
       "dd": "0",
       "hh": "0",
       "mm": "5",
       "tags": "angular",
-      "link": "C:\\Users\\pvr\\Desktop\\JPMCLobs.png"
+      "link": "https://www.youtube.com/embed/-kRnvgv2aTs"
     },
     {
-      "title": "testing",
-      "about": "",
+      "title": "The Guru - Author",
+      "link": "https://www.youtube.com/embed/hEwaw60hcaY",
+      "about": "Ramella Avadhanulu",
       "content": "",
       "parent": "",
       "createdDate": "24-Apr-2022 06-16",
       "id": 5,
       "createdBy": "venkat.parsi",
-      "type": "note"
+      "type": "note",
+      "tags": "angular,icon"
     },
     {
-      "title": "testing for the first time",
-      "about": "",
+      "title": "Series 4",
+      "link":"https://www.youtube.com/embed/-kRnvgv2aTs",
+      "about": "Rule 1",
       "content": "",
       "parent": "",
       "createdDate": "24-Apr-2022 06-26",
@@ -607,8 +616,9 @@
       "type": "note"
     },
     {
-      "title": "other",
-      "about": "",
+      "title": "Series 5",
+      "link":"https://youtu.be/clNqlhLlqzo",
+      "about": "Gunakaralu",
       "content": "",
       "parent": "",
       "createdDate": "24-Apr-2022 06-56",
@@ -617,74 +627,15 @@
       "type": "note"
     },
     {
-      "title": "dddddd",
-      "about": "",
+      "title": "Ekadikena purvena",
+      "about": "Gunakaram",
       "content": "",
       "parent": "",
       "createdDate": "24-Apr-2022 06-57",
       "id": 8,
       "createdBy": "venkat.parsi",
       "type": "note"
-    },
-    {
-      "title": "tererererer",
-      "about": "",
-      "content": "",
-      "parent": "",
-      "createdDate": "24-Apr-2022 07-21",
-      "id": 9,
-      "createdBy": "venkat.parsi",
-      "type": "note"
-    },
-    {
-      "title": "dfdf",
-      "about": "",
-      "content": "",
-      "parent": "",
-      "createdDate": "24-Apr-2022 07-22",
-      "id": 10,
-      "createdBy": "venkat.parsi",
-      "type": "note"
-    },
-    {
-      "title": "n3e note",
-      "about": "",
-      "content": "",
-      "parent": "",
-      "createdDate": "24-Apr-2022 10-12",
-      "id": 11,
-      "createdBy": "venkat.parsi",
-      "type": "note"
-    },
-    {
-      "title": "dddddddddddddddd",
-      "about": "",
-      "content": "",
-      "parent": "",
-      "createdDate": "24-Apr-2022 10-13",
-      "id": 12,
-      "createdBy": "venkat.parsi",
-      "type": "note"
-    },
-    {
-      "title": "ddddd",
-      "about": "",
-      "content": "",
-      "parent": "",
-      "createdDate": "24-Apr-2022 10-14",
-      "id": 13,
-      "createdBy": "venkat.parsi",
-      "type": "note"
-    },
-    {
-      "title": "testing new note",
-      "about": "",
-      "content": "",
-      "parent": "",
-      "createdDate": "24-Apr-2022 10-29",
-      "id": 14,
-      "createdBy": "venkat.parsi",
-      "type": "note"
     }
+    
   ]
 }

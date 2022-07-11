@@ -1,0 +1,18 @@
+{
+  "name": "readscripts",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "read files",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node src/readFile.js --presets env"
+  },
+  "author": "venkat",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4"
+  }
+}

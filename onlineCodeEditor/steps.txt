@@ -1,0 +1,45 @@
+Step 1:
+mkdir onlineCodeEditor
+cd onlineCodeEditor
+
+Step 2: npm init
+# Enter details of the project.
+
+Step 3:
+edit package.json
+#=== Add below
+"start": "node app.js",
+    "dev": "nodemon app.js"
+#==
+
+where touch 
+#==> should return the path of the touch command typically
+#C:\Program Files\Git\usr\bin\touch.exe
+
+touch app.js
+
+Step 4: Installing Module
+npm install express
+npm install nodemon
+
+
+#edit the app.js add onlineCodeEditor
+
+#Step 5:
+#run the Program
+
+#Step 6:
+npm run dev
+
+#Step 7: Express application generator.
+#Install the Express Generator by running the following from a terminal:
+npm install -g express-generator
+
+express myExpressApp --view pug
+
+cd myExpressApp 
+npm install
+
+#React split pane - best...
+https://www.npmjs.com/package/allotment
+https://bestofreactjs.com/repo/johnwalley-allotment-react-component-libraries

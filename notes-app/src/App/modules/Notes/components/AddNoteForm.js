@@ -95,72 +95,72 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		return books;
 	})
 
-	var chapters = useSelector(({chapters}) => {
+	var chapters = useSelector(({ chapters }) => {
 		return chapters;
 	})
 
-	
+
 	var subjects = useSelector(({ subjects }) => {
 		//	console.log("SUBJECTS:",subjects)
-			return subjects;
-		})
-	
-	
-	const loadBooks = (subjectId) =>{
-		var booksPromise = noteService.getAllWithParent("books",subjectId);
-		console.log("NewState Books Promise:",booksPromise)
+		return subjects;
+	})
+
+
+	const loadBooks = (subjectId) => {
+		var booksPromise = noteService.getAllWithParent("books", subjectId);
+		console.log("NewState Books Promise:", booksPromise)
 		booksPromise.then((result) => {
-			console.log("BOOKS RESULT",result.data);
+			console.log("BOOKS RESULT", result.data);
 			//console.log("NewState:-------------------------------->",newState)
 			dispatch(setBooks(result.data))
 			//setState(newState)
 		})
-		
+
 	}
 
-	const loadArtifact = (artifactType,parentId,dispatchFunction) =>{
-		var artifactPromise = noteService.getAllWithParent(artifactType,parentId);
-		console.log("NewState "+artifactType+" Promise:",artifactPromise)
+	const loadArtifact = (artifactType, parentId, dispatchFunction) => {
+		var artifactPromise = noteService.getAllWithParent(artifactType, parentId);
+		console.log("NewState " + artifactType + " Promise:", artifactPromise)
 		artifactPromise.then((result) => {
-			console.log(artifactType+" RESULT",result.data);
+			console.log(artifactType + " RESULT", result.data);
 			//console.log("NewState:-------------------------------->",newState)
 			dispatchFunction(result.data)
 			//setState(newState)
 		})
 	}
 
-    
 
-	const handleBookChange = (item) =>{
-		console.log("BOOK CHANGED:",item)
+
+	const handleBookChange = (item) => {
+		console.log("BOOK CHANGED:", item)
 		dispatch(setSelectedBook(item))
 	}
 
-	const handleChapterChange = (item) =>{
-		console.log("CHAPTER CHANGED:",item)
+	const handleChapterChange = (item) => {
+		console.log("CHAPTER CHANGED:", item)
 		dispatch(setSelectedChapter(item))
 	}
 
 	const handleSubjectChange = (event) => {
-		var subjectId = event.target.value;		
-		console.log("SUBJECT CHANGED:",subjectId)		
+		var subjectId = event.target.value;
+		console.log("SUBJECT CHANGED:", subjectId)
 		loadBooks(subjectId)
 	}
-	
-	
-	const saveArtifact = (artifactType,artifactPayload,dispatchFunction) => {			
-			console.log("----> dispatching add ", artifactType);			
-			var resultPromise = noteService.add(artifactType, artifactPayload)
-			resultPromise.then(response => {
-				console.log("    ---->  Saved " + artifactType + ": ---->", response);
-				if (response.isDuplicateFound) {
-					alert("       Duplicate Found.", type);			
-				} else {
-					dispatch(dispatchFunction(response.data)	)
-					alert("   Successfully saved.", type);
-				}
-			})
-			console.log(" <---- dispatching add " + type + " end.")	
+
+
+	const saveArtifact = (artifactType, artifactPayload, dispatchFunction) => {
+		console.log("----> dispatching add ", artifactType);
+		var resultPromise = noteService.add(artifactType, artifactPayload)
+		resultPromise.then(response => {
+			console.log("    ---->  Saved " + artifactType + ": ---->", response);
+			if (response.isDuplicateFound) {
+				alert("       Duplicate Found.", type);
+			} else {
+				dispatch(dispatchFunction(response.data))
+				alert("   Successfully saved.", type);
+			}
+		})
+		console.log(" <---- dispatching add " + type + " end.")
 	}
 
 	const saveBook = (type, formData) => {
@@ -207,7 +207,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 
 	const saveNote = (type, formData) => {
 		const momentNow = moment();
-		if (type === 'note'|| type==="notes") {
+		if (type === 'note' || type === "notes") {
 			console.log(" ----> dispatching add ", type);
 			var noteRelatedPayload = {
 				title: formData.get('title'),
@@ -269,8 +269,8 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 			createdBy: formData.get('createdBy')
 		}
 		console.log("      Payload type,val->", addPayload.type, addPayload);
-		if (formData.get('title'))			
-		    if (state['type'] === 'book') { saveBook('book', formData) }
+		if (formData.get('title'))
+			if (state['type'] === 'book') { saveBook('book', formData) }
 			else if (state['type'] === 'note') { saveNote('note', formData) }
 			else if (state['type'] === 'subject') {
 				console.log(" ----> Starting add subject db service.");
@@ -354,7 +354,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		}
 		else if (state.type === 'book') {
 			if (ele === 'dd' || ele === 'mm' || ele === 'hh' || ele === 'tags' || ele === 'link'
-				|| ele === 'parent' || ele === 'content' || ele === 'order' 
+				|| ele === 'parent' || ele === 'content' || ele === 'order'
 				|| ele === 'chapter' || ele === 'section')
 				return true;
 
@@ -375,13 +375,13 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		else if (state.type === 'note') {
 			if (ele === 'dd' || ele === 'mm' || ele === 'hh' || ele === 'tags' || ele === 'link'
 				|| ele === 'parent' || ele === 'order' ||
-				ele === 'subject' || ele ==='book')
+				ele === 'subject' || ele === 'book')
 				return true;
 
 		}
 
 	}
-	
+
 	const stateChangeHandler = (event) => {
 		//console.log("stateChangeHandler:", event.target.name, event.target.value);
 		var targetName = event.target.name;
@@ -401,9 +401,9 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		//console.log("NEW STATE",state);		
 	};
 
-	
 
-	var stateChangeWithPreAndPostHandler = function (preHandler, postHandler,postHandler2) {
+
+	var stateChangeWithPreAndPostHandler = function (preHandler, postHandler, postHandler2) {
 		return function (event) {
 			preHandler && preHandler(event)
 			var currentTargetState = state[event.target.name]
@@ -433,9 +433,9 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 	}
 
 	const isEmpty = (target) => {
-		console.log("TARGET VALUE",target)
+		console.log("TARGET VALUE", target)
 		//trim will fail on integer value.. so skip it.
-		if(typeof(target.value)==="number") return true;
+		if (typeof (target.value) === "number") return true;
 		return (target.value?.trim().length === 0)
 	}
 
@@ -514,7 +514,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 		}
 	}
 
-	
+
 	var dynamicContentFields = addNoteFormData.uiFields;
 	useEffect(() => {
 		setState(addNoteFormData);
@@ -671,16 +671,16 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 							<Select
 								labelId="demo-simple-select-helper-label"
 								id="book"
-								name="book"							
+								name="book"
 								label="Book"
 								onChange={(event) => handleBookChange(event.target.value)}
-							>		
-							<MenuItem value="none" selected>
-										<em>None</em>
-									</MenuItem>					
-								{  books.items.map(item => 									
+							>
+								<MenuItem value="none" selected>
+									<em>None</em>
+								</MenuItem>
+								{books.items.map(item =>
 									<MenuItem key={item?.id} value={item}>{item?.title}</MenuItem>
-								)						
+								)
 								}
 							</Select>
 							<FormHelperText>Select Book</FormHelperText>
@@ -692,16 +692,16 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 							<Select
 								labelId="chapter-label"
 								id="chapter"
-								name="chapter"							
+								name="chapter"
 								label="Chapter"
 								onChange={(event) => handleChapterChange(event.target.value)}
 							>
 								<MenuItem value="">
 									<em>None</em>
 								</MenuItem>
-								{  chapters.items.map(item => 									
+								{chapters.items.map(item =>
 									<MenuItem key={item?.id} value={item}>{item?.title}</MenuItem>
-								)						
+								)
 								}
 							</Select>
 							<FormHelperText>Select Chapter</FormHelperText>
@@ -760,7 +760,7 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 								aria-label="favorite"
 								onClick={() => stateChangeCustomFieldsHandler('addArtifactTypeTab', 'scratchTab')}
 								style={{ minWidth: "50px" }}
-							/>						
+							/>
 						</Tabs>
 
 						<TabPanel sx={{
@@ -987,11 +987,11 @@ const AddNoteForm = ({ showAddNoteForm, showAlertNotification }) => {
 
 						<TabPanel value={state['addArtifactTypeTab']} index={"displayItemTab"}>
 							{
-							  state["type"]==="subject" ? <SubjectList></SubjectList> : ''
-							   }
-							   {
-							  state["type"]==="book" ? <BookList></BookList> : ''
-							   }
+								state["type"] === "subject" ? <SubjectList></SubjectList> : ''
+							}
+							{
+								state["type"] === "book" ? <BookList></BookList> : ''
+							}
 						</TabPanel>
 
 
