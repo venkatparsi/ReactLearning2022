@@ -1,9 +1,9 @@
 import "@vscode/codicons/dist/codicon.css";
+import styles from "./advanced.stories.module.css";
 import { useState } from "react";
-
 import { Allotment } from "allotment";//
 //import { LayoutPriority } from "../src/split-view";
-import styles from "./advanced.stories.module.css";
+
 import { ActivityBar } from "./activity-bar";
 import { AuxiliaryBar } from "./auxiliary-bar";
 import { Editor } from "./editor";
@@ -26,13 +26,12 @@ const DOCUMENTS = [
  export const VisualStudioCode = ({
   activityBar,
   primarySideBar,
-  primarySideBarPosition,
+  primarySideBarPosition = 'left',
   secondarySideBar,
 }) => {
   const [editorVisible, setEditorVisible] = useState(true);
   const [panelVisible, setPanelVisible] = useState(true);
   const [activity, setActivity] = useState(0);
-
   const [openEditors, setOpenEditors] = useState(DOCUMENTS);
 
   const sidebar = (
@@ -57,8 +56,7 @@ const DOCUMENTS = [
   const auxiliarySidebar = (
     <Allotment.Pane
       key="auxiliarySidebar"
-      minSize={170}
-     
+      minSize={170}     
       preferredSize={300}
       visible={secondarySideBar}
       snap

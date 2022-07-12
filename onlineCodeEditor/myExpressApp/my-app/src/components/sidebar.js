@@ -4,7 +4,7 @@ import { Allotment } from "allotment";
 import { Document } from "./advanced.stories";
 import { Pane } from "./pane";
 import styles from "./sidebar.module.css";
-//const styles = require('./sidebar.module.css');
+
 
 
 export const Sidebar = ({

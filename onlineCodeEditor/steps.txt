@@ -42,4 +42,10 @@ npm install
 
 #React split pane - best...
 https://www.npmjs.com/package/allotment
+https://allotment.mulberryhousesoftware.com/
 https://bestofreactjs.com/repo/johnwalley-allotment-react-component-libraries
+
+#React resizable div
+https://bestofreactjs.com/repo/strml-react-resizable-react-component-libraries
+
+Demo: https://strml.github.io/react-resizable/examples/1.html

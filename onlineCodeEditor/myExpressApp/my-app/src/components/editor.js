@@ -2,11 +2,13 @@
 import React from "react";
 import  {Allotment}  from "allotment";
 import styles from './Editor.module.css' ;
+
 //import styles from "./editor.module.css";
 import { EditorGroupContainer } from "./editor-group-container";
 import "@vscode/codicons/dist/codicon.css";
 
 export const Editor = ({ documents, onDocumentsChange }) => {
+  
   return (
     <div className={styles.content}>
       <Allotment className={styles.allotment} minSize={110}>
@@ -27,13 +29,19 @@ export const Editor = ({ documents, onDocumentsChange }) => {
 
                 onDocumentsChange(newDocuments);
               }}
-            />
+         
+            >
+               
+              </EditorGroupContainer>
           ))
         ) : (
           <div className={styles.watermark}>
+             
             <div className={styles.watermarkBox}>
+              
               <dl>
                 <dt>Show All Commands</dt>
+               
                 <dd>
                   <div
                     className="monaco-keybinding"

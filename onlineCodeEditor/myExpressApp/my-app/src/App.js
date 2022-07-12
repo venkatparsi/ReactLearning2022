@@ -10,8 +10,7 @@ import { Allotment } from "allotment";
 
 
 //import { LayoutPriority } from "../src/split-view";////
-//import styles from "./advanced.stories.module.css";
-import { ActivityBar } from "./components/activity-bar";
+//import { ActivityBar } from "./components/activity-bar";
 import VisualStudioCode from './components/advanced.stories';
 //import { AuxiliaryBar } from "./components/auxiliary-bar";
 //import { Editor } from "./components/editor";
@@ -49,10 +48,13 @@ function App() {
 
 	// Function to call the compile endpoint
 	function compile() {
+		console.log("Started compiling code...")
 		setLoading(true);
-		if (userCode === ``) {
+		/*if (userCode === ``) {
+			console.log("Usercode is null-- returning.")
 			return
-		}
+		}*/
+		console.log("Posting to server:");
 
 		// Post request to compile endpoint
 		Axios.post(`http://localhost:3000/compile`, {
@@ -60,13 +62,14 @@ function App() {
 			language: userLang,
 			input: userInput
 		}).then((res) => {
-			setUserOutput(res.data.output);
+			setUserOutput(res.data);
+			console.log(res.data);
 		}).then(() => {
 			setLoading(false);
-			window.location.reload();
+			//window.location.reload();
 		})
 
-		window.location.reload();
+		//window.location.reload();
 	}
 
 	// Function to clear the output screen
@@ -76,9 +79,14 @@ function App() {
 
 	return (
 		<div className="App" >
-			
-					<VisualStudioCode></VisualStudioCode>
-				
+			<div>
+				<button className="run-btn" onClick={() => compile()}>
+					Run
+				</button>
+			</div>
+			<div style={{paddingTop:'100px'}}>
+				<VisualStudioCode ></VisualStudioCode>
+			</div>
 		</div>
 	);
 }

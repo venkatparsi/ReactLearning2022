@@ -9,7 +9,7 @@
   display: block;
   position: absolute;
   width: 100%;
-  top: calc(50% + 55px);
+  top: calc(5% + 55px);
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
