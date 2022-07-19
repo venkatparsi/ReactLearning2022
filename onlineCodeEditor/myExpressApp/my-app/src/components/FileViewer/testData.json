@@ -1,0 +1,69 @@
+[{
+    "name": "src",
+    "type": "directory",
+    "isExpanded": true,
+    "contents": [
+        {
+            "name": "components",
+            "type": "directory",
+            "isExpanded": true,
+            "contents": [
+                {
+                    "name": "FileViewer",
+                    "type": "directory",
+                    "isExpanded": true,
+                    "contents": [
+                        {
+                            "name": "Directory.js",
+                            "type": "file",
+                            "contents": "import React from 'react';\nimport styled from 'styled-components';\nimport { ChevronRight, Folder } from 'react-feather';\nimport { motion } from 'framer-motion';\n\nimport UnstyledButton from '@components/UnstyledButton';\n\nimport File from './File';\nimport Expander from './Expander';\n\nfunction Directory({ name, slug, isExpanded, onClick, children }) {\n  return (\n    <Wrapper>\n      <Header onClick={() => onClick(slug)}>\n        <Expander />\n        <IconWrapper animate={{ rotate: isExpanded ? 90 : 0 }}>\n          <ChevronRight size={14} />\n        </IconWrapper>\n        {name}\n      </Header>\n      <Files\n        animate={{\n          height: isExpanded ? 'auto' : 0,\n          opacity: isExpanded ? 1 : 0,\n          overflow: isExpanded ? undefined : 'hidden',\n        }}\n        style={{}}\n      >\n        {children}\n      </Files>\n    </Wrapper>\n  );\n}\n\nconst Wrapper = styled.div``;\n\nconst Header = styled(UnstyledButton)`\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  height: var(--row-height);\n  color: inherit;\n`;\n\nconst Files = styled(motion.div)`\n  padding-left: calc(16px + 4px);\n  height: 0px;\n`;\n\nconst IconWrapper = styled(motion.div)`\n  svg {\n    display: block;\n  }\n`;\n\nexport default Directory;",
+                            "isSelected": false
+                        },
+                        {
+                            "name": "Expander.js",
+                            "type": "file",
+                            "contents": "import styled from 'styled-components';\n\nconst Expander = styled.div`\n  position: absolute;\n  left: 0;\n  right: 0;\n  height: var(--row-height);\n  border-radius: 1000px;\n  background: white;\n  opacity: var(--opacity, 0);\n  transition: opacity 200ms;\n`;\n\nexport default Expander;",
+                            "isSelected": false
+                        },
+                        {
+                            "name": "File.js",
+                            "type": "file",
+                            "contents": "import React from 'react';\nimport styled from 'styled-components';\nimport { File as FileIcon } from 'react-feather';\n\nimport UnstyledButton from '@components/UnstyledButton';\n\nimport Expander from './Expander';\n\nfunction File({ file, slug, isExpanded, onClick }) {\n  return (\n    <Wrapper\n      style={{\n        '--color': file.isSelected\n          ? 'hsl(50deg 100% 60%)'\n          : 'inherit',\n        '--weight': file.isSelected\n          ? 'var(--font-weight-medium)'\n          : 'var(--font-weight-normal)',\n      }}\n      onClick={() => onClick(slug)}\n      tabIndex={isExpanded === false ? -1 : undefined}\n    >\n      <Expander\n        style={{\n          '--opacity': file.isSelected ? 0.1 : 0,\n        }}\n      />\n      <IconWrapper>\n        <FileIcon\n          size={14}\n          color={\n            file.isSelected\n              ? 'hsl(50deg 100% 60%)'\n              : 'hsl(0deg 0% 100% / 0.5)'\n          }\n        />\n      </IconWrapper>\n      {file.name}\n    </Wrapper>\n  );\n}\n\nconst Wrapper = styled(UnstyledButton)`\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  height: var(--row-height);\n  color: var(--color);\n  font-weight: var(--weight);\n`;\n\nconst IconWrapper = styled.div`\n  transform: translateX(-2px);\n`;\n\nexport default File;",
+                            "isSelected": false
+                        },
+                        {
+                            "name": "FileContent.js",
+                            "type": "file",
+                            "contents": "import React from 'react';\nimport styled from 'styled-components';\n\nimport Paper from '@components/Paper';\nimport StaticCodeSnippet from '@components/StaticCodeSnippet';\n\nconst FileContent = ({ contents, ...delegated }) => {\n  return (\n    <Wrapper {...delegated}>\n      <StaticCodeSnippet\n        code={contents}\n        lang=\"js\"\n        CodeWrapper={CodeWrapper}\n      />\n    </Wrapper>\n  );\n};\n\nconst Wrapper = styled(Paper)`\n  background: white;\n  border-radius: 4px;\n  padding: 16px;\n  overflow: auto;\n  min-height: 420px;\n`;\n\nconst CodeWrapper = styled.div`\n  font-size: 0.875rem;\n  color: black;\n`;\n\nexport default FileContent;",
+                            "isSelected": false
+                        },
+                        {
+                            "name": "FileViewer.helpers.js",
+                            "type": "file",
+                            "contents": "export function getFile(files, testFn) {\n  let items = [...files];\n\n  while (items.length) {\n    let item = items.shift();\n\n    if (item.type === 'file') {\n      const matches = testFn(item);\n\n      if (matches) {\n        return item;\n      }\n    }\n\n    if (item.type === 'directory') {\n      items.push(...item.contents);\n    }\n  }\n}\n\nexport function openFile(items, fileSlugToOpen, slugPrefix = '') {\n  items.forEach((item) => {\n    const slug = `${slugPrefix}/${item.name}`;\n\n    if (item.type === 'file') {\n      item.isSelected = fileSlugToOpen === slug;\n    } else {\n      openFile(item.contents, fileSlugToOpen, slug);\n    }\n  });\n}",
+                            "isSelected": false
+                        },
+                        {
+                            "name": "FileViewer.js",
+                            "type": "file",
+                            "isSelected": true,
+                            "contents": "import React from 'react';\nimport styled from 'styled-components';\n\nimport Space from '@components/Space';\n\nimport Sidebar from './Sidebar';\nimport FileContent from './FileContent';\nimport { getFile } from './FileViewer.helpers';\n\nconst FileViewer = ({ initialFiles }) => {\n  const [files, setFiles] = React.useState(\n    initialFiles\n  );\n\n  const activeFile = getFile(\n    files,\n    (file) => !!file.isSelected\n  );\n\n  return (\n    <Wrapper>\n      <Sidebar\n        files={files}\n        setFiles={setFiles}\n      />\n      <FlexedFileContent\n        contents={activeFile.contents}\n      />\n    </Wrapper>\n  );\n};\n\nconst Wrapper = styled(Space)`\n  display: flex;\n  gap: 8px;\n  padding: 16px;\n  padding-left: 4px;\n  margin: 0 -32px;\n  border: 1px solid var(--color-gray-100);\n\n  @media ${(p) => p.theme.breakpoints.mdAndSmaller} {\n    flex-direction: column;\n    gap: 16px;\n  }\n`;\n\nconst FlexedFileContent = styled(FileContent)`\n  flex: 1;\n`;\n\nexport default FileViewer;"
+                        },
+                        {
+                            "name": "index.js",
+                            "type": "file",
+                            "contents": "export * from './FileViewer';\nexport { default } from './FileViewer';",
+                            "isSelected": false
+                        },
+                        {
+                            "name": "Sidebar.js",
+                            "type": "file",
+                            "contents": "import React from 'react';\nimport styled from 'styled-components';\nimport produce from 'immer';\n\nimport Directory from './Directory';\nimport File from './File';\nimport { openFile } from './FileViewer.helpers';\n\nfunction generateChildren(items, props, slugPrefix = '') {\n  return items.map((item) => {\n    const slug = `${slugPrefix}/${item.name}`;\n\n    if (item.type === 'directory') {\n      return (\n        <Directory\n          key={slug}\n          slug={slug}\n          name={item.name}\n          isExpanded={item.isExpanded}\n          onClick={props.handleToggleDirectory}\n        >\n          {generateChildren(\n            item.contents,\n            { ...props, isExpanded: item.isExpanded },\n            slug\n          )}\n        </Directory>\n      );\n    } else {\n      return (\n        <File\n          key={slug}\n          file={item}\n          slug={slug}\n          onClick={props.handleSelectFile}\n          isExpanded={props.isExpanded}\n        />\n      );\n    }\n  });\n}\n\nconst Sidebar = ({ files, setFiles }) => {\n  function handleToggleDirectory(directorySlug) {\n    const paths = directorySlug.slice(1).split('/');\n\n    setFiles((f) => {\n      return produce(f, (draftFiles) => {\n        let reference = { contents: draftFiles };\n\n        while (paths.length) {\n          let currentPath = paths.shift();\n\n          if (currentPath) {\n            reference = reference.contents.find((item) => {\n              return item.name === currentPath;\n            });\n          }\n        }\n\n        reference.isExpanded = !reference.isExpanded;\n      });\n    });\n  }\n\n  function handleSelectFile(fileSlug) {\n    setFiles((f) => {\n      return produce(f, (draftFiles) => {\n        openFile(draftFiles, fileSlug);\n      });\n    });\n  }\n\n  const children = generateChildren(files, {\n    handleToggleDirectory,\n    handleSelectFile,\n  });\n\n  return <Wrapper>{children}</Wrapper>;\n};\n\nconst Wrapper = styled.div`\n  --row-height: 1.75rem;\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  gap: 2px;\n  overflow: auto;\n  padding: 0 16px 0 12px;\n  margin-top: -0.25rem;\n`;\n\nexport default Sidebar;",
+                            "isSelected": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}]

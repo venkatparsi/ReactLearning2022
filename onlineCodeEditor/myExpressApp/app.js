@@ -26,9 +26,36 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+/*
+app.use((req,res,next)=>{
+  res.setHeader('Access-Control-Allow-Origin','*');
+  res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+  res.setHeader('Access-Control-Allow-Methods','Content-Type','Authorization');
+})*/
 
+app.get("/helloworld/:userName",(req,res)=>{
+  console.log(req.params);
+  res.send({data:"venkat"});
+});
 
-app.post("/compile", (req, res) => {
+app.get('/api/greeting', (req, res) => {
+  const name = req.query.name || 'World';
+  //console.log("Request:",req)
+  res.send({ data: `Hello ${name}!` });
+});
+
+app.get('/get/folder/',(req,res) => {
+  let folderName = req.query.name;
+  if(folderName){
+    console.log("Reading Folder:",folderName)
+    var output = readDir(folderName);
+   // console.log("Output: END ====>",output,"<<===");
+    res.setHeader('Content-Type', 'application/json');
+    res.send(output);
+  }
+})
+
+app.post("/compile",cors(),(req, res) => {
   //getting the required data from the request
   let code = req.body.code;
   let language = req.body.language;
@@ -65,7 +92,8 @@ app.post("/compile", (req, res) => {
 
      var output = readDir();
      console.log("Output: END ====>",output,"<<===");
-     res.send({data:output});
+     res.setHeader('Content-Type', 'application/json');
+     res.send(output);
     // return output;
   })
 
@@ -73,12 +101,20 @@ app.post("/compile", (req, res) => {
     var stats = fs.lstatSync(filename),
       info = {
         path: filename,
+        parentPath:path.dirname,
         name: path.basename(filename)
+       
       };
+      if(info.name=='node_modules'){
+        console.log("Skipping NodeModules folder.",info.path)
+        return "";
+      }
       //console.log("info",info)
 
     if (stats.isDirectory()) {
-      info.type = "folder";
+      info.type = "directory";
+      info.isExpanded=false;
+      info.id = 
       info.children = fs.readdirSync(filename).map(function (child) {
         return dirTree(filename + '/' + child);
       });
@@ -100,8 +136,8 @@ app.post("/compile", (req, res) => {
   };
 
   const readDir = (folderName) => {
-
-    folderName = './my-app/src/';
+    if(!folderName)
+    folderName = './my-app/src/';   
     //console.log("FolderName",folderName);
     const files = fs.readdirSync(folderName);
     

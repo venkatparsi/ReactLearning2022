@@ -4,15 +4,20 @@ import { Allotment } from "allotment";
 import { Document } from "./advanced.stories";
 import { Pane } from "./pane";
 import styles from "./sidebar.module.css";
-
-
+import FileSidebar from "./FileViewer/Sidebar";
+import './FileViewer/FileViewer.css'
+import { FileContext } from "./FileViewer/FileViewer";
 
 export const Sidebar = ({
   title,
+  initialFiles,
   documents,
   openEditors,
   onOpenEditorsChange,
 }) => {
+  const [files, setFiles] = React.useState(initialFiles);
+
+
   return (
     <div className={styles.sidebar}>
       <div className={styles.title}>
@@ -107,7 +112,6 @@ export const Sidebar = ({
                             onClick={() => {
                               const newDocuments = [...openEditors];
                               newDocuments.push(document);
-
                               onOpenEditorsChange(newDocuments);
                             }}
                           >
@@ -118,6 +122,15 @@ export const Sidebar = ({
                     </div>
                   </div>
                 ))}
+                <FileContext.Provider value={files}>
+                  <FileSidebar
+                    files={files}
+                    setFiles={setFiles}
+                    onOpenEditorsChange={onOpenEditorsChange}
+                    openEditors={openEditors}
+                  >
+                  </FileSidebar>
+                </FileContext.Provider>
               </div>
             </Pane>
           </Allotment.Pane>

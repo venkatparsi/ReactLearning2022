@@ -1,9 +1,11 @@
 import "@vscode/codicons/dist/codicon.css";
 import styles from "./advanced.stories.module.css";
+import React from "react";
 import { useState } from "react";
 import { Allotment } from "allotment";//
 //import { LayoutPriority } from "../src/split-view";
 
+import testData from './FileViewer/testData.json';
 import { ActivityBar } from "./activity-bar";
 import { AuxiliaryBar } from "./auxiliary-bar";
 import { Editor } from "./editor";
@@ -32,7 +34,8 @@ const DOCUMENTS = [
   const [editorVisible, setEditorVisible] = useState(true);
   const [panelVisible, setPanelVisible] = useState(true);
   const [activity, setActivity] = useState(0);
-  const [openEditors, setOpenEditors] = useState(DOCUMENTS);
+  const [openEditors, setOpenEditors] = useState(DOCUMENTS); 
+  
 
   const sidebar = (
     <Allotment.Pane
@@ -44,6 +47,7 @@ const DOCUMENTS = [
     >
       <Sidebar
         title={ACTIVITIES[activity]}
+        initialFiles={testData}
         documents={DOCUMENTS}
         openEditors={openEditors}
         onOpenEditorsChange={(openEditor) => {
